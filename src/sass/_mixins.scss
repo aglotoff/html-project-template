@@ -1,0 +1,53 @@
+/// Clear floated content within a container
+/// @group helpers
+@mixin clearfix() {
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+}
+
+
+/// Breakpoint & up (toggle on the given screen size and above)
+/// @param {String} $name - Breakpoint name
+/// @group breakpoints
+/// @require breakpoints-up
+@mixin breakpoint-up($name) {
+    @if map-has-key($breakpoints-up, $name) {
+        @media (min-width: #{map-get($breakpoints-up, $name)}) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint name: `#{$name}`.";
+    }
+}
+
+/// Breakpoint & down (toggle on the given screen size and below)
+/// @param {String} $name - Breakpoint name
+/// @group breakpoints
+/// @require breakpoints-down
+@mixin breakpoint-down($name) {
+    @if map-has-key($breakpoints-down, $name) {
+        @media (max-width: #{map-get($breakpoints-down, $name)}) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint name: `#{$name}`.";
+    }
+}
+
+/// Breakpoint & only (toggle on the given screen size only)
+/// @param {String} $name - Breakpoint name
+/// @group breakpoints
+/// @require breakpoints-only
+@mixin breakpoint-only($name) {
+    @if map-has-key($breakpoints-only, $name) {
+        $breakpoints: map-get($breakpoints-only, $name);
+        @media (min-width: #{nth($breakpoints, 1)}) and (max-width: #{nth($breakpoints, 2)}) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint name: `#{$name}`.";
+    }
+}
