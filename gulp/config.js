@@ -15,7 +15,7 @@ module.exports = {
             dest: DEST_PREFIX + '/css'
         },
         html: {
-            all:  SRC_PREFIX + '/pug/*.pug',
+            all:  SRC_PREFIX + '/pug/**/*.pug',
             src:  SRC_PREFIX + '/pug/*.pug',
             dest: DEST_PREFIX
         },
