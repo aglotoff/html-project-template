@@ -10,34 +10,34 @@ module.exports = {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
         css: {
-            all:  SRC_PREFIX + '/**/*.scss',
-            src:  SRC_PREFIX + '/sass/style.scss',
-            dest: DEST_PREFIX + '/css'
+            all:  `${SRC_PREFIX}/**/*.scss`,
+            src:  `${SRC_PREFIX}/sass/style.scss`,
+            dest: `${DEST_PREFIX}/css`
         },
         html: {
-            all:  SRC_PREFIX + '/pug/**/*.pug',
-            src:  SRC_PREFIX + '/pug/*.pug',
+            all:  `${SRC_PREFIX}/pug/**/*.pug`,
+            src:  `${SRC_PREFIX}/pug/*.pug`,
             dest: DEST_PREFIX
         },
         img: {
-            all:    SRC_PREFIX + '/**/img/*.{gif,jpg,png}',
-            src:    SRC_PREFIX + '/**/img/*.{gif,jpg,png}',
-            rename: DEST_PREFIX + '/img',
+            all:    `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            src:    `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            rename: `${DEST_PREFIX}/img`,
             dest:   './'
         },
         js: {
             all:    [
-                SRC_PREFIX + '/**/*.js',
-                '!' + SRC_PREFIX + '/js/libs/*.js'
+                `${SRC_PREFIX}/**/*.js`,
+                `!${SRC_PREFIX}/js/libs/*.js`
             ],
-            src:    SRC_PREFIX + '/js/main.js',
+            src:    `${SRC_PREFIX}/js/main.js`,
             bundle: 'main.js',
-            dest:   DEST_PREFIX + '/js'
+            dest:   `${DEST_PREFIX}/js`
         },
         jsLibs: {
-            all:    SRC_PREFIX + '/js/libs/*.js',
-            src:    SRC_PREFIX + '/js/libs/*.js',
-            dest:   DEST_PREFIX + '/js'
+            all:  `${SRC_PREFIX}/js/libs/*.js`,
+            src:  `${SRC_PREFIX}/js/libs/*.js`,
+            dest: `${DEST_PREFIX}/js`
         }
     },
     plugins: {
