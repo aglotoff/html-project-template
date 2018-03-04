@@ -26,9 +26,17 @@ module.exports = {
             dest:   './'
         },
         js: {
-            all:    SRC_PREFIX + '/**/*.js',
+            all:    [
+                SRC_PREFIX + '/**/*.js',
+                '!' + SRC_PREFIX + '/js/libs/*.js'
+            ],
             src:    SRC_PREFIX + '/js/main.js',
             bundle: 'main.js',
+            dest:   DEST_PREFIX + '/js'
+        },
+        jsLibs: {
+            all:    SRC_PREFIX + '/js/libs/*.js',
+            src:    SRC_PREFIX + '/js/libs/*.js',
             dest:   DEST_PREFIX + '/js'
         }
     },
