@@ -1,10 +1,10 @@
 'use strict';
 
-let gulp        = require('gulp'),
-    config      = require('../config'),
-    plumber     = require('gulp-plumber'),
-    pug         = require('gulp-pug'),
-    browserSync = require('browser-sync');
+const gulp        = require('gulp'),
+      config      = require('../config'),
+      plumber     = require('gulp-plumber'),
+      pug         = require('gulp-pug'),
+      browserSync = require('browser-sync');
 
 gulp.task('html', function() {
     return gulp.src(config.paths.html.src)

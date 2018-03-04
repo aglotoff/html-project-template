@@ -1,6 +1,6 @@
-let minimist = require('minimist');
+const minimist = require('minimist');
 
-let knownOptions = {
+const knownOptions = {
     string: 'env',
     default: { 
         env: process.env.NODE_ENV || 'develop'

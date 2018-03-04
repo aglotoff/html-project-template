@@ -3,7 +3,7 @@
 const SRC_PREFIX  = './src';
 const DEST_PREFIX = './build';
 
-let options = require('./options');
+const options = require('./options');
 
 module.exports = {
     paths: {

@@ -1,11 +1,11 @@
 'use strict';
 
-let gulp        = require('gulp'),
-    config      = require('../config'),
-    plumber     = require('gulp-plumber'),
-    imagemin    = require('gulp-imagemin'),
-    rename      = require('gulp-rename'),
-    browserSync = require('browser-sync');
+const gulp        = require('gulp'),
+      config      = require('../config'),
+      plumber     = require('gulp-plumber'),
+      imagemin    = require('gulp-imagemin'),
+      rename      = require('gulp-rename'),
+      browserSync = require('browser-sync');
 
 gulp.task('img', function() {
     return gulp.src(config.paths.img.src)

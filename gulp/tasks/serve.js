@@ -1,8 +1,8 @@
 'use strict';
 
-let gulp        = require('gulp'),
-    config      = require('../config'),
-    browserSync = require('browser-sync');
+const gulp        = require('gulp'),
+      config      = require('../config'),
+      browserSync = require('browser-sync');
 
 gulp.task('serve', ['build'], function() {
     browserSync.init(config.plugins.browserSync);
