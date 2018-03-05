@@ -16,14 +16,13 @@ module.exports = {
         },
         html: {
             all:  `${SRC_PREFIX}/pug/**/*.pug`,
-            src:  `${SRC_PREFIX}/pug/*.pug`,
+            src:  `${SRC_PREFIX}/pug/pages/**/*.pug`,
             dest: DEST_PREFIX
         },
         img: {
-            all:    `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
-            src:    `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
-            rename: `${DEST_PREFIX}/img`,
-            dest:   './'
+            all:  `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            src:  `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            dest: `${DEST_PREFIX}/img`
         },
         js: {
             all:    [
