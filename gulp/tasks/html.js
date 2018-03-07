@@ -6,7 +6,7 @@ const gulp        = require('gulp'),
       pug         = require('gulp-pug'),
       browserSync = require('browser-sync');
 
-gulp.task('html', function() {
+gulp.task('html', () => {
     return gulp.src(config.paths.html.src)
         .pipe(plumber())
         .pipe(pug(config.plugins.pug))

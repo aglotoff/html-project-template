@@ -5,7 +5,7 @@ const gulp        = require('gulp'),
       plumber     = require('gulp-plumber'),
       browserSync = require('browser-sync');
 
-gulp.task('js-libs', function() {
+gulp.task('js-libs', () => {
     return gulp.src(config.paths.jsLibs.src)
         .pipe(plumber())
         .pipe(gulp.dest(config.paths.jsLibs.dest))

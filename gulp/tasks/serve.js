@@ -4,7 +4,7 @@ const gulp        = require('gulp'),
       config      = require('../config'),
       browserSync = require('browser-sync');
 
-gulp.task('serve', ['build'], function() {
+gulp.task('serve', ['build'], () => {
     browserSync.init(config.plugins.browserSync);
 
     gulp.watch(config.paths.css.all,    ['css']);

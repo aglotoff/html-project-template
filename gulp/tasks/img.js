@@ -7,7 +7,7 @@ const gulp        = require('gulp'),
       rename      = require('gulp-rename'),
       browserSync = require('browser-sync');
 
-gulp.task('img', function() {
+gulp.task('img', () => {
     return gulp.src(config.paths.img.src)
         .pipe(plumber())
         .pipe(imagemin())

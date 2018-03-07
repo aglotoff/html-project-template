@@ -8,7 +8,7 @@ const gulp         = require('gulp'),
       autoprefixer = require('gulp-autoprefixer'),
       browserSync  = require('browser-sync');
 
-gulp.task('css', function() {
+gulp.task('css', () => {
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
         .pipe(wait(500))

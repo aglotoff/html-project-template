@@ -7,7 +7,7 @@ const gulp        = require('gulp'),
       babel       = require('gulp-babel'),
       browserSync = require('browser-sync');
 
-gulp.task('js', function() {
+gulp.task('js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(plumber())
         .pipe(browserify(config.plugins.browserify))
