@@ -1,12 +1,12 @@
 'use strict';
 
-const gulp         = require('gulp'),
-      config       = require('../config'),
-      plumber      = require('gulp-plumber'),
-      wait         = require('gulp-wait'),
-      sass         = require('gulp-sass'),
-      autoprefixer = require('gulp-autoprefixer'),
-      browserSync  = require('browser-sync');
+import autoprefixer from 'gulp-autoprefixer';
+import browserSync from 'browser-sync';
+import config from '../config';
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
+import sass from 'gulp-sass';
+import wait from 'gulp-wait';
 
 gulp.task('css', () => {
     return gulp.src(config.paths.css.src)

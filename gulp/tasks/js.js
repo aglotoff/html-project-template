@@ -1,11 +1,11 @@
 'use strict';
 
-const gulp        = require('gulp'),
-      config      = require('../config'),
-      plumber     = require('gulp-plumber'),
-      browserify  = require('gulp-browserify'),
-      babel       = require('gulp-babel'),
-      browserSync = require('browser-sync');
+import babel from 'gulp-babel';
+import browserSync from 'browser-sync';
+import browserify from 'gulp-browserify';
+import config from '../config';
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 
 gulp.task('js', () => {
     return gulp.src(config.paths.js.src)

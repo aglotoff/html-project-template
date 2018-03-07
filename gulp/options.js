@@ -1,4 +1,4 @@
-const minimist = require('minimist');
+import minimist from 'minimist';
 
 const knownOptions = {
     string: 'env',
@@ -7,4 +7,6 @@ const knownOptions = {
     }
 };
 
-module.exports = minimist(process.argv.slice(2), knownOptions);
+const options = minimist(process.argv.slice(2), knownOptions);
+
+export default options;

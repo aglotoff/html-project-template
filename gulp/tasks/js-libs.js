@@ -1,9 +1,9 @@
 'use strict';
 
-const gulp        = require('gulp'),
-      config      = require('../config'),
-      plumber     = require('gulp-plumber'),
-      browserSync = require('browser-sync');
+import browserSync from 'browser-sync';
+import config from '../config';
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 
 gulp.task('js-libs', () => {
     return gulp.src(config.paths.jsLibs.src)

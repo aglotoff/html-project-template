@@ -1,5 +1,5 @@
 'use strict';
 
-const gulp = require('gulp');
+import gulp from 'gulp';
 
 gulp.task('build', ['html', 'css', 'img', 'js-libs', 'js']);

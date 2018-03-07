@@ -3,9 +3,9 @@
 const SRC_PREFIX  = './src';
 const DEST_PREFIX = './build';
 
-const options = require('./options');
+import options from './options';
 
-module.exports = {
+const config = {
     paths: {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
@@ -60,3 +60,5 @@ module.exports = {
         }
     }
 };
+
+export default config;
