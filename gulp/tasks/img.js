@@ -12,7 +12,7 @@ gulp.task('img', () => {
         .pipe(plumber())
         .pipe(imagemin())
         .pipe(rename({
-            dirname: config.paths.img.rename
+            dirname: ''
         }))
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
