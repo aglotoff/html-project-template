@@ -11,7 +11,6 @@ gulp.task('build', [
     'build:html',
     'build:css',
     'build:js',
-    'build:js-libs',
     'build:img'
 ]);
 
@@ -19,7 +18,6 @@ gulp.task('watch', [
     'watch:html',
     'watch:css',
     'watch:js',
-    'watch:js-libs',
     'watch:img'
 ]);
 
