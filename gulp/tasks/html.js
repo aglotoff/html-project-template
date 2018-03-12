@@ -18,10 +18,10 @@ gulp.task('build:html', () => {
 });
 
 gulp.task('watch:html', ['build:html'], () => {
-    return gulp.watch(config.paths.html.all, ['build:html']);
+    return gulp.watch(config.paths.html.watch, ['build:html']);
 });
 
 gulp.task('clean:html', () => {
-    return gulp.src(config.paths.html.dest)
+    return gulp.src(config.paths.html.clean)
         .pipe(clean());
 });

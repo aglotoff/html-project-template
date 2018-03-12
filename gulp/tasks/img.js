@@ -22,10 +22,10 @@ gulp.task('build:img', () => {
 });
 
 gulp.task('watch:img', ['build:img'], () => {
-    return gulp.watch(config.paths.img.all, ['build:img']);
+    return gulp.watch(config.paths.img.watch, ['build:img']);
 });
 
 gulp.task('clean:img', () => {
-    return gulp.src(config.paths.img.dest)
+    return gulp.src(config.paths.img.clean)
         .pipe(clean());
 });

@@ -10,33 +10,29 @@ const config = {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
         css: {
-            all:  `${SRC_PREFIX}/**/*.scss`,
-            src:  `${SRC_PREFIX}/sass/style.scss`,
-            dest: `${DEST_PREFIX}/css`
+            src:   `${SRC_PREFIX}/sass/style.scss`,
+            dest:  `${DEST_PREFIX}/css`,
+            watch: `${SRC_PREFIX}/**/*.scss`,
+            clean: `${DEST_PREFIX}/css/**/*.css`
         },
         html: {
-            all:  `${SRC_PREFIX}/pug/**/*.pug`,
-            src:  `${SRC_PREFIX}/pug/pages/**/*.pug`,
-            dest: DEST_PREFIX
+            src:   `${SRC_PREFIX}/pug/pages/**/*.pug`,
+            dest:  `${DEST_PREFIX}`,
+            watch: `${SRC_PREFIX}/pug/**/*.pug`,
+            clean: `${DEST_PREFIX}/**/*.html`
         },
         img: {
-            all:  `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
-            src:  `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
-            dest: `${DEST_PREFIX}/img`
+            src:   `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            dest:  `${DEST_PREFIX}/img`,
+            watch: `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            clean: `${DEST_PREFIX}/img/*.{gif,jpg,png}`
         },
         js: {
-            all:    [
-                `${SRC_PREFIX}/**/*.js`,
-                `!${SRC_PREFIX}/js/libs/*.js`
-            ],
             src:    `${SRC_PREFIX}/js/main.js`,
             bundle: 'main.js',
-            dest:   `${DEST_PREFIX}/js`
-        },
-        jsLibs: {
-            all:  `${SRC_PREFIX}/js/libs/*.js`,
-            src:  `${SRC_PREFIX}/js/libs/*.js`,
-            dest: `${DEST_PREFIX}/js`
+            dest:   `${DEST_PREFIX}/js`,
+            watch:  `${SRC_PREFIX}/**/*.js`,
+            clean:  `${DEST_PREFIX}/js/**/*.js`
         }
     },
     plugins: {

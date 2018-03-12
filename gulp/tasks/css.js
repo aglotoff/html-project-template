@@ -22,11 +22,11 @@ gulp.task('build:css', () => {
 });
 
 gulp.task('watch:css', ['build:css'], () => {
-    return gulp.watch(config.paths.css.all, ['build:css']);
+    return gulp.watch(config.paths.css.watch, ['build:css']);
 });
 
 
 gulp.task('clean:css', () => {
-    return gulp.src(config.paths.css.dest)
+    return gulp.src(config.paths.css.clean)
         .pipe(clean());
 });

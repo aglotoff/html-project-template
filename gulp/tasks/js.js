@@ -19,11 +19,11 @@ gulp.task('build:js', () => {
         }));
 });
 
-gulp.task('clean:js', () => {
-    return gulp.src(config.paths.js.dest)
-        .pipe(clean());
+gulp.task('watch:js', ['build:js'], () => {
+    return gulp.watch(config.paths.js.watch, ['build:js']);
 });
 
-gulp.task('watch:js', ['build:js'], () => {
-    return gulp.watch(config.paths.js.all, ['build:js']);
+gulp.task('clean:js', () => {
+    return gulp.src(config.paths.js.clean)
+        .pipe(clean());
 });
