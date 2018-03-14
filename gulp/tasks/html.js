@@ -1,8 +1,8 @@
 'use strict';
 
 import browserSync from 'browser-sync';
-import clean from 'gulp-clean';
 import config from '../config';
+import del from 'del';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import pug from 'gulp-pug';
@@ -22,6 +22,5 @@ gulp.task('watch:html', ['build:html'], () => {
 });
 
 gulp.task('clean:html', () => {
-    return gulp.src(config.paths.html.clean)
-        .pipe(clean());
+    return del(config.paths.html.clean);
 });

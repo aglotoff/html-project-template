@@ -3,8 +3,8 @@
 import babel from 'gulp-babel';
 import browserSync from 'browser-sync';
 import browserify from 'gulp-browserify';
-import clean from 'gulp-clean';
 import config from '../config';
+import del from 'del';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 
@@ -24,6 +24,5 @@ gulp.task('watch:js', ['build:js'], () => {
 });
 
 gulp.task('clean:js', () => {
-    return gulp.src(config.paths.js.clean)
-        .pipe(clean());
+    return del(config.paths.js.clean);
 });

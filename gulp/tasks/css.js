@@ -2,8 +2,8 @@
 
 import autoprefixer from 'gulp-autoprefixer';
 import browserSync from 'browser-sync';
-import clean from 'gulp-clean';
 import config from '../config';
+import del from 'del';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import sass from 'gulp-sass';
@@ -27,6 +27,5 @@ gulp.task('watch:css', ['build:css'], () => {
 
 
 gulp.task('clean:css', () => {
-    return gulp.src(config.paths.css.clean)
-        .pipe(clean());
+    return del(config.paths.css.clean);
 });

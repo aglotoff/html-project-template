@@ -1,8 +1,8 @@
 'use strict';
 
 import browserSync from 'browser-sync';
-import clean from 'gulp-clean';
 import config from '../config';
+import del from 'del';
 import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 import plumber from 'gulp-plumber';
@@ -26,6 +26,5 @@ gulp.task('watch:img', ['build:img'], () => {
 });
 
 gulp.task('clean:img', () => {
-    return gulp.src(config.paths.img.clean)
-        .pipe(clean());
+    return del(config.paths.img.clean);
 });
