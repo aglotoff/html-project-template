@@ -3,7 +3,7 @@ import minimist from 'minimist';
 const knownOptions = {
     string: 'env',
     default: { 
-        env: process.env.NODE_ENV || 'develop'
+        env: process.env.NODE_ENV || 'development'
     }
 };
 
