@@ -8,6 +8,10 @@ import loadPlugins from 'gulp-load-plugins';
 
 const plugins = loadPlugins();
 
+// ----------------------------------------
+//   Task: Build: HTML
+// ----------------------------------------
+
 gulp.task('build:html', () => {
     return gulp.src(config.paths.html.src)
         .pipe(plugins.plumber())
@@ -18,9 +22,17 @@ gulp.task('build:html', () => {
         }));
 });
 
+// ----------------------------------------
+//   Task: Watch: HTML
+// ----------------------------------------
+
 gulp.task('watch:html', ['build:html'], () => {
     return gulp.watch(config.paths.html.watch, ['build:html']);
 });
+
+// ----------------------------------------
+//   Task: Clean: HTML
+// ----------------------------------------
 
 gulp.task('clean:html', () => {
     return del(config.paths.html.clean);

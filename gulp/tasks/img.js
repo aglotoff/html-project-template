@@ -9,6 +9,10 @@ import rename from 'gulp-rename';
 
 const plugins = loadPlugins();
 
+// ----------------------------------------
+//   Task: Build: Images
+// ----------------------------------------
+
 gulp.task('build:img', () => {
     return gulp.src(config.paths.img.src)
         .pipe(plugins.plumber())
@@ -22,9 +26,17 @@ gulp.task('build:img', () => {
         }));
 });
 
+// ----------------------------------------
+//   Task: Watch: Images
+// ----------------------------------------
+
 gulp.task('watch:img', ['build:img'], () => {
     return gulp.watch(config.paths.img.watch, ['build:img']);
 });
+
+// ----------------------------------------
+//   Task: Clean: Images
+// ----------------------------------------
 
 gulp.task('clean:img', () => {
     return del(config.paths.img.clean);
