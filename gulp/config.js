@@ -1,7 +1,7 @@
 'use strict';
 
 const SRC_PREFIX  = './src';
-const DEST_PREFIX = './build';
+const DEST_PREFIX = './dest';
 
 import options from './options';
 
