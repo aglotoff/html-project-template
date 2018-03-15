@@ -4,14 +4,15 @@ import browserSync from 'browser-sync';
 import config from '../config';
 import del from 'del';
 import gulp from 'gulp';
-import imagemin from 'gulp-imagemin';
-import plumber from 'gulp-plumber';
+import loadPlugins from 'gulp-load-plugins';
 import rename from 'gulp-rename';
+
+const plugins = loadPlugins();
 
 gulp.task('build:img', () => {
     return gulp.src(config.paths.img.src)
-        .pipe(plumber())
-        .pipe(imagemin())
+        .pipe(plugins.plumber())
+        .pipe(plugins.imagemin())
         .pipe(rename({
             dirname: ''
         }))

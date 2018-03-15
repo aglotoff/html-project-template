@@ -1,18 +1,18 @@
 'use strict';
 
-import babel from 'gulp-babel';
 import browserSync from 'browser-sync';
-import browserify from 'gulp-browserify';
 import config from '../config';
 import del from 'del';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
+import loadPlugins from 'gulp-load-plugins';
+
+const plugins = loadPlugins();
 
 gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
-        .pipe(plumber())
-        .pipe(browserify(config.plugins.browserify))
-        .pipe(babel(config.plugins.babel))
+        .pipe(plugins.plumber())
+        .pipe(plugins.browserify(config.plugins.browserify))
+        .pipe(plugins.babel(config.plugins.babel))
         .pipe(gulp.dest(config.paths.js.dest))
         .pipe(browserSync.reload({
             stream: true

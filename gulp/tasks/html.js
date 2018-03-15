@@ -4,13 +4,14 @@ import browserSync from 'browser-sync';
 import config from '../config';
 import del from 'del';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import pug from 'gulp-pug';
+import loadPlugins from 'gulp-load-plugins';
+
+const plugins = loadPlugins();
 
 gulp.task('build:html', () => {
     return gulp.src(config.paths.html.src)
-        .pipe(plumber())
-        .pipe(pug(config.plugins.pug))
+        .pipe(plugins.plumber())
+        .pipe(plugins.pug(config.plugins.pug))
         .pipe(gulp.dest(config.paths.html.dest))
         .pipe(browserSync.reload({
             stream: true
