@@ -44,6 +44,9 @@ const config = {
             server: DEST_PREFIX
         },
         browserify: {
+            entries: [ `${SRC_PREFIX}/js/main.js` ],
+            cache: {},
+            packageCache: {},
             debug: (options.env !== 'production')
         },
         pug: {

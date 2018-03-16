@@ -1,10 +1,13 @@
 'use strict';
 
 import browserSync from 'browser-sync';
+import browserify from 'browserify';
+import buffer from 'vinyl-buffer';
 import config from '../config';
 import del from 'del';
 import gulp from 'gulp';
 import loadPlugins from 'gulp-load-plugins';
+import source from 'vinyl-source-stream';
 
 const plugins = loadPlugins();
 
@@ -13,13 +16,19 @@ const plugins = loadPlugins();
 // ----------------------------------------
 
 gulp.task('build:js', () => {
-    return gulp.src(config.paths.js.src)
+    return browserify(config.plugins.browserify)
+        .bundle()
+        .on('error', function(error) {
+            console.error(error.toString());
+            this.emit('end');
+        })
         .pipe(plugins.plumber())
-        .pipe(plugins.browserify(config.plugins.browserify))
+        .pipe(source(config.paths.js.bundle))
+        .pipe(buffer())
         .pipe(plugins.babel(config.plugins.babel))
         .pipe(gulp.dest(config.paths.js.dest))
         .pipe(browserSync.reload({
-            stream: true
+           stream: true
         }));
 });
 

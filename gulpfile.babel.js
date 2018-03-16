@@ -28,20 +28,22 @@
 //   Modules
 // ----------------------------------------
 //
-// browser-sync      : Keep multiple browsers & devices in sync
-// del               : Delete files and folders using globs
-// gulp              : The streaming build system
-// gulp-babel        : Use next generation JavaScript, today, with Babel
-// gulp-browserify   : Bundle modules with BrowserifyJS
-// gulp-imagemin     : Minify PNG, JPEG, GIF and SVG images with imagemin
-// gulp-load-plugins : Loads gulp plugins and attaches them to an object
-// gulp-plumber      : Prevent pipe breaking caused by errors from gulp plugins
-// gulp-pug          : Gulp plugin for compiling Pug templates
-// gulp-rename       : A gulp plugin to rename files easily
-// gulp-sass         : Sass plugin for Gulp
-// gulp-wait         : Insert a delay before calling the next function
-// minimist          : Parse argument options
-// require-dir       : Helper to require() directories
+// browser-sync        : Keep multiple browsers & devices in sync
+// browserify          : require('modules') in the browser
+// del                 : Delete files and folders using globs
+// gulp                : The streaming build system
+// gulp-babel          : Use next generation JavaScript, today, with Babel
+// gulp-imagemin       : Minify PNG, JPEG, GIF and SVG images with imagemin
+// gulp-load-plugins   : Loads gulp plugins and attaches them to an object
+// gulp-plumber        : Prevent pipe breaking caused by errors from plugins
+// gulp-pug            : Gulp plugin for compiling Pug templates
+// gulp-rename         : A gulp plugin to rename files easily
+// gulp-sass           : Sass plugin for Gulp
+// gulp-wait           : Insert a delay before calling the next function
+// minimist            : Parse argument options
+// require-dir         : Helper to require() directories
+// vinyl-buffer        : Convert streaming vinyl files to use buffers
+// vinyl-source-stream : Text streams at the start of gulp or vinyl pipelines
 //
 // ----------------------------------------
 
