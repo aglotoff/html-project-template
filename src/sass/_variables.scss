@@ -1,38 +1,14 @@
-/// Extra large device minimum screen width
-/// @group screen
+// Minimum and maximum screen sizes
 $screen-xl-min: 1200px;
-
-/// Large device maximum screen width
-/// @group screen
 $screen-lg-max: ($screen-xl-min - 1);
-
-/// Large device minimum screen width
-/// @group screen
 $screen-lg-min: 992px;
-
-/// Medium device maximum screen width
-/// @group screen
 $screen-md-max: ($screen-lg-min - 1);
-
-/// Medium device minimum screen width
-/// @group screen
 $screen-md-min: 768px;
-
-/// Small device maximum screen width
-/// @group screen
 $screen-sm-max: ($screen-md-min - 1);
-
-/// Small device minimum screen width
-/// @group screen
 $screen-sm-min: 480px;
-
-/// Extra small device maximum screen width
-/// @group screen
 $screen-xs-max: ($screen-sm-min - 1);
 
-
-/// Breakpoints based on minimum screen width
-/// @group breakpoints
+// Breakpoints based on minimum screen width
 $breakpoints-up: (
     sm: $screen-sm-min,
     md: $screen-md-min,
@@ -40,8 +16,7 @@ $breakpoints-up: (
     xl: $screen-xl-min
 );
 
-/// Breakpoints based on maximum screen width
-/// @group breakpoints
+// Breakpoints based on maximum screen width
 $breakpoints-down: (
     xs: $screen-xs-max,
     sm: $screen-sm-max,
@@ -49,23 +24,14 @@ $breakpoints-down: (
     lg: $screen-lg-max
 );
 
-/// Breakpoints based on minimum and maximum screen widths
-/// @group breakpoints
+// Breakpoints based on minimum and maximum screen widths
 $breakpoints-only: (
     sm: ($screen-sm-min, $screen-sm-max),
     md: ($screen-md-min, $screen-md-max),
     lg: ($screen-lg-min, $screen-lg-max)
 );
 
-
-/// Extra large device container width
-/// @group container
+// Container width
 $container-xl: 1170px;
-
-/// Large device container width
-/// @group container
 $container-lg: 970px;
-
-/// Medium device container width
-/// @group container
 $container-md: 750px;
