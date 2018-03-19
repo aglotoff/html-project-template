@@ -12,10 +12,21 @@ import source from 'vinyl-source-stream';
 const plugins = loadPlugins();
 
 // ----------------------------------------
+//   Task: Lint: JavaScript
+// ----------------------------------------
+
+gulp.task('lint:js', () => {
+    return gulp.src(config.paths.js.lint)
+        .pipe(plugins.eslint())
+        .pipe(plugins.eslint.format())
+        .pipe(plugins.eslint.failAfterError());
+});
+
+// ----------------------------------------
 //   Task: Build: JavaScript
 // ----------------------------------------
 
-gulp.task('build:js', () => {
+gulp.task('build:js', ['lint:js'], () => {
     return browserify(config.plugins.browserify)
         .bundle()
         .on('error', function(error) {

@@ -6,6 +6,7 @@
 //
 // Available tasks:
 //   `gulp`
+//   `gulp lint:js`
 //   `gulp build`
 //   `gulp build:css`
 //   `gulp build:html`
@@ -33,6 +34,7 @@
 // del                 : Delete files and folders using globs
 // gulp                : The streaming build system
 // gulp-babel          : Use next generation JavaScript, today, with Babel
+// gulp-eslint         : A gulp plugin for ESLint
 // gulp-imagemin       : Minify PNG, JPEG, GIF and SVG images with imagemin
 // gulp-load-plugins   : Loads gulp plugins and attaches them to an object
 // gulp-plumber        : Prevent pipe breaking caused by errors from plugins

@@ -31,6 +31,7 @@ const config = {
             src:    `${SRC_PREFIX}/js/main.js`,
             bundle: 'main.js',
             dest:   `${DEST_PREFIX}/js`,
+            lint:   `${SRC_PREFIX}/**/*.js`,
             watch:  `${SRC_PREFIX}/**/*.js`,
             clean:  `${DEST_PREFIX}/js/**/*.js`
         }
