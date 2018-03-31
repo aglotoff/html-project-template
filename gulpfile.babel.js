@@ -6,11 +6,12 @@
 //
 // Available tasks:
 //   `gulp`
-//   `gulp lint:js`
+//   `gulp serve`
 //   `gulp build`
 //   `gulp build:css`
 //   `gulp build:html`
 //   `gulp build:img`
+//   `gulp lint:js`
 //   `gulp build:js`
 //   `gulp watch`
 //   `gulp watch:css`
@@ -43,6 +44,7 @@
 // gulp-sass           : Sass plugin for Gulp
 // gulp-sourcemaps     : Write inline source maps
 // gulp-wait           : Insert a delay before calling the next function
+// gulp-watch          : File watcher
 // minimist            : Parse argument options
 // require-dir         : Helper to require() directories
 // vinyl-buffer        : Convert streaming vinyl files to use buffers
@@ -93,9 +95,15 @@ gulp.task('clean', [
 ]);
 
 // ----------------------------------------
+//   Task: Serve
+// ----------------------------------------
+
+gulp.task('serve', ['build'], () => {
+    browserSync.init(config.plugins.browserSync);
+});
+
+// ----------------------------------------
 //   Task: Default
 // ----------------------------------------
 
-gulp.task('default', ['watch'], () => {
-    browserSync.init(config.plugins.browserSync);
-});
+gulp.task('default', ['serve', 'watch']);

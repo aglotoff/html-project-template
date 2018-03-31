@@ -27,7 +27,9 @@ gulp.task('build:html', () => {
 // ----------------------------------------
 
 gulp.task('watch:html', ['build:html'], () => {
-    return gulp.watch(config.paths.html.watch, ['build:html']);
+    return plugins.watch(config.paths.html.watch, () => {
+        gulp.start('build:html');
+    });
 });
 
 // ----------------------------------------

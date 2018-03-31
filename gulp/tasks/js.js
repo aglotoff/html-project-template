@@ -50,7 +50,9 @@ gulp.task('build:js', ['lint:js'], () => {
 // ----------------------------------------
 
 gulp.task('watch:js', ['build:js'], () => {
-    return gulp.watch(config.paths.js.watch, ['build:js']);
+    return plugins.watch(config.paths.js.watch, () => {
+        gulp.start('build:js');
+    });
 });
 
 // ----------------------------------------

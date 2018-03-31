@@ -31,7 +31,9 @@ gulp.task('build:img', () => {
 // ----------------------------------------
 
 gulp.task('watch:img', ['build:img'], () => {
-    return gulp.watch(config.paths.img.watch, ['build:img']);
+    return plugins.watch(config.paths.img.watch, () => {
+        gulp.start('build:img');
+    });
 });
 
 // ----------------------------------------
