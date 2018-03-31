@@ -41,6 +41,7 @@
 // gulp-pug            : Gulp plugin for compiling Pug templates
 // gulp-rename         : A gulp plugin to rename files easily
 // gulp-sass           : Sass plugin for Gulp
+// gulp-sourcemaps     : Write inline source maps
 // gulp-wait           : Insert a delay before calling the next function
 // minimist            : Parse argument options
 // require-dir         : Helper to require() directories

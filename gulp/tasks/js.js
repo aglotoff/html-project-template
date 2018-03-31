@@ -36,7 +36,9 @@ gulp.task('build:js', ['lint:js'], () => {
         .pipe(plugins.plumber())
         .pipe(source(config.paths.js.bundle))
         .pipe(buffer())
+        .pipe(plugins.sourcemaps.init())
         .pipe(plugins.babel(config.plugins.babel))
+        .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.js.dest))
         .pipe(browserSync.reload({
            stream: true

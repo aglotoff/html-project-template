@@ -31,6 +31,7 @@
     "gulp-plumber": "^1.2.0",
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-wait": "0.0.2",
     "minimist": "^1.2.0",
     "require-dir": "^1.0.0",
