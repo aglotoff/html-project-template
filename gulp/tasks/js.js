@@ -18,8 +18,7 @@ const plugins = loadPlugins();
 gulp.task('lint:js', () => {
     return gulp.src(config.paths.js.lint)
         .pipe(plugins.eslint())
-        .pipe(plugins.eslint.format())
-        .pipe(plugins.eslint.failAfterError());
+        .pipe(plugins.eslint.format());
 });
 
 // ----------------------------------------
