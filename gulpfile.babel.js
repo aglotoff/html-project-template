@@ -52,8 +52,6 @@
 //
 // ----------------------------------------
 
-'use strict';
-
 import browserSync from 'browser-sync';
 import config from './gulp/config';
 import gulp from 'gulp';

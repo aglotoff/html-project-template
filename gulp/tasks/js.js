@@ -1,5 +1,3 @@
-'use strict';
-
 import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import buffer from 'vinyl-buffer';

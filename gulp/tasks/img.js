@@ -1,5 +1,3 @@
-'use strict';
-
 import browserSync from 'browser-sync';
 import config from '../config';
 import del from 'del';
