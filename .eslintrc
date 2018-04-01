@@ -4,15 +4,12 @@
         "browser": true
     },
     "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "rules": {
-        "no-console": [
-            "error", 
-            { 
-                "allow": [
-                "warn", 
-                "error"
-                ]
-            }
-        ]
+        "quotes": [ "error", "single", { "allowTemplateLiterals": true } ],
+        "no-console": 0,
+        "semi": [ "error", "always" ]
     }
 }
