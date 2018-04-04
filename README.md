@@ -40,7 +40,7 @@ gulp [task]
 
 See the following section for the list of available Gulp tasks.
 
-For development builds, you should pass the following option:
+For production builds, you should pass the following option:
 ```
 gulp --env=production
 ```
