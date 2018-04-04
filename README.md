@@ -29,18 +29,21 @@ Installation
 Usage
 -----
 To build the project and start the development server, run:
-
-```gulp```
+```
+gulp
+```
 
 To execute a specific task, run:
-
-```gulp [task]```
+```
+gulp [task]
+```
 
 See the following section for the list of available Gulp tasks.
 
 For development builds, you should pass the following option:
-
-```gulp --env=production```
+```
+gulp --env=production
+```
 
 Available Tasks
 ---------------
