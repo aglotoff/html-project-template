@@ -56,7 +56,8 @@ Available Tasks
 | ```gulp build:html``` | Compile only HTML                               |
 | ```gulp build:img```  | Optimize images                                 |
 | ```gulp build:js```   | Compile only JavaScript                         |
-| ```gulp lint:js```    | Check JavaScript code                           |
+| ```gulp lint```       | Check source files                              |
+| ```gulp lint:js```    | Check only JavaScript                           |
 | ```gulp watch```      | Watch the entire project for changes            |
 | ```gulp watch:css```  | Watch only for CSS changes                      |
 | ```gulp watch:html``` | Watch only for HTML changes                     |

@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/glotov/frontend-template#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-env": "^2.4.1",
-    "browser-sync": "^2.23.6",
-    "browserify": "^16.1.1",
+    "browser-sync": "^2.24.3",
+    "browserify": "^16.2.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.1.0",

@@ -11,8 +11,9 @@
 //   `gulp build:css`
 //   `gulp build:html`
 //   `gulp build:img`
-//   `gulp lint:js`
 //   `gulp build:js`
+//   `gulp lint`
+//   `gulp lint:js`
 //   `gulp watch`
 //   `gulp watch:css`
 //   `gulp watch:html`
@@ -68,6 +69,14 @@ gulp.task('build', [
     'build:css',
     'build:js',
     'build:img'
+]);
+
+// ----------------------------------------
+//   Task: Lint
+// ----------------------------------------
+
+gulp.task('lint', [
+    'lint:js'
 ]);
 
 // ----------------------------------------
