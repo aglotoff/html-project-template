@@ -1,7 +1,9 @@
-const SRC_PREFIX  = './src';
-const DEST_PREFIX = './dest';
+import {readFileSync} from 'fs';
 
 import options from './options';
+
+const SRC_PREFIX  = './src';
+const DEST_PREFIX = './dest';
 
 const config = {
     paths: {
@@ -43,17 +45,21 @@ const config = {
             server: DEST_PREFIX
         },
         browserify: {
-            entries: [ `${SRC_PREFIX}/js/main.js` ],
+            entries: [`${SRC_PREFIX}/js/main.js`],
             cache: {},
             packageCache: {},
             debug: (options.env !== 'production')
         },
+        eslint: (options.env === 'production') ?
+            JSON.parse(readFileSync('./.eslintrc.json')) :
+            JSON.parse(readFileSync('./.eslintrc.dev.json')),
         pug: {
             pretty: (options.env !== 'production')
         },
         sass: {
-            outputStyle: (options.env === 'production') ? 'compressed'
-                                                        : 'expanded'
+            outputStyle: (options.env === 'production') ?
+                'compressed' :
+                'expanded'
         }
     }
 };

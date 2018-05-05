@@ -15,7 +15,7 @@ const plugins = loadPlugins();
 
 gulp.task('lint:js', () => {
     return gulp.src(config.paths.js.lint)
-        .pipe(plugins.eslint())
+        .pipe(plugins.eslint(config.plugins.eslint))
         .pipe(plugins.eslint.format());
 });
 
@@ -37,9 +37,7 @@ gulp.task('build:js', ['lint:js'], () => {
         .pipe(plugins.babel(config.plugins.babel))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.js.dest))
-        .pipe(browserSync.reload({
-           stream: true
-        }));
+        .pipe(browserSync.reload({stream: true}));
 });
 
 // ----------------------------------------
