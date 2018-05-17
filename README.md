@@ -17,9 +17,9 @@ Features
 
 Installation
 ------------
-1. Install Gulp & Babel:
+1. Install Gulp CLI
    ```
-   npm install --global gulp-cli babel-cli
+   npm install --global gulp-cli
    ```
 2. Install project dependencies:
    ```
