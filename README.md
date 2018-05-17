@@ -81,7 +81,7 @@ gulp/
   tasks/            # tasks implementations
   config.js         # Gulp config
   options.js        # command-line options parser
-src/                # 
+src/
   blocks/           # BEM blocks
     button/         # directory for a single BEM block
       img/          # images for this block
@@ -91,9 +91,9 @@ src/                #
     page/           # directory for a single block
     ...
   img/              # images
-  js/               # 
+  js/
     main.js         # JS entry point (only imports)
-  pug/              #
+  pug/
     components/     # directory for reusable components
       header.pug    # single component template
       ...
@@ -103,12 +103,13 @@ src/                #
     pages/          # directory for pages
       index.pug     # single page template
       ...
-  sass/             #
+  sass/
     _mixins.scss    # project mixins
     _reset.scss     # CSS reset
     _variables.scss # project variables
     style.scss      # main stylesheet (only imports)
 .babelrc            # Babel config
-.eslintrc           # ESLint config
+.eslintrc.dev.json  # ESLint config (development)
+.eslintrc.json      # ESLint config (production)
 gulpfile.babel.js   # Gulpfile
 ```
