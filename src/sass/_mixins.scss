@@ -1,14 +1,3 @@
-/// Clear floated content within a container
-/// @group helpers
-@mixin clearfix() {
-    &:after {
-        content: " ";
-        display: block;
-        clear: both;
-    }
-}
-
-
 /// Breakpoint & up (toggle on the given screen size and above)
 /// @param {String} $name - Breakpoint name
 /// @group breakpoints

@@ -1,0 +1,9 @@
+/// Clear floated content within a container
+/// @group helpers
+%clearfix {
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+}
