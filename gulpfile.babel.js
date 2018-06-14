@@ -13,6 +13,7 @@
 //   `gulp build:img`
 //   `gulp build:js`
 //   `gulp lint`
+//   `gulp lint:css`
 //   `gulp lint:js`
 //   `gulp watch`
 //   `gulp watch:css`
@@ -44,6 +45,7 @@
 // gulp-rename         : A gulp plugin to rename files easily
 // gulp-sass           : Sass plugin for Gulp
 // gulp-sourcemaps     : Write inline source maps
+// gulp-stylelint      : Run stylelint results through a list of reporters
 // gulp-wait           : Insert a delay before calling the next function
 // gulp-watch          : File watcher
 // minimist            : Parse argument options
@@ -76,6 +78,7 @@ gulp.task('build', [
 // ----------------------------------------
 
 gulp.task('lint', [
+    'lint:css',
     'lint:js'
 ]);
 

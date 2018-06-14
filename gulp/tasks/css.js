@@ -7,10 +7,19 @@ import loadPlugins from 'gulp-load-plugins';
 const plugins = loadPlugins();
 
 // ----------------------------------------
+//   Task: Lint: CSS
+// ----------------------------------------
+
+gulp.task('lint:css', () => {
+    return gulp.src(config.paths.css.lint)
+        .pipe(plugins.stylelint(config.plugins.stylelint));
+});
+
+// ----------------------------------------
 //   Task: Build: CSS
 // ----------------------------------------
 
-gulp.task('build:css', () => {
+gulp.task('build:css', ['lint:css'], () => {
     return gulp.src(config.paths.css.src)
         .pipe(plugins.plumber())
         .pipe(plugins.wait(500))

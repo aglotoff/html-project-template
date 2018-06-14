@@ -9,7 +9,7 @@ Features
 * Image optimization
 * JavaScript bundling with Browserify
 * Babel transpiler
-* Code linting using ESLint
+* CSS & JS liniting
 * CSS & JS minification
 * BEM code organization
 * Watching for changes
@@ -57,6 +57,7 @@ Available Tasks
 | ```gulp build:img```  | Optimize images                                 |
 | ```gulp build:js```   | Compile only JavaScript                         |
 | ```gulp lint```       | Check source files                              |
+| ```gulp lint:css```   | Check only CSS                                  |
 | ```gulp lint:js```    | Check only JavaScript                           |
 | ```gulp watch```      | Watch the entire project for changes            |
 | ```gulp watch:css```  | Watch only for CSS changes                      |
@@ -111,5 +112,6 @@ src/
 .babelrc            # Babel config
 .eslintrc.dev.json  # ESLint config (development)
 .eslintrc.json      # ESLint config (production)
+.stylelintrc        # Stylelint config
 gulpfile.babel.js   # Gulpfile
 ```

@@ -12,6 +12,7 @@ const config = {
         css: {
             src:   `${SRC_PREFIX}/sass/style.scss`,
             dest:  `${DEST_PREFIX}/css`,
+            lint:  `${SRC_PREFIX}/**/*.scss`,
             watch: `${SRC_PREFIX}/**/*.scss`,
             clean: `${DEST_PREFIX}/css/**/*.css`
         },
@@ -60,6 +61,14 @@ const config = {
             outputStyle: (options.env === 'production') ?
                 'compressed' :
                 'expanded'
+        },
+        stylelint: {
+            failAfterError: false,
+            fix: true,
+            reporters: [{
+                formatter: 'string',
+                console: true
+            }]
         }
     }
 };
