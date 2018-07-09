@@ -7,3 +7,23 @@
         clear: both;
     }
 }
+
+/// Responsive fixed-width container
+/// @group layout
+/// @require $container-md $container-lg $container-xl
+%container {
+    padding: 15px 0;
+
+    @include breakpoint-up(md) {
+        width: $container-md;
+        margin: 0 auto;
+    }
+
+    @include breakpoint-up(lg) {
+        width: $container-lg;
+    }
+
+    @include breakpoint-up(xl) {
+        width: $container-xl;
+    }
+}
