@@ -8,7 +8,7 @@ Features
 * Sass preprocesor
 * Image optimization
 * JavaScript bundling with Browserify
-* Babel transpiler
+* ES6 transpiling
 * CSS & JS liniting
 * CSS & JS minification
 * BEM code organization
@@ -73,45 +73,38 @@ Available Tasks
 File Structure
 --------------
 ```
-dest/               # destination directory
+dest/                   # destination directory
   css/
   js/
   index.html
   ...
 gulp/
-  tasks/            # tasks implementations
-  config.js         # Gulp config
-  options.js        # command-line options parser
+  tasks/                # tasks implementations
+  config.js             # Gulp config
+  options.js            # command-line options parser
 src/
-  blocks/           # BEM blocks
-    button/         # directory for a single BEM block
-      img/          # images for this block
-      button.js     # behavior for this block
-      button.scss   # style for this block
-    header/         # directory for a single block
-    page/           # directory for a single block
+  blocks/               # BEM blocks
+    button/             # directory for a single BEM block
+      img/              # images for this block
+      button.js         # behavior for this block
+      button.scss       # style for this block
     ...
-  img/              # images
+  img/                  # images
   js/
-    main.js         # JS entry point (only imports)
+    main.js             # JS entry point (only imports)
   pug/
-    components/     # directory for reusable components
-      header.pug    # single component template
-      ...
-    layouts/        # directory for layouts
-      base.pug      # single layout template
-      ...
-    pages/          # directory for pages
-      index.pug     # single page template
+    pages/              # directory for pages
+      index.pug         # single page template
       ...
   sass/
-    _mixins.scss    # project mixins
-    _reset.scss     # CSS reset
-    _variables.scss # project variables
-    style.scss      # main stylesheet (only imports)
-.babelrc            # Babel config
-.eslintrc.dev.json  # ESLint config (development)
-.eslintrc.json      # ESLint config (production)
-.stylelintrc        # Stylelint config
-gulpfile.babel.js   # Gulpfile
+    _mixins.scss        # project mixins
+    _placeholders.scss  # project placeholders
+    _reset.scss         # CSS reset
+    _variables.scss     # project variables
+    style.scss          # main stylesheet (only imports)
+.babelrc                # Babel config
+.eslintrc.dev.json      # ESLint config (development)
+.eslintrc.json          # ESLint config (production)
+.stylelintrc            # Stylelint config
+gulpfile.babel.js       # Gulpfile
 ```
