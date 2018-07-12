@@ -7,8 +7,7 @@
         @media (min-width: #{map-get($breakpoints-up, $name)}) {
             @content;
         }
-    }
-    @else {
+    } @else {
         @error "Invalid breakpoint name: `#{$name}`.";
     }
 }
@@ -22,8 +21,7 @@
         @media (max-width: #{map-get($breakpoints-down, $name)}) {
             @content;
         }
-    }
-    @else {
+    } @else {
         @error "Invalid breakpoint name: `#{$name}`.";
     }
 }
@@ -39,8 +37,7 @@
             (max-width: #{nth($breakpoints, 2)}) {
             @content;
         }
-    }
-    @else {
+    } @else {
         @error "Invalid breakpoint name: `#{$name}`.";
     }
 }
