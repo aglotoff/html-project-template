@@ -23,9 +23,9 @@ const config = {
             clean: `${DEST_PREFIX}/**/*.html`
         },
         img: {
-            src:   `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,png}`,
             dest:  `${DEST_PREFIX}/img`,
-            watch: `${SRC_PREFIX}/**/img/*.{gif,jpg,png}`,
+            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,png}`,
             clean: `${DEST_PREFIX}/img/*.{gif,jpg,png}`
         },
         js: {

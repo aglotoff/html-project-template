@@ -42,7 +42,6 @@
 // gulp-load-plugins   : Loads gulp plugins and attaches them to an object
 // gulp-plumber        : Prevent pipe breaking caused by errors from plugins
 // gulp-pug            : Gulp plugin for compiling Pug templates
-// gulp-rename         : A gulp plugin to rename files easily
 // gulp-sass           : Sass plugin for Gulp
 // gulp-sourcemaps     : Write inline source maps
 // gulp-stylelint      : Run stylelint results through a list of reporters
