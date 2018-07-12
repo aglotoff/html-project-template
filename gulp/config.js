@@ -55,7 +55,7 @@ const config = {
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
         pug: {
-            pretty: (options.env !== 'production')
+            pretty: true
         },
         sass: {
             outputStyle: (options.env === 'production') ?
