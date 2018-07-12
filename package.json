@@ -18,7 +18,8 @@
   "homepage": "https://github.com/glotov/frontend-template#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-env": "^2.4.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.24.4",
     "browserify": "^16.2.2",
     "del": "^3.0.0",
