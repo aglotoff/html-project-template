@@ -6,18 +6,22 @@ import loadPlugins from 'gulp-load-plugins';
 
 const plugins = loadPlugins();
 
-// ----------------------------------------
-//   Task: Build: Images
-// ----------------------------------------
-
-gulp.task('build:img', () => {
-    return gulp.src(config.paths.img.src)
+const imgPipe = (src) => {
+    return src
         .pipe(plugins.plumber())
         .pipe(plugins.imagemin())
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
             stream: true
         }));
+};
+
+// ----------------------------------------
+//   Task: Build: Images
+// ----------------------------------------
+
+gulp.task('build:img', () => {
+    return imgPipe(gulp.src(config.paths.img.src));
 });
 
 // ----------------------------------------
@@ -25,9 +29,7 @@ gulp.task('build:img', () => {
 // ----------------------------------------
 
 gulp.task('watch:img', ['build:img'], () => {
-    return plugins.watch(config.paths.img.watch, () => {
-        gulp.start('build:img');
-    });
+    return imgPipe(plugins.watch(config.paths.img.watch));
 });
 
 // ----------------------------------------
