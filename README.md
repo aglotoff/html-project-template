@@ -86,7 +86,6 @@ gulp/
 src/
   blocks/               # BEM blocks
     button/             # directory for a single BEM block
-      img/              # images for this block
       button.js         # behavior for this block
       button.scss       # style for this block
     ...
