@@ -1,6 +1,7 @@
 frontend-template
 =================
-My Frontend Project Template
+This is a starter template that I use for static web pages creation, PSD to
+HTML/CSS conversion, etc.
 
 Features
 --------
@@ -8,7 +9,7 @@ Features
 * Sass preprocesor
 * Image optimization
 * JavaScript bundling with Browserify
-* ES6 transpiling
+* ES6 transpiling with Babel
 * CSS & JS liniting
 * CSS & JS minification
 * BEM code organization
