@@ -39,7 +39,7 @@ const config = {
     },
     plugins: {
         babel: {
-            presets: ['env'],
+            presets: ['env', 'stage-0'],
             minified: (options.env === 'production')
         },
         browserSync: {
