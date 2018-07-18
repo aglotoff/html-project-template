@@ -12,8 +12,6 @@
 /// @group layout
 /// @require $container-md $container-lg $container-xl
 %container {
-    padding: 15px 0;
-
     @include breakpoint-up(md) {
         width: $container-md;
         margin: 0 auto;
