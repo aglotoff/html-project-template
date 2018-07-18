@@ -3,7 +3,7 @@ import {readFileSync} from 'fs';
 import options from './options';
 
 const SRC_PREFIX  = './src';
-const DEST_PREFIX = './dest';
+const DEST_PREFIX = './dist';
 
 const config = {
     paths: {
