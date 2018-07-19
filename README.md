@@ -48,34 +48,38 @@ gulp --env=production
 
 Available Tasks
 ---------------
-| Task                  | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| ```gulp```            | Run server and watch for changes (default task) |
-| ```gulp serve```      | Run development server                          |
-| ```gulp build```      | Compile the entire project                      |
-| ```gulp build:css```  | Compile only CSS                                |
-| ```gulp build:html``` | Compile only HTML                               |
-| ```gulp build:img```  | Optimize images                                 |
-| ```gulp build:js```   | Compile only JavaScript                         |
-| ```gulp lint```       | Check source files                              |
-| ```gulp lint:css```   | Check only CSS                                  |
-| ```gulp lint:js```    | Check only JavaScript                           |
-| ```gulp watch```      | Watch the entire project for changes            |
-| ```gulp watch:css```  | Watch only for CSS changes                      |
-| ```gulp watch:html``` | Watch only for HTML changes                     |
-| ```gulp watch:img```  | Watch only for image changes                    |
-| ```gulp watch:js```   | Watch only for JavaScript changes               |
-| ```gulp clean```      | Clean the entire destination folder             |
-| ```gulp clean:css```  | Clean only CSS                                  |
-| ```gulp clean:html``` | Clean only HTML                                 |
-| ```gulp clean:img```  | Clean only images                               |
-| ```gulp clean:js```   | Clean only JavaScript                           |
+| Task                   | Description                                     |
+| ---------------------- | ----------------------------------------------- |
+| ```gulp```             | Run server and watch for changes (default task) |
+| ```gulp serve```       | Run development server                          |
+| ```gulp build```       | Compile the entire project                      |
+| ```gulp build:css```   | Compile only CSS                                |
+| ```gulp build:fonts``` | Copy fonts into the destination directory       |
+| ```gulp build:html```  | Compile only HTML                               |
+| ```gulp build:img```   | Optimize images                                 |
+| ```gulp build:js```    | Compile only JavaScript                         |
+| ```gulp lint```        | Check source files                              |
+| ```gulp lint:css```    | Check only CSS                                  |
+| ```gulp lint:js```     | Check only JavaScript                           |
+| ```gulp watch```       | Watch the entire project for changes            |
+| ```gulp watch:css```   | Watch only for CSS changes                      |
+| ```gulp watch:fonts``` | Watch only for font changes                     |
+| ```gulp watch:html```  | Watch only for HTML changes                     |
+| ```gulp watch:img```   | Watch only for image changes                    |
+| ```gulp watch:js```    | Watch only for JavaScript changes               |
+| ```gulp clean```       | Clean the entire destination folder             |
+| ```gulp clean:css```   | Clean only CSS                                  |
+| ```gulp clean:fonts``` | Clean only fonts                                |
+| ```gulp clean:html```  | Clean only HTML                                 |
+| ```gulp clean:img```   | Clean only images                               |
+| ```gulp clean:js```    | Clean only JavaScript                           |
 
 File Structure
 --------------
 ```
-dest/                   # destination directory
+dist/                   # destination directory
   css/
+  fonts/
   js/
   index.html
   ...
@@ -89,6 +93,7 @@ src/
       button.js         # behavior for this block
       button.scss       # style for this block
     ...
+  fonts/                # custom fonts
   img/                  # images
   js/
     main.js             # JS entry point (only imports)

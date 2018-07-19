@@ -16,6 +16,12 @@ const config = {
             watch: `${SRC_PREFIX}/**/*.scss`,
             clean: `${DEST_PREFIX}/css/**/*.css`
         },
+        fonts: {
+            src:   `${SRC_PREFIX}/fonts/*.{ttf,woff,woff2}`,
+            dest:  `${DEST_PREFIX}/fonts`,
+            watch: `${SRC_PREFIX}/fonts/*.{ttf,woff,woff2}`,
+            clean: `${DEST_PREFIX}/fonts/*.{ttf,woff,woff2}`
+        },
         html: {
             src:   `${SRC_PREFIX}/pug/pages/**/*.pug`,
             dest:  `${DEST_PREFIX}`,

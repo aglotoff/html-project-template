@@ -9,6 +9,7 @@
 //   `gulp serve`
 //   `gulp build`
 //   `gulp build:css`
+//   `gulp build:fonts`
 //   `gulp build:html`
 //   `gulp build:img`
 //   `gulp build:js`
@@ -17,11 +18,13 @@
 //   `gulp lint:js`
 //   `gulp watch`
 //   `gulp watch:css`
+//   `gulp watch:fonts`
 //   `gulp watch:html`
 //   `gulp watch:img`
 //   `gulp watch:js`
 //   `gulp clean`
 //   `gulp clean:css`
+//   `gulp clean:fonts`
 //   `gulp clean:html`
 //   `gulp clean:img`
 //   `gulp clean:js`
@@ -67,6 +70,7 @@ requireDir('./gulp/tasks', {recurse: true});
 
 gulp.task('build', [
     'build:html',
+    'build:fonts',
     'build:css',
     'build:js',
     'build:img'
@@ -87,6 +91,7 @@ gulp.task('lint', [
 
 gulp.task('watch', [
     'watch:html',
+    'watch:fonts',
     'watch:css',
     'watch:js',
     'watch:img'
@@ -98,6 +103,7 @@ gulp.task('watch', [
 
 gulp.task('clean', [
     'clean:html',
+    'clean:fonts',
     'clean:css',
     'clean:js',
     'clean:img'

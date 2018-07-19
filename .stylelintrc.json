@@ -57,7 +57,7 @@
         "selector-no-qualifying-type": true,
         "no-unknown-animations": true,
         "color-hex-case": "lower",
-        "font-family-name-quotes": "always-where-recommended",
+        "font-family-name-quotes": "always-unless-keyword",
         "font-weight-notation": "numeric",
         "function-name-case": "lower",
         "number-no-trailing-zeros": true,
