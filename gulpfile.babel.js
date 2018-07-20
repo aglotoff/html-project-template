@@ -11,6 +11,7 @@
 //   `gulp build:css`
 //   `gulp build:fonts`
 //   `gulp build:html`
+//   `gulp build:icons`
 //   `gulp build:img`
 //   `gulp build:js`
 //   `gulp lint`
@@ -20,12 +21,14 @@
 //   `gulp watch:css`
 //   `gulp watch:fonts`
 //   `gulp watch:html`
+//   `gulp watch:icons`
 //   `gulp watch:img`
 //   `gulp watch:js`
 //   `gulp clean`
 //   `gulp clean:css`
 //   `gulp clean:fonts`
 //   `gulp clean:html`
+//   `gulp clean:icons`
 //   `gulp clean:img`
 //   `gulp clean:js`
 //
@@ -48,6 +51,7 @@
 // gulp-sass           : Sass plugin for Gulp
 // gulp-sourcemaps     : Write inline source maps
 // gulp-stylelint      : Run stylelint results through a list of reporters
+// gulp-svg-sprite     : Create SVG sprites
 // gulp-wait           : Insert a delay before calling the next function
 // gulp-watch          : File watcher
 // minimist            : Parse argument options
@@ -60,6 +64,7 @@
 import browserSync from 'browser-sync';
 import config from './gulp/config';
 import gulp from 'gulp';
+import loadPlugins from 'gulp-load-plugins';
 import requireDir from 'require-dir';
 
 requireDir('./gulp/tasks', {recurse: true});
@@ -69,11 +74,12 @@ requireDir('./gulp/tasks', {recurse: true});
 // ----------------------------------------
 
 gulp.task('build', [
-    'build:html',
-    'build:fonts',
     'build:css',
+    'build:fonts',
+    'build:html',
+    'build:icons',
+    'build:img',
     'build:js',
-    'build:img'
 ]);
 
 // ----------------------------------------
@@ -90,11 +96,12 @@ gulp.task('lint', [
 // ----------------------------------------
 
 gulp.task('watch', [
-    'watch:html',
-    'watch:fonts',
     'watch:css',
+    'watch:fonts',
+    'watch:html',
+    'watch:icons',
+    'watch:img',
     'watch:js',
-    'watch:img'
 ]);
 
 // ----------------------------------------
@@ -102,11 +109,12 @@ gulp.task('watch', [
 // ----------------------------------------
 
 gulp.task('clean', [
-    'clean:html',
-    'clean:fonts',
     'clean:css',
+    'clean:fonts',
+    'clean:html',
+    'clean:icons',
+    'clean:img',
     'clean:js',
-    'clean:img'
 ]);
 
 // ----------------------------------------

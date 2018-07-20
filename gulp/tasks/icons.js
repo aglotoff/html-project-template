@@ -7,33 +7,33 @@ import loadPlugins from 'gulp-load-plugins';
 const plugins = loadPlugins();
 
 // ----------------------------------------
-//   Task: Build: Fonts
+//   Task: Build: Icons
 // ----------------------------------------
 
-gulp.task('build:fonts', () => {
-    return gulp.src(config.paths.fonts.src)
-        .pipe(gulp.dest(config.paths.fonts.dest))
+gulp.task('build:icons', () => {
+    return gulp.src(config.paths.icons.src)
+        .pipe(plugins.plumber())
+        .pipe(plugins.svgSprite(config.plugins.svgSprite))
+        .pipe(gulp.dest(config.paths.icons.dest))
         .pipe(browserSync.reload({
             stream: true
         }));
 });
 
 // ----------------------------------------
-//   Task: Watch: Fonts
+//   Task: Watch: Icons
 // ----------------------------------------
 
-gulp.task('watch:fonts', () => {
-    return plugins.watch(config.paths.fonts.watch)
-        .pipe(gulp.dest(config.paths.fonts.dest))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+gulp.task('watch:icons', () => {
+    return plugins.watch(config.paths.icons.watch, () => {
+        gulp.start('build:icons');
+    });
 });
 
 // ----------------------------------------
-//   Task: Clean: Fonts
+//   Task: Clean: Icons
 // ----------------------------------------
 
-gulp.task('clean:fonts', () => {
-    return del(config.paths.fonts.clean);
+gulp.task('clean:icons', () => {
+    return del(config.paths.icons.clean);
 });

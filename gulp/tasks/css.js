@@ -35,7 +35,7 @@ gulp.task('build:css', ['lint:css'], () => {
 //   Task: Watch: CSS
 // ----------------------------------------
 
-gulp.task('watch:css', ['build:css'], () => {
+gulp.task('watch:css', () => {
     return plugins.watch(config.paths.css.watch, () => {
         gulp.start('build:css');
     });

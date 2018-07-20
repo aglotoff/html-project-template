@@ -44,7 +44,7 @@ gulp.task('build:js', ['lint:js'], () => {
 //   Task: Watch: JavaScript
 // ----------------------------------------
 
-gulp.task('watch:js', ['build:js'], () => {
+gulp.task('watch:js', () => {
     return plugins.watch(config.paths.js.watch, () => {
         gulp.start('build:js');
     });

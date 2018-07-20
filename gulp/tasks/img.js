@@ -9,7 +9,9 @@ const plugins = loadPlugins();
 const imgPipe = (src) => {
     return src
         .pipe(plugins.plumber())
-        .pipe(plugins.imagemin())
+        .pipe(plugins.imagemin([
+            plugins.imagemin.svgo(config.plugins.imagemin.svgo)
+        ]))
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
             stream: true
@@ -28,7 +30,7 @@ gulp.task('build:img', () => {
 //   Task: Watch: Images
 // ----------------------------------------
 
-gulp.task('watch:img', ['build:img'], () => {
+gulp.task('watch:img', () => {
     return imgPipe(plugins.watch(config.paths.img.watch));
 });
 

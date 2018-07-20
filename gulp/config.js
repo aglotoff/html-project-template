@@ -28,11 +28,17 @@ const config = {
             watch: `${SRC_PREFIX}/pug/**/*.pug`,
             clean: `${DEST_PREFIX}/**/*.html`
         },
+        icons: {
+            src:   `${SRC_PREFIX}/icons/*.svg`,
+            dest:  `${SRC_PREFIX}`,
+            watch: `${SRC_PREFIX}/icons/*.svg`,
+            clean: `${SRC_PREFIX}/{img/icons.svg,blocks/icon/icon.scss}`
+        },
         img: {
-            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,png}`,
+            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,png,svg}`,
             dest:  `${DEST_PREFIX}/img`,
-            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,png}`,
-            clean: `${DEST_PREFIX}/img/*.{gif,jpg,png}`
+            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,png,svg}`,
+            clean: `${DEST_PREFIX}/img/*.{gif,jpg,png,svg}`
         },
         js: {
             src:    `${SRC_PREFIX}/js/main.js`,
@@ -41,7 +47,7 @@ const config = {
             lint:   `${SRC_PREFIX}/**/*.js`,
             watch:  `${SRC_PREFIX}/**/*.js`,
             clean:  `${DEST_PREFIX}/js/**/*.js`
-        }
+        },
     },
     plugins: {
         babel: {
@@ -60,6 +66,15 @@ const config = {
         eslint: (options.env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
+        imagemin: {
+            svgo: {
+                plugins: [
+                    {removeXMLProcInst: false},
+                    {cleanupIDs:false},
+                    {removeAttrs:{attrs:'(fill|stroke|style)'}}
+                ]
+            },
+        },
         pug: {
             pretty: true
         },
@@ -68,6 +83,19 @@ const config = {
                 'compressed' :
                 'expanded'
         },
+        svgSprite: {
+			mode: {
+				symbol: {
+					sprite: "../img/icons.svg",
+					render: {
+						scss: {
+							dest:'../blocks/icon/icon.scss',
+							template: `${SRC_PREFIX}/templates/icon.mustache`
+						}
+					}
+				}
+			}
+		},
         stylelint: {
             failAfterError: false,
             fix: true,
