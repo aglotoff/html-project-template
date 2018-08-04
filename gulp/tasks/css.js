@@ -1,9 +1,12 @@
+const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
+const cssnano = require('cssnano');
 const del = require('del');
 const gulp = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 
 const config = require('../config');
+const options = require('../options');
 
 const plugins = loadPlugins();
 
@@ -21,11 +24,16 @@ gulp.task('lint:css', () => {
 // ----------------------------------------
 
 gulp.task('build:css', ['lint:css'], () => {
+    const postcssPlugins = [autoprefixer];
+    if (options.env === 'production') {
+        postcssPlugins.push(cssnano);
+    }
+
     return gulp.src(config.paths.css.src)
         .pipe(plugins.plumber())
         .pipe(plugins.wait(500))
-        .pipe(plugins.sass.sync(config.plugins.sass))
-        .pipe(plugins.autoprefixer())
+        .pipe(plugins.sass.sync())
+        .pipe(plugins.postcss(postcssPlugins))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({
             stream: true

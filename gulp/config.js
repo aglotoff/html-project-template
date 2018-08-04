@@ -78,11 +78,6 @@ const config = {
         pug: {
             pretty: true
         },
-        sass: {
-            outputStyle: (options.env === 'production') ?
-                'compressed' :
-                'expanded'
-        },
         svgSprite: {
 			mode: {
 				symbol: {

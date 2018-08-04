@@ -63,7 +63,6 @@
 
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
 const requireDir = require('require-dir');
 
 const config = require('./gulp/config');
