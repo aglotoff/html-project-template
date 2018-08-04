@@ -1,8 +1,9 @@
-import browserSync from 'browser-sync';
-import config from '../config';
-import del from 'del';
-import gulp from 'gulp';
-import loadPlugins from 'gulp-load-plugins';
+const browserSync = require('browser-sync');
+const del = require('del');
+const gulp = require('gulp');
+const loadPlugins = require('gulp-load-plugins');
+
+const config = require('../config');
 
 const plugins = loadPlugins();
 

@@ -1,6 +1,6 @@
-import {readFileSync} from 'fs';
+const {readFileSync} = require('fs');
 
-import options from './options';
+const options = require('./options');
 
 const SRC_PREFIX  = './src';
 const DEST_PREFIX = './dist';
@@ -107,4 +107,4 @@ const config = {
     }
 };
 
-export default config;
+module.exports = config;

@@ -1,11 +1,12 @@
-import browserSync from 'browser-sync';
-import browserify from 'browserify';
-import buffer from 'vinyl-buffer';
-import config from '../config';
-import del from 'del';
-import gulp from 'gulp';
-import loadPlugins from 'gulp-load-plugins';
-import source from 'vinyl-source-stream';
+const browserSync = require('browser-sync');
+const browserify = require('browserify');
+const buffer= require('vinyl-buffer');
+const del = require('del');
+const gulp = require('gulp');
+const loadPlugins = require('gulp-load-plugins');
+const source = require('vinyl-source-stream');
+
+const config = require('../config');
 
 const plugins = loadPlugins();
 

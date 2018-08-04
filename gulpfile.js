@@ -61,11 +61,12 @@
 //
 // ----------------------------------------
 
-import browserSync from 'browser-sync';
-import config from './gulp/config';
-import gulp from 'gulp';
-import loadPlugins from 'gulp-load-plugins';
-import requireDir from 'require-dir';
+const browserSync = require('browser-sync');
+const gulp = require('gulp');
+const loadPlugins = require('gulp-load-plugins');
+const requireDir = require('require-dir');
+
+const config = require('./gulp/config');
 
 requireDir('./gulp/tasks', {recurse: true});
 
