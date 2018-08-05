@@ -75,9 +75,6 @@ const config = {
                 ]
             },
         },
-        pug: {
-            pretty: true
-        },
         svgSprite: {
 			mode: {
 				symbol: {
