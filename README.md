@@ -5,103 +5,110 @@ HTML/CSS conversion, etc.
 
 Features
 --------
-* Pug template engine
-* Sass preprocesor
-* Image optimization
-* JavaScript bundling with Browserify
-* ES6 transpiling with Babel
+* HTML
+  * Markup generation with the Pug template engine
+* CSS:
+  * Linting with Stylelint
+  * Sass preprocessor
+  * Automatic vendor prefixes using autoprefixer
+  * Minification and optimization using cssnano
+* JavaScript:
+  * Linting with ESLint
+  * Bundling with Browserify
+  * Transpiling to ES5 with Babel
+  * Code minification with UglifyJS
+* Image minification
 * SVG sprite icon system
-* CSS & JS liniting
-* CSS & JS minification
 * BEM code organization
-* Watching for changes
-* Live reloading with Browsersync
+* Development server with live reloading
 
 Installation
 ------------
-1. Install Gulp CLI
-   ```
-   npm install --global gulp-cli
-   ```
-2. Install project dependencies:
-   ```
-   npm install
-   ```
+Install project dependencies:
+```
+npm install
+```
 
 Usage
 -----
-To build the project and start the development server, run:
+To start the development server, run:
 ```
-gulp
+npm start
 ```
+The server reloads automatically when any source files are modified.
 
-To execute a specific task, run:
+To build the site for production, run:
 ```
-gulp [task]
+npm run build
 ```
+The ready for deployment code will be placed into the `dist` folder.
 
+To execute a specific gulp task, run:
+```
+npm run gulp -- [task]
+```
 See the following section for the list of available Gulp tasks.
 
-For production builds, you should pass the following option:
+To specify that you want production builds, pass the following option:
 ```
-gulp --env=production
+npm run gulp -- [task] --env=production
 ```
 
-Available Tasks
+Available Gulp Tasks
 ---------------
-| Task                   | Description                                     |
-| ---------------------- | ----------------------------------------------- |
-| ```gulp```             | Run server and watch for changes (default task) |
-| ```gulp serve```       | Run development server                          |
-| ```gulp build```       | Compile the entire project                      |
-| ```gulp build:css```   | Compile only CSS                                |
-| ```gulp build:fonts``` | Copy fonts into the destination directory       |
-| ```gulp build:html```  | Compile only HTML                               |
-| ```gulp build:icons``` | Build only SVG sprite of cons                   |
-| ```gulp build:img```   | Optimize images                                 |
-| ```gulp build:js```    | Compile only JavaScript                         |
-| ```gulp lint```        | Check source files                              |
-| ```gulp lint:css```    | Check only CSS                                  |
-| ```gulp lint:js```     | Check only JavaScript                           |
-| ```gulp watch```       | Watch the entire project for changes            |
-| ```gulp watch:css```   | Watch only for CSS changes                      |
-| ```gulp watch:fonts``` | Watch only for font changes                     |
-| ```gulp watch:html```  | Watch only for HTML changes                     |
-| ```gulp watch:icons``` | Watch only for icon changes                     |
-| ```gulp watch:img```   | Watch only for image changes                    |
-| ```gulp watch:js```    | Watch only for JavaScript changes               |
-| ```gulp clean```       | Clean the entire destination folder             |
-| ```gulp clean:css```   | Clean only CSS                                  |
-| ```gulp clean:fonts``` | Clean only fonts                                |
-| ```gulp clean:html```  | Clean only HTML                                 |
-| ```gulp clean:icons``` | Clean only SVG sprite of icons                  |
-| ```gulp clean:img```   | Clean only images                               |
-| ```gulp clean:js```    | Clean only JavaScript                           |
+| Task                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| ```gulp```             | Run dev server and watch for changes (default task) |
+| ```gulp serve```       | Run development server                              |
+| ```gulp build```       | Compile the entire project                          |
+| ```gulp build:css```   | Compile only CSS                                    |
+| ```gulp build:fonts``` | Copy fonts into the destination directory           |
+| ```gulp build:html```  | Compile only HTML                                   |
+| ```gulp build:icons``` | Build only SVG sprite of cons                       |
+| ```gulp build:img```   | Optimize images                                     |
+| ```gulp build:js```    | Compile only JavaScript                             |
+| ```gulp lint```        | Check source files                                  |
+| ```gulp lint:css```    | Check only CSS                                      |
+| ```gulp lint:js```     | Check only JavaScript                               |
+| ```gulp watch```       | Watch the entire project for changes                |
+| ```gulp watch:css```   | Watch only for CSS changes                          |
+| ```gulp watch:fonts``` | Watch only for font changes                         |
+| ```gulp watch:html```  | Watch only for HTML changes                         |
+| ```gulp watch:icons``` | Watch only for icon changes                         |
+| ```gulp watch:img```   | Watch only for image changes                        |
+| ```gulp watch:js```    | Watch only for JavaScript changes                   |
+| ```gulp clean```       | Clean the entire destination folder                 |
+| ```gulp clean:css```   | Clean only CSS                                      |
+| ```gulp clean:fonts``` | Clean only fonts                                    |
+| ```gulp clean:html```  | Clean only HTML                                     |
+| ```gulp clean:icons``` | Clean only SVG sprite of icons                      |
+| ```gulp clean:img```   | Clean only images                                   |
+| ```gulp clean:js```    | Clean only JavaScript                               |
 
-File Structure
---------------
+File Organization
+-----------------
 ```
 dist/                   # destination directory
 gulp/
   tasks/                # tasks implementations
+    css.js
+    ...
   config.js             # Gulp config
   options.js            # command-line options parser
 src/
-  blocks/               # BEM blocks
-    button/             # directory for a single BEM block
-      button.js         # behavior for this block
-      button.scss       # style for this block
-    ...
-    icon/
-      icon.scss         # auto-generated icon styles
+  blocks/               # blocks
+    button/             # directory for a single block
+      button.js         # block's behavior
+      button.pug        # block's markup
+      button.scss       # block's styles
     ...
   fonts/                # custom fonts
   img/                  # images
   js/
-    main.js             # JS entry point (only imports)
+    main.js             # main script file (only imports)
   pug/
-    pages/              # directory for pages
-      index.pug         # single page template
+    pages/              # page templates
+      index.pug
       ...
   sass/
     _mixins.scss        # project mixins
@@ -116,5 +123,5 @@ src/
 .eslintrc.dev.json      # ESLint config (development)
 .eslintrc.json          # ESLint config (production)
 .stylelintrc            # Stylelint config
-gulpfile.babel.js       # Gulpfile
+gulpfile.js             # Gulpfile
 ```
