@@ -4,7 +4,9 @@
   "description": "My Frontend Project Template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/gulp",
+    "build": "./node_modules/.bin/gulp build --env=production",
+    "gulp": "./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",
