@@ -15,7 +15,7 @@ gulp.task('build:html', () => {
     return gulp.src(config.paths.html.src)
         .pipe(plugins.plumber())
         .pipe(plugins.pug(config.plugins.pug))
-        .pipe(plugins.jsbeautifier())
+        .pipe(plugins.htmlBeautify())
         .pipe(gulp.dest(config.paths.html.dest))
         .pipe(browserSync.reload({
             stream: true
