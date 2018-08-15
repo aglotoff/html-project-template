@@ -1,11 +1,11 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
+const plumber = require('gulp-plumber');
+const svgSprite = require('gulp-svg-sprite');
+const watch = require('gulp-watch');
 
 const config = require('../config');
-
-const plugins = loadPlugins();
 
 // ----------------------------------------
 //   Task: Build: Icons
@@ -13,8 +13,8 @@ const plugins = loadPlugins();
 
 gulp.task('build:icons', () => {
     return gulp.src(config.paths.icons.src)
-        .pipe(plugins.plumber())
-        .pipe(plugins.svgSprite(config.plugins.svgSprite))
+        .pipe(plumber())
+        .pipe(svgSprite(config.plugins.svgSprite))
         .pipe(gulp.dest(config.paths.icons.dest))
         .pipe(browserSync.reload({
             stream: true
@@ -26,7 +26,7 @@ gulp.task('build:icons', () => {
 // ----------------------------------------
 
 gulp.task('watch:icons', () => {
-    return plugins.watch(config.paths.icons.watch, () => {
+    return watch(config.paths.icons.watch, () => {
         gulp.start('build:icons');
     });
 });

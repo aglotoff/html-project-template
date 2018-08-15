@@ -4,13 +4,16 @@ const browserify = require('browserify');
 const buffer= require('vinyl-buffer');
 const del = require('del');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
+const eslint = require('gulp-eslint');
+const gulpIf = require('gulp-if');
+const plumber = require('gulp-plumber');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const watch = require('gulp-watch');
 const source = require('vinyl-source-stream');
+
 const config = require('../config');
-
 const options = require('../options');
-
-const plugins = loadPlugins();
 
 // ----------------------------------------
 //   Task: Lint: JavaScript
@@ -18,8 +21,8 @@ const plugins = loadPlugins();
 
 gulp.task('lint:js', () => {
     return gulp.src(config.paths.js.lint)
-        .pipe(plugins.eslint(config.plugins.eslint))
-        .pipe(plugins.eslint.format());
+        .pipe(eslint(config.plugins.eslint))
+        .pipe(eslint.format());
 });
 
 // ----------------------------------------
@@ -35,12 +38,12 @@ gulp.task('build:js', ['lint:js'], () => {
             console.error(error.toString());
             this.emit('end');
         })
-        .pipe(plugins.plumber())
+        .pipe(plumber())
         .pipe(source(config.paths.js.bundle))
         .pipe(buffer())
-        .pipe(plugins.sourcemaps.init({loadMaps: true}))
-        .pipe(plugins.if(options.env === 'production', plugins.uglify()))
-        .pipe(plugins.sourcemaps.write('.'))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(gulpIf(options.env === 'production', uglify()))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.js.dest))
         .pipe(browserSync.reload({stream: true}));
 });
@@ -50,7 +53,7 @@ gulp.task('build:js', ['lint:js'], () => {
 // ----------------------------------------
 
 gulp.task('watch:js', () => {
-    return plugins.watch(config.paths.js.watch, () => {
+    return watch(config.paths.js.watch, () => {
         gulp.start('build:js');
     });
 });

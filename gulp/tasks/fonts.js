@@ -1,11 +1,9 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
+const watch = require('gulp-watch');
 
 const config = require('../config');
-
-const plugins = loadPlugins();
 
 // ----------------------------------------
 //   Task: Build: Fonts
@@ -24,7 +22,7 @@ gulp.task('build:fonts', () => {
 // ----------------------------------------
 
 gulp.task('watch:fonts', () => {
-    return plugins.watch(config.paths.fonts.watch)
+    return watch(config.paths.fonts.watch)
         .pipe(gulp.dest(config.paths.fonts.dest))
         .pipe(browserSync.reload({
             stream: true

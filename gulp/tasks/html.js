@@ -1,11 +1,12 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
+const htmlBeautify = require('gulp-html-beautify');
+const plumber = require('gulp-plumber');
+const pug = require('gulp-pug');
+const watch = require('gulp-watch');
 
 const config = require('../config');
-
-const plugins = loadPlugins();
 
 // ----------------------------------------
 //   Task: Build: HTML
@@ -13,9 +14,9 @@ const plugins = loadPlugins();
 
 gulp.task('build:html', () => {
     return gulp.src(config.paths.html.src)
-        .pipe(plugins.plumber())
-        .pipe(plugins.pug(config.plugins.pug))
-        .pipe(plugins.htmlBeautify())
+        .pipe(plumber())
+        .pipe(pug(config.plugins.pug))
+        .pipe(htmlBeautify())
         .pipe(gulp.dest(config.paths.html.dest))
         .pipe(browserSync.reload({
             stream: true
@@ -27,7 +28,7 @@ gulp.task('build:html', () => {
 // ----------------------------------------
 
 gulp.task('watch:html', () => {
-    return plugins.watch(config.paths.html.watch, () => {
+    return watch(config.paths.html.watch, () => {
         gulp.start('build:html');
     });
 });

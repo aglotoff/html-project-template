@@ -1,17 +1,17 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const loadPlugins = require('gulp-load-plugins');
+const imagemin = require('gulp-imagemin');
+const plumber = require('gulp-plumber');
+const watch = require('gulp-watch');
 
 const config = require('../config');
 
-const plugins = loadPlugins();
-
 const imgPipe = (src) => {
     return src
-        .pipe(plugins.plumber())
-        .pipe(plugins.imagemin([
-            plugins.imagemin.svgo(config.plugins.imagemin.svgo)
+        .pipe(plumber())
+        .pipe(imagemin([
+            imagemin.svgo(config.plugins.imagemin.svgo)
         ]))
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
@@ -32,7 +32,7 @@ gulp.task('build:img', () => {
 // ----------------------------------------
 
 gulp.task('watch:img', () => {
-    return imgPipe(plugins.watch(config.paths.img.watch));
+    return imgPipe(watch(config.paths.img.watch));
 });
 
 // ----------------------------------------

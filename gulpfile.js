@@ -52,7 +52,6 @@
 // gulp-html-beautify   : A gulp plugin to beautify HTML files
 // gulp-if              : Conditionally run a task
 // gulp-imagemin        : Minify PNG, JPEG, GIF and SVG images with imagemin
-// gulp-load-plugins    : Loads gulp plugins and attaches them to an object
 // gulp-plumber         : Prevent pipe breaking caused by errors from plugins
 // gulp-postcss         : PostCSS gulp plugin
 // gulp-pug             : Gulp plugin for compiling Pug templates
