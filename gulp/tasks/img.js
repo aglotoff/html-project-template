@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
 const watch = require('gulp-watch');
+const mozjpeg = require('imagemin-mozjpeg');
 
 const config = require('../config');
 
@@ -11,7 +12,11 @@ const imgPipe = (src) => {
     return src
         .pipe(plumber())
         .pipe(imagemin([
-            imagemin.svgo(config.plugins.imagemin.svgo)
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 7}),
+            imagemin.svgo(config.plugins.imagemin.svgo),
+            mozjpeg({progressive: true}),
         ]))
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({

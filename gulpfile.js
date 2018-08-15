@@ -62,6 +62,7 @@
 // gulp-uglify          : Minify files with UglifyJS
 // gulp-wait            : Insert a delay before calling the next function
 // gulp-watch           : File watcher
+// imagemin-mozjpeg     : Imagemin plugin for mozjpeg
 // minimist             : Parse argument options
 // require-dir          : Helper to require() directories
 // stylelint            : A mighty, modern CSS linter
