@@ -55,35 +55,35 @@ npm run gulp -- [task] --env=production
 ```
 
 Available Gulp Tasks
----------------
-| Task                   | Description                                         |
-| ---------------------- | --------------------------------------------------- |
-| ```gulp```             | Run dev server and watch for changes (default task) |
-| ```gulp serve```       | Run development server                              |
-| ```gulp build```       | Compile the entire project                          |
-| ```gulp build:css```   | Compile only CSS                                    |
-| ```gulp build:fonts``` | Copy fonts into the destination directory           |
-| ```gulp build:html```  | Compile only HTML                                   |
-| ```gulp build:icons``` | Build only SVG sprite of cons                       |
-| ```gulp build:img```   | Optimize images                                     |
-| ```gulp build:js```    | Compile only JavaScript                             |
-| ```gulp lint```        | Check source files                                  |
-| ```gulp lint:css```    | Check only CSS                                      |
-| ```gulp lint:js```     | Check only JavaScript                               |
-| ```gulp watch```       | Watch the entire project for changes                |
-| ```gulp watch:css```   | Watch only for CSS changes                          |
-| ```gulp watch:fonts``` | Watch only for font changes                         |
-| ```gulp watch:html```  | Watch only for HTML changes                         |
-| ```gulp watch:icons``` | Watch only for icon changes                         |
-| ```gulp watch:img```   | Watch only for image changes                        |
-| ```gulp watch:js```    | Watch only for JavaScript changes                   |
-| ```gulp clean```       | Clean the entire destination folder                 |
-| ```gulp clean:css```   | Clean only CSS                                      |
-| ```gulp clean:fonts``` | Clean only fonts                                    |
-| ```gulp clean:html```  | Clean only HTML                                     |
-| ```gulp clean:icons``` | Clean only SVG sprite of icons                      |
-| ```gulp clean:img```   | Clean only images                                   |
-| ```gulp clean:js```    | Clean only JavaScript                               |
+--------------------
+| Task              | Description                                       |
+| ------------------| ------------------------------------------------- |
+| ```default```     | Run development server and watch code for changes |
+| ```serve```       | Run development server                            |
+| ```build```       | Compile the entire project                        |
+| ```build:css```   | Compile only CSS                                  |
+| ```build:fonts``` | Copy fonts into the destination directory         |
+| ```build:html```  | Compile only HTML                                 |
+| ```build:icons``` | Build only icons                                  |
+| ```build:img```   | Optimize images                                   |
+| ```build:js```    | Compile only JavaScript                           |
+| ```lint```        | Check source files                                |
+| ```lint:css```    | Check only CSS                                    |
+| ```lint:js```     | Check only JavaScript                             |
+| ```watch```       | Watch all source files for changes                |
+| ```watch:css```   | Watch only for CSS changes                        |
+| ```watch:fonts``` | Watch only for font changes                       |
+| ```watch:html```  | Watch only for HTML changes                       |
+| ```watch:icons``` | Watch only for icon changes                       |
+| ```watch:img```   | Watch only for image changes                      |
+| ```watch:js```    | Watch only for JavaScript changes                 |
+| ```clean```       | Clean the entire destination folder               |
+| ```clean:css```   | Clean only CSS                                    |
+| ```clean:fonts``` | Clean only fonts                                  |
+| ```clean:html```  | Clean only HTML                                   |
+| ```clean:icons``` | Clean only icons                                  |
+| ```clean:img```   | Clean only images                                 |
+| ```clean:js```    | Clean only JavaScript                             |
 
 File Organization
 -----------------
