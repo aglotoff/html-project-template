@@ -46,7 +46,7 @@ const config = {
             dest:   `${DEST_PREFIX}/js`,
             lint:   `${SRC_PREFIX}/**/*.js`,
             watch:  `${SRC_PREFIX}/**/*.js`,
-            clean:  `${DEST_PREFIX}/js/**/*.js`
+            clean:  `${DEST_PREFIX}/js/**/*.js{,.map}`
         },
     },
     plugins: {
