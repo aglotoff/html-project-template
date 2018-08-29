@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glotov/frontend-template.git"
+    "url": "git+https://github.com/polarfawx/frontend-template.git"
   },
   "author": "Andrey Glotov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/glotov/frontend-template/issues"
+    "url": "https://github.com/polarfawx/frontend-template/issues"
   },
-  "homepage": "https://github.com/glotov/frontend-template#readme",
+  "homepage": "https://github.com/polarfawx/frontend-template#readme",
   "devDependencies": {
     "autoprefixer": "^9.1.0",
     "babel-core": "^6.26.3",
