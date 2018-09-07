@@ -48,7 +48,7 @@ const config = {
             bundle: 'main.js',
             vendorBundle: 'vendor.js',
             dest:   `${DEST_PREFIX}/js`,
-            lint:   `${SRC_PREFIX}/{blocks,js}/**.js`,
+            lint:   `${SRC_PREFIX}/{blocks,js}/**/*.js`,
             watch:  `${SRC_PREFIX}/**/*.js`,
             clean:  `${DEST_PREFIX}/js/**/*.js{,.map}`
         },
