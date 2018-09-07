@@ -48,6 +48,7 @@
 // cssnano              : A modular minifier, built on top of PostCSS
 // del                  : Delete files and folders using globs
 // gulp                 : The streaming build system
+// gulp-concat          : Concatenates files
 // gulp-eslint          : A gulp plugin for ESLint
 // gulp-html-beautify   : A gulp plugin to beautify HTML files
 // gulp-if              : Conditionally run a task
@@ -63,6 +64,7 @@
 // gulp-wait            : Insert a delay before calling the next function
 // gulp-watch           : File watcher
 // imagemin-mozjpeg     : Imagemin plugin for mozjpeg
+// merge-stream         : Merge (interleave) a bunch of streams
 // minimist             : Parse argument options
 // require-dir          : Helper to require() directories
 // stylelint            : A mighty, modern CSS linter

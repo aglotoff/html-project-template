@@ -10,11 +10,13 @@ const config = {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
         css: {
-            src:   `${SRC_PREFIX}/sass/style.scss`,
-            dest:  `${DEST_PREFIX}/css`,
-            lint:  `${SRC_PREFIX}/**/*.scss`,
-            watch: `${SRC_PREFIX}/**/*.scss`,
-            clean: `${DEST_PREFIX}/css/**/*.css`
+            src:    `${SRC_PREFIX}/sass/style.scss`,
+            vendor: `${SRC_PREFIX}/vendor/css/*.css`,
+            bundle: 'main.css',
+            dest:   `${DEST_PREFIX}/css`,
+            lint:   `${SRC_PREFIX}/**/*.scss`,
+            watch:  `${SRC_PREFIX}/**/*.scss`,
+            clean:  `${DEST_PREFIX}/css/**/*.css`
         },
         fonts: {
             src:   `${SRC_PREFIX}/fonts/*.{ttf,woff,woff2}`,
@@ -42,9 +44,11 @@ const config = {
         },
         js: {
             src:    `${SRC_PREFIX}/js/main.js`,
+            vendor: `${SRC_PREFIX}/vendor/js/*.js`,
             bundle: 'main.js',
+            vendorBundle: 'vendor.js',
             dest:   `${DEST_PREFIX}/js`,
-            lint:   `${SRC_PREFIX}/**/*.js`,
+            lint:   `${SRC_PREFIX}/{blocks,js}/**.js`,
             watch:  `${SRC_PREFIX}/**/*.js`,
             clean:  `${DEST_PREFIX}/js/**/*.js{,.map}`
         },
@@ -78,7 +82,7 @@ const config = {
         svgSprite: {
 			mode: {
 				symbol: {
-					sprite: "../img/icons.svg",
+					sprite: '../img/icons.svg',
 					render: {
 						scss: {
 							dest:'../blocks/icon/icon.scss',

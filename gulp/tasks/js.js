@@ -2,8 +2,10 @@ const babelify = require('babelify');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
 const buffer= require('vinyl-buffer');
+const concat = require('gulp-concat');
 const del = require('del');
 const gulp = require('gulp');
+const merge = require('merge-stream');
 const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
 const plumber = require('gulp-plumber');
@@ -33,7 +35,10 @@ gulp.task('build:js', ['lint:js'], () => {
     const b = browserify(config.plugins.browserify)
         .transform(babelify, config.plugins.babelify);
 
-    return b.bundle()
+    const vendorStream = gulp.src(config.paths.js.vendor)
+        .pipe(concat(config.paths.js.vendorBundle))
+
+    const srcStream = b.bundle()
         .on('error', function(error) {
             console.error(error.toString());
             this.emit('end');
@@ -44,6 +49,8 @@ gulp.task('build:js', ['lint:js'], () => {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(gulpIf(options.env === 'production', uglify()))
         .pipe(sourcemaps.write('.'))
+
+    return merge(vendorStream, srcStream)
         .pipe(gulp.dest(config.paths.js.dest))
         .pipe(browserSync.reload({stream: true}));
 });
