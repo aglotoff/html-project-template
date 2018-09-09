@@ -39,7 +39,7 @@ gulp.task('build:css', ['lint:css'], () => {
     const srcStream = gulp.src(config.paths.css.src)
         .pipe(plumber())
         .pipe(wait(500))
-        .pipe(sass.sync())
+        .pipe(sass.sync(config.plugins.sass))
         .pipe(postCss(postcssPlugins));
 
     return merge(vendorStream, srcStream)

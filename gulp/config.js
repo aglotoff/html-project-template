@@ -79,6 +79,9 @@ const config = {
                 ]
             },
         },
+        sass: {
+            outputStyle: 'expanded',
+        },
         svgSprite: {
 			mode: {
 				symbol: {
