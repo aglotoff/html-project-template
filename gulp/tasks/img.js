@@ -1,6 +1,7 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
+const changed = require('gulp-changed');
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
 const watch = require('gulp-watch');
@@ -8,8 +9,13 @@ const mozjpeg = require('imagemin-mozjpeg');
 
 const config = require('../config');
 
-const imgPipe = (src) => {
-    return src
+// ----------------------------------------
+//   Task: Build: Images
+// ----------------------------------------
+
+gulp.task('build:img', () => {
+    return gulp.src(config.paths.img.src)
+        .pipe(changed(config.paths.img.dest))
         .pipe(plumber())
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
@@ -22,14 +28,6 @@ const imgPipe = (src) => {
         .pipe(browserSync.reload({
             stream: true
         }));
-};
-
-// ----------------------------------------
-//   Task: Build: Images
-// ----------------------------------------
-
-gulp.task('build:img', () => {
-    return imgPipe(gulp.src(config.paths.img.src));
 });
 
 // ----------------------------------------
@@ -37,7 +35,9 @@ gulp.task('build:img', () => {
 // ----------------------------------------
 
 gulp.task('watch:img', () => {
-    return imgPipe(watch(config.paths.img.watch));
+    return watch(config.paths.img.watch, () => {
+        gulp.start('build:img');
+    });
 });
 
 // ----------------------------------------
