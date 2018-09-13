@@ -37,10 +37,10 @@ const config = {
             clean: `${SRC_PREFIX}/{img/icons.svg,blocks/icon/icon.scss}`
         },
         img: {
-            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,png,svg}`,
+            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             dest:  `${DEST_PREFIX}/img`,
-            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,png,svg}`,
-            clean: `${DEST_PREFIX}/img/*.{gif,jpg,png,svg}`
+            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+            clean: `${DEST_PREFIX}/img/*.{gif,jpg,jpeg,ico,png,svg}`
         },
         js: {
             src:    `${SRC_PREFIX}/js/main.js`,
