@@ -1,10 +1,9 @@
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
 const cssnano = require('cssnano');
-const concat = require('gulp-concat');
 const del = require('del');
 const gulp = require('gulp');
-const merge = require('merge-stream');
+const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
 const postCss = require('gulp-postcss');
 const sass = require('gulp-sass');
@@ -34,16 +33,12 @@ gulp.task('build:css', ['lint:css'], () => {
         postcssPlugins.push(cssnano);
     }
 
-    const vendorStream = gulp.src(config.paths.css.vendor);
-
-    const srcStream = gulp.src(config.paths.css.src)
+    return gulp.src(config.paths.css.src)
         .pipe(plumber())
+        .pipe(changed(config.paths.css.dest, {extension: '.css'}))
         .pipe(wait(500))
         .pipe(sass.sync(config.plugins.sass))
-        .pipe(postCss(postcssPlugins));
-
-    return merge(vendorStream, srcStream)
-        .pipe(concat(config.paths.css.bundle))
+        .pipe(postCss(postcssPlugins))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({
             stream: true

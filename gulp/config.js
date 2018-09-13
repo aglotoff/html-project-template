@@ -10,9 +10,10 @@ const config = {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
         css: {
-            src:    `${SRC_PREFIX}/sass/style.scss`,
-            vendor: `${SRC_PREFIX}/vendor/css/*.css`,
-            bundle: 'main.css',
+            src: [
+                `${SRC_PREFIX}/sass/*.scss`,
+                `!${SRC_PREFIX}/sass/_*.scss`,
+            ],
             dest:   `${DEST_PREFIX}/css`,
             lint:   `${SRC_PREFIX}/**/*.scss`,
             watch:  `${SRC_PREFIX}/**/*.scss`,
