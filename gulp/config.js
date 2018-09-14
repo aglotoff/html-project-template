@@ -112,6 +112,12 @@ const config = {
                 ? 'production'
                 : 'development',
             devtool: 'source-map',
+            plugins: [
+                new webpack.ProvidePlugin({
+                    $: 'jquery',
+                    jQuery: 'jquery',
+                }),
+            ],
             optimization: {
                 splitChunks: {
                     cacheGroups: {
