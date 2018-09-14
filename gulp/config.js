@@ -1,5 +1,7 @@
 const {readFileSync} = require('fs');
 
+const webpack = require('webpack');
+
 const options = require('./options');
 
 const SRC_PREFIX  = './src';
@@ -44,29 +46,16 @@ const config = {
             clean: `${DEST_PREFIX}/img/*.{gif,jpg,jpeg,ico,png,svg}`
         },
         js: {
-            src:    `${SRC_PREFIX}/js/main.js`,
-            vendor: `${SRC_PREFIX}/vendor/js/*.js`,
-            bundle: 'main.js',
-            vendorBundle: 'vendor.js',
-            dest:   `${DEST_PREFIX}/js`,
-            lint:   `${SRC_PREFIX}/{blocks,js}/**/*.js`,
-            watch:  `${SRC_PREFIX}/**/*.js`,
-            clean:  `${DEST_PREFIX}/js/**/*.js{,.map}`
+            src: `${SRC_PREFIX}/js/main.js`,
+            dest: `${DEST_PREFIX}/js`,
+            lint: `${SRC_PREFIX}/{blocks,js}/**/*.js`,
+            watch: `${SRC_PREFIX}/**/*.js`,
+            clean: `${DEST_PREFIX}/js/**/*.js{,.map}`,
         },
     },
     plugins: {
-        babel: {
-            presets: ['env', 'stage-0'],
-            minified: (options.env === 'production')
-        },
         browserSync: {
             server: DEST_PREFIX
-        },
-        browserify: {
-            entries: [`${SRC_PREFIX}/js/main.js`],
-            cache: {},
-            packageCache: {},
-            debug: (options.env !== 'production')
         },
         eslint: (options.env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
@@ -103,7 +92,38 @@ const config = {
                 formatter: 'string',
                 console: true
             }]
-        }
+        },
+        webpack: {
+            output: {
+                filename: '[name].js',
+            },
+            module: {
+                rules: [{
+                    test: /\.js$/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                }],
+            },
+            mode: (options.env === 'production')
+                ? 'production'
+                : 'development',
+            devtool: 'source-map',
+            optimization: {
+                splitChunks: {
+                    cacheGroups: {
+                        commons: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'vendor',
+                            chunks: 'initial',
+                        },
+                    },
+                },
+            },
+        },
     }
 };
 
