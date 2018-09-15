@@ -28,9 +28,14 @@ const config = {
             clean: `${DEST_PREFIX}/fonts/*.{ttf,woff,woff2}`
         },
         html: {
-            src:   `${SRC_PREFIX}/pug/pages/**/*.pug`,
-            dest:  `${DEST_PREFIX}`,
-            watch: `${SRC_PREFIX}/pug/**/*.pug`,
+            src: `${SRC_PREFIX}/pug/pages/*.pug`,
+            globalData: `${SRC_PREFIX}/pug/data/globals.json`,
+            pageData: `${SRC_PREFIX}/pug/data/pages`,
+            dest: `${DEST_PREFIX}`,
+            watch: [
+                `${SRC_PREFIX}/**/*.pug`,
+                `${SRC_PREFIX}/pug/data/**/*.json`,
+            ],
             clean: `${DEST_PREFIX}/**/*.html`
         },
         icons: {
