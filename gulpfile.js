@@ -76,6 +76,7 @@
 
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
+const runSequence = require('run-sequence');
 const requireDir = require('require-dir');
 
 const config = require('./gulp/config');
@@ -86,14 +87,13 @@ requireDir('./gulp/tasks', {recurse: true});
 //   Task: Build
 // ----------------------------------------
 
-gulp.task('build', [
-    'build:css',
-    'build:fonts',
-    'build:html',
-    'build:icons',
-    'build:img',
-    'build:js',
-]);
+gulp.task('build', (callback) => {
+    runSequence(
+        'build:icons',
+        ['build:css', 'build:fonts', 'build:html', 'build:img', 'build:js'],
+        callback
+    );
+});
 
 // ----------------------------------------
 //   Task: Lint
@@ -134,7 +134,7 @@ gulp.task('clean', [
 //   Task: Serve
 // ----------------------------------------
 
-gulp.task('serve', ['build'], () => {
+gulp.task('serve', () => {
     browserSync.init(config.plugins.browserSync);
 });
 
@@ -142,4 +142,10 @@ gulp.task('serve', ['build'], () => {
 //   Task: Default
 // ----------------------------------------
 
-gulp.task('default', ['serve', 'watch']);
+gulp.task('default', (callback) => {
+    runSequence(
+        'build',
+        ['serve', 'watch'],
+        callback
+    );
+});
