@@ -14,10 +14,9 @@ Features
   * Minification and optimization using cssnano
 * JavaScript:
   * Linting with ESLint
-  * Bundling with Browserify
+  * Bundling with Webpack
   * Transpiling to ES5 with Babel
-  * Code minification with UglifyJS
-* Image minification
+* Image optimization
 * SVG sprite icon system
 * BEM code organization
 * Development server with live reloading
@@ -88,40 +87,52 @@ Available Gulp Tasks
 File Organization
 -----------------
 ```
-dist/                   # destination directory
+dist/                         # destination directory
 gulp/
-  tasks/                # tasks implementations
-    css.js
-    ...
-  config.js             # Gulp config
-  options.js            # command-line options parser
+|-- tasks/                    # task implementations
+|   |-- css.js
+|   `-- ...
+|-- config.js                 # Gulp config
+`-- options.js                # command-line options parser
 src/
-  blocks/               # blocks
-    button/             # directory for a single block
-      button.js         # block's behavior
-      button.pug        # block's markup
-      button.scss       # block's styles
-    ...
-  fonts/                # custom fonts
-  img/                  # images
-  js/
-    main.js             # main script file (only imports)
-  pug/
-    pages/              # page templates
-      index.pug
-      ...
-  sass/
-    _mixins.scss        # project mixins
-    _placeholders.scss  # project placeholders
-    _reset.scss         # CSS reset
-    _variables.scss     # project variables
-    style.scss          # main stylesheet (only imports)
-  icons/                # SVG icons for sprite generation
-  templates/
-    icon.mustache       # template for generating SVG icon classes
-.babelrc                # Babel config
-.eslintrc.dev.json      # ESLint config (development)
-.eslintrc.json          # ESLint config (production)
-.stylelintrc            # Stylelint config
-gulpfile.js             # Gulpfile
+|-- blocks/                   # blocks
+|   |-- button/
+|   |   |-- button.js         # block's behavior
+|   |   |-- button.pug        # block's markup
+|   |   `-- button.scss       # block's styles
+|   `-- ...
+|-- fonts/                    # web fonts
+|   |-- foo.woff
+|   `-- ...
+|-- img/                      # images
+|   |-- bar.jpg
+|   `-- ...
+|-- js/
+|   |-- util/                 # helper functions
+|   `-- main.js               # main script file (only imports)
+|-- pug/
+|   |-- data/
+|   |   |-- globals.json      # global data
+|   |   `-- pages/            # page data
+|   |       |-- index.json
+|   |       `-- ...
+|   `-- pages/                # page templates
+|       |-- index.pug
+|       `-- ...
+|-- sass/
+|   |-- _mixins.scss          # project mixins
+|   |-- _placeholders.scss    # project placeholders
+|   |-- _reset.scss           # CSS reset
+|   |-- _variables.scss       # project variables
+|   `-- style.scss            # main stylesheet (only imports)
+|--  icons/                   # SVG icons for sprite generation
+|    |-- baz.svg
+|    `-- ...
+|--  templates/
+|    `-- icon.mustache        # template for generating SVG icon classes
+|-- .babelrc                  # Babel config
+|-- .eslintrc.dev.json        # ESLint config (development)
+|-- .eslintrc.json            # ESLint config (production)
+|-- .stylelintrc              # Stylelint config
+`-- gulpfile.js               # Gulpfile
 ```
