@@ -41,3 +41,31 @@
         @error "Invalid breakpoint name: `#{$name}`.";
     }
 }
+
+/// Clear floated content within a container
+/// @group helpers
+@mixin clearfix() {
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+}
+
+/// Responsive fixed-width container
+/// @group layout
+/// @require $container-md $container-lg $container-xl
+@mixin container() {
+    @include breakpoint-up(md) {
+        width: $container-md;
+        margin: 0 auto;
+    }
+
+    @include breakpoint-up(lg) {
+        width: $container-lg;
+    }
+
+    @include breakpoint-up(xl) {
+        width: $container-xl;
+    }
+}
