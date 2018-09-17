@@ -3,7 +3,6 @@ const browserSync = require('browser-sync');
 const cssnano = require('cssnano');
 const del = require('del');
 const gulp = require('gulp');
-const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
 const postCss = require('gulp-postcss');
 const sass = require('gulp-sass');
@@ -35,7 +34,6 @@ gulp.task('build:css', ['lint:css'], () => {
 
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
-        .pipe(changed(config.paths.css.dest, {extension: '.css'}))
         .pipe(wait(500))
         .pipe(sass.sync(config.plugins.sass))
         .pipe(postCss(postcssPlugins))
