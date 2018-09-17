@@ -69,3 +69,12 @@
         width: $container-xl;
     }
 }
+
+/// Rem font sizing
+/// @param {String} $size - Font size in pixels
+/// @group helpers
+/// @require $font-size-default
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: ($size / $font-size-default) + rem;
+}
