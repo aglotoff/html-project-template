@@ -76,5 +76,6 @@
 /// @require $font-size-default
 @mixin font-size($size) {
     font-size: $size;
+    /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
     font-size: ($size / $font-size-default) + rem;
 }
