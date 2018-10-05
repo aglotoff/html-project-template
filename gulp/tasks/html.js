@@ -33,7 +33,7 @@ gulp.task('build:html', () => {
             };
         }))
         .pipe(pug(config.plugins.pug))
-        .pipe(htmlBeautify())
+        .pipe(htmlBeautify(config.plugins.htmlBeautify))
         .pipe(gulp.dest(config.paths.html.dest))
         .pipe(browserSync.reload({
             stream: true

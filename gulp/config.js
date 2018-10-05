@@ -65,6 +65,15 @@ const config = {
         eslint: (options.env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
+        htmlBeautify: {
+            wrap_line_length: '100',
+            unformatted: [
+                'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'del',
+                'dfn', 'em', 'i', 'ins', 'kbd', 'mark', 'q', 's', 'samp',
+                'small', 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var',
+                'wbr',
+            ],
+        },
         imagemin: {
             svgo: {
                 plugins: [
