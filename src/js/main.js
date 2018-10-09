@@ -1,4 +1,3 @@
-import svg4everybody from 'svg4everybody';
-svg4everybody();
+/* global svg4everybody */
 
-// include block-specific code here
+svg4everybody();

@@ -14,7 +14,6 @@ Features
   * Minification and optimization using cssnano
 * JavaScript:
   * Linting with ESLint
-  * Bundling with Webpack
   * Transpiling to ES5 with Babel
 * Image optimization
 * SVG sprite icon system
@@ -55,34 +54,35 @@ npm run gulp -- [task] --env=production
 
 Available Gulp Tasks
 --------------------
-| Task              | Description                                       |
-| ------------------| ------------------------------------------------- |
-| ```default```     | Run development server and watch code for changes |
-| ```serve```       | Run development server                            |
-| ```build```       | Compile the entire project                        |
-| ```build:css```   | Compile only CSS                                  |
-| ```build:fonts``` | Copy fonts into the destination directory         |
-| ```build:html```  | Compile only HTML                                 |
-| ```build:icons``` | Build only icons                                  |
-| ```build:img```   | Optimize images                                   |
-| ```build:js```    | Compile only JavaScript                           |
-| ```lint```        | Check source files                                |
-| ```lint:css```    | Check only CSS                                    |
-| ```lint:js```     | Check only JavaScript                             |
-| ```watch```       | Watch all source files for changes                |
-| ```watch:css```   | Watch only for CSS changes                        |
-| ```watch:fonts``` | Watch only for font changes                       |
-| ```watch:html```  | Watch only for HTML changes                       |
-| ```watch:icons``` | Watch only for icon changes                       |
-| ```watch:img```   | Watch only for image changes                      |
-| ```watch:js```    | Watch only for JavaScript changes                 |
-| ```clean```       | Clean the entire destination folder               |
-| ```clean:css```   | Clean only CSS                                    |
-| ```clean:fonts``` | Clean only fonts                                  |
-| ```clean:html```  | Clean only HTML                                   |
-| ```clean:icons``` | Clean only icons                                  |
-| ```clean:img```   | Clean only images                                 |
-| ```clean:js```    | Clean only JavaScript                             |
+| Task                  | Description                                       |
+| ----------------------| ------------------------------------------------- |
+| ```default```         | Run development server and watch code for changes |
+| ```serve```           | Run development server                            |
+| ```build```           | Compile the entire project                        |
+| ```build:css```       | Compile only CSS                                  |
+| ```build:fonts```     | Copy fonts into the destination directory         |
+| ```build:html```      | Compile only HTML                                 |
+| ```build:icons```     | Build only icons                                  |
+| ```build:img```       | Optimize images                                   |
+| ```build:js```        | Compile only JavaScript                           |
+| ```build:vendor-js``` | Compile only JavaScript libraries                 |
+| ```lint```            | Check source files                                |
+| ```lint:css```        | Check only CSS                                    |
+| ```lint:js```         | Check only JavaScript                             |
+| ```watch```           | Watch all source files for changes                |
+| ```watch:css```       | Watch only for CSS changes                        |
+| ```watch:fonts```     | Watch only for font changes                       |
+| ```watch:html```      | Watch only for HTML changes                       |
+| ```watch:icons```     | Watch only for icon changes                       |
+| ```watch:img```       | Watch only for image changes                      |
+| ```watch:js```        | Watch only for JavaScript changes                 |
+| ```clean```           | Clean the entire destination folder               |
+| ```clean:css```       | Clean only CSS                                    |
+| ```clean:fonts```     | Clean only fonts                                  |
+| ```clean:html```      | Clean only HTML                                   |
+| ```clean:icons```     | Clean only icons                                  |
+| ```clean:img```       | Clean only images                                 |
+| ```clean:js```        | Clean only JavaScript                             |
 
 File Organization
 -----------------
@@ -109,7 +109,7 @@ src/
 |   `-- ...
 |-- js/
 |   |-- util/                 # helper functions
-|   `-- main.js               # main script file (only imports)
+|   `-- main.js               # main script file
 |-- pug/
 |   |-- data/
 |   |   |-- globals.json      # global data

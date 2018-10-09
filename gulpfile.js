@@ -14,6 +14,7 @@
 //   `gulp build:icons`
 //   `gulp build:img`
 //   `gulp build:js`
+//   `gulp build:vendor-js`
 //   `gulp lint`
 //   `gulp lint:css`
 //   `gulp lint:js`
@@ -41,15 +42,17 @@
 // @babel/core        : Babel compiler core
 // @babel/preset-env  : A Babel preset for each environment
 // autoprefixer       : Parse CSS and add vendor prefixes to CSS rules
-// babel-loader       : transpiling JavaScript files using Babel and webpack
 // browser-sync       : Keep multiple browsers & devices in sync
 // cssnano            : A modular minifier, built on top of PostCSS
 // del                : Delete files and folders using globs
 // gulp               : The streaming build system
+// gulp-babel         : Use next generation JavaScript, today, with Babel
 // gulp-changed       : Only pass through changed files
+// gulp-concat        : Concatenates files
 // gulp-data          : Generate a data object for other plugins to consume
 // gulp-eslint        : A gulp plugin for ESLint
 // gulp-html-beautify : A gulp plugin to beautify HTML files
+// gulp-if            : Conditionally control the flow of vinyl objects
 // gulp-imagemin      : Minify PNG, JPEG, GIF and SVG images with imagemin
 // gulp-plumber       : Prevent pipe breaking caused by errors from plugins
 // gulp-postcss       : PostCSS gulp plugin
@@ -58,6 +61,7 @@
 // gulp-sourcemaps    : Write inline source maps
 // gulp-stylelint     : Run stylelint results through a list of reporters
 // gulp-svg-sprite    : Create SVG sprites
+// gulp-uglify        : Minify JavaScript with UglifyJS3
 // gulp-wait          : Insert a delay before calling the next function
 // gulp-watch         : File watcher
 // imagemin-mozjpeg   : Imagemin plugin for mozjpeg
@@ -66,8 +70,6 @@
 // run-sequence       : Runs a sequence of gulp tasks in the specified order
 // stylelint          : A mighty, modern CSS linter
 // stylelint-scss     : A collection of SCSS specific rules for stylelint
-// webpack            : A module bundler
-// webpack-stream     : Run webpack as a stream
 //
 // ----------------------------------------
 
@@ -87,7 +89,14 @@ requireDir('./gulp/tasks', {recurse: true});
 gulp.task('build', (callback) => {
     runSequence(
         'build:icons',
-        ['build:css', 'build:fonts', 'build:html', 'build:img', 'build:js'],
+        [
+            'build:css',
+            'build:fonts',
+            'build:html',
+            'build:img',
+            'build:js',
+            'build:vendor-js',
+        ],
         callback
     );
 });

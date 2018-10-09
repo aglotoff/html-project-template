@@ -1,9 +1,8 @@
 const {readFileSync} = require('fs');
 
-const webpack = require('webpack');
-
 const options = require('./options');
 
+const LIB_PREFIX = './node_modules';
 const SRC_PREFIX  = './src';
 const DEST_PREFIX = './dist';
 
@@ -51,14 +50,28 @@ const config = {
             clean: `${DEST_PREFIX}/img/*.{gif,jpg,jpeg,ico,png,svg}`
         },
         js: {
-            src: `${SRC_PREFIX}/js/main.js`,
+            vendor: [
+                `${LIB_PREFIX}/svg4everybody/dist/svg4everybody.min.js`,
+                `${LIB_PREFIX}/jquery/dist/jquery.min.js`,
+            ],
+            src: [
+                `${SRC_PREFIX}/blocks/**/*.js`,
+                `${SRC_PREFIX}/js/main.js`,
+            ],
             dest: `${DEST_PREFIX}/js`,
-            lint: `${SRC_PREFIX}/{blocks,js}/**/*.js`,
+            lint: `${SRC_PREFIX}/**/*.js`,
             watch: `${SRC_PREFIX}/**/*.js`,
             clean: `${DEST_PREFIX}/js/**/*.js{,.map}`,
         },
     },
+    run: {
+        uglify: options.env === 'production',
+    },
     plugins: {
+        babel: {
+            compact: false,
+            presets: ['@babel/preset-env'],
+        },
         browserSync: {
             server: DEST_PREFIX
         },
@@ -105,43 +118,6 @@ const config = {
                 formatter: 'string',
                 console: true
             }]
-        },
-        webpack: {
-            output: {
-                filename: '[name].js',
-            },
-            module: {
-                rules: [{
-                    test: /\.js$/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
-                        }
-                    }
-                }],
-            },
-            mode: (options.env === 'production')
-                ? 'production'
-                : 'development',
-            devtool: 'source-map',
-            plugins: [
-                new webpack.ProvidePlugin({
-                    $: 'jquery',
-                    jQuery: 'jquery',
-                }),
-            ],
-            optimization: {
-                splitChunks: {
-                    cacheGroups: {
-                        commons: {
-                            test: /[\\/]node_modules[\\/]/,
-                            name: 'vendor',
-                            chunks: 'initial',
-                        },
-                    },
-                },
-            },
         },
     }
 };
