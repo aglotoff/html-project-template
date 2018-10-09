@@ -92,8 +92,7 @@ gulp/
 |-- tasks/                    # task implementations
 |   |-- css.js
 |   `-- ...
-|-- config.js                 # Gulp config
-`-- options.js                # command-line options parser
+`-- config.js                 # Gulp config
 src/
 |-- blocks/                   # blocks
 |   |-- button/

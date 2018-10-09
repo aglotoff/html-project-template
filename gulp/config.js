@@ -1,12 +1,25 @@
 const {readFileSync} = require('fs');
 
-const options = require('./options');
+const minimist = require('minimist');
+
+/**
+ * Read in an environment flag
+ */
+const {env} = minimist(process.argv.slice(2), {
+    string: 'env',
+    default: { 
+        env: process.env.NODE_ENV || 'development'
+    }
+});
 
 const LIB_PREFIX = './node_modules';
 const SRC_PREFIX  = './src';
 const DEST_PREFIX = './dist';
 
 const config = {
+    /*
+     * Path information
+     */
     paths: {
         src:  SRC_PREFIX,
         dest: DEST_PREFIX,
@@ -64,9 +77,18 @@ const config = {
             clean: `${DEST_PREFIX}/js/**/*.js{,.map}`,
         },
     },
+
+    /*
+     * Toggle plugins on or off depending on environment build
+     */
     run: {
-        uglify: options.env === 'production',
+        cssnano: env === 'production',
+        uglify: env === 'production',
     },
+
+    /*
+     * Plugin options
+     */
     plugins: {
         babel: {
             compact: false,
@@ -75,7 +97,7 @@ const config = {
         browserSync: {
             server: DEST_PREFIX
         },
-        eslint: (options.env === 'production') ?
+        eslint: (env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
         htmlBeautify: {

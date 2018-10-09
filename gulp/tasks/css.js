@@ -12,7 +12,6 @@ const wait = require('gulp-wait');
 const watch = require('gulp-watch');
 
 const config = require('../config');
-const options = require('../options');
 
 // ----------------------------------------
 //   Task: Lint: CSS
@@ -28,17 +27,14 @@ gulp.task('lint:css', () => {
 // ----------------------------------------
 
 gulp.task('build:css', ['lint:css'], () => {
-    const postcssPlugins = [autoprefixer];
-    if (options.env === 'production') {
-        postcssPlugins.push(cssnano);
-    }
-
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
         .pipe(wait(500))
         .pipe(sourcemaps.init())
         .pipe(sass.sync(config.plugins.sass))
-        .pipe(postCss(postcssPlugins))
+        .pipe(postCss(config.run.cssnano
+            ? [autoprefixer, cssnano]
+            : [autoprefixer]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({
