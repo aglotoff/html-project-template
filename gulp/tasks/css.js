@@ -6,6 +6,7 @@ const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const postCss = require('gulp-postcss');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('gulp-stylelint');
 const wait = require('gulp-wait');
 const watch = require('gulp-watch');
@@ -35,8 +36,10 @@ gulp.task('build:css', ['lint:css'], () => {
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
         .pipe(wait(500))
+        .pipe(sourcemaps.init())
         .pipe(sass.sync(config.plugins.sass))
         .pipe(postCss(postcssPlugins))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({
             stream: true
