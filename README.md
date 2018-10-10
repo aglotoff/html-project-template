@@ -129,7 +129,6 @@ src/
 |    `-- ...
 |--  templates/
 |    `-- icon.mustache        # template for generating SVG icon classes
-|-- .babelrc                  # Babel config
 |-- .eslintrc.dev.json        # ESLint config (development)
 |-- .eslintrc.json            # ESLint config (production)
 |-- .stylelintrc              # Stylelint config
