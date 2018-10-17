@@ -54,7 +54,10 @@ const config = {
             src:   `${SRC_PREFIX}/icons/*.svg`,
             dest:  `${SRC_PREFIX}`,
             watch: `${SRC_PREFIX}/icons/*.svg`,
-            clean: `${SRC_PREFIX}/{img/icons.svg,blocks/icon/icon.scss}`
+            clean: [
+                `${SRC_PREFIX}/img/icons.svg`,
+                `${SRC_PREFIX}/blocks/icon/icon.scss`,
+            ]
         },
         img: {
             src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
