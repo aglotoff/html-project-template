@@ -107,7 +107,6 @@ src/
 |   |-- bar.jpg
 |   `-- ...
 |-- js/
-|   |-- util/                 # helper functions
 |   `-- main.js               # main script file
 |-- pug/
 |   |-- data/
