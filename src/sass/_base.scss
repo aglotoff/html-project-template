@@ -54,6 +54,18 @@ table {
 }
 
 /* box-sizing fix */
-*, *:before, *:after {
+/* stylelint-disable-next-line no-duplicate-selectors */
+body {
     box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* root font size */
+:root {
+    font-size: ($font-size-default / 16px) + em;
 }
