@@ -85,11 +85,16 @@ const config = {
     },
 
     /*
-     * Toggle plugins on or off depending on environment build
+     * Toggle plugins on or off
      */
     run: {
-        cssnano: env === 'production',
-        uglify: env === 'production',
+        css: {
+            cssnano: env === 'production',
+        },
+        js: {
+            babel: true,
+            uglify: env === 'production',
+        },
     },
 
     /*

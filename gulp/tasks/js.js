@@ -43,7 +43,7 @@ gulp.task('build:js', ['lint:js'], () => {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
-        .pipe(babel(config.plugins.babel))
+        .pipe(gulpIf(config.run.babel, babel(config.plugins.babel)))
         .pipe(gulpIf(config.run.uglify, uglify()))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.js.dest))

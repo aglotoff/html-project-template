@@ -32,7 +32,7 @@ gulp.task('build:css', ['lint:css'], () => {
         .pipe(wait(500))
         .pipe(sourcemaps.init())
         .pipe(sass.sync(config.plugins.sass))
-        .pipe(postCss(config.run.cssnano
+        .pipe(postCss(config.run.css.cssnano
             ? [autoprefixer, cssnano]
             : [autoprefixer]))
         .pipe(sourcemaps.write('.'))
