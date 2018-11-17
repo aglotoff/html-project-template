@@ -7,6 +7,7 @@
 // Available tasks:
 //   `gulp`
 //   `gulp serve`
+//   `gulp deploy`
 //   `gulp build`
 //   `gulp build:css`
 //   `gulp build:fonts`
@@ -45,6 +46,7 @@
 // browser-sync       : Keep multiple browsers & devices in sync
 // cssnano            : A modular minifier, built on top of PostCSS
 // del                : Delete files and folders using globs
+// fancy-log          : Log things, prefixed with a timestamp
 // gulp               : The streaming build system
 // gulp-changed       : Only pass through changed files
 // gulp-data          : Generate a data object for other plugins to consume
@@ -68,6 +70,7 @@
 // run-sequence       : Runs a sequence of gulp tasks in the specified order
 // stylelint          : A mighty, modern CSS linter
 // stylelint-scss     : A collection of SCSS specific rules for stylelint
+// vinyl-ftp          : Blazing fast vinyl adapter for FTP
 // vinyl-named        : Give vinyl files arbitrary chunk names
 // webpack            : A module bundler
 // webpack-stream     : Run webpack as a stream
@@ -75,9 +78,11 @@
 // ----------------------------------------
 
 const browserSync = require('browser-sync');
+const log = require('fancy-log');
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
 const requireDir = require('require-dir');
+const ftp = require('vinyl-ftp');
 
 const config = require('./gulp/config');
 
@@ -142,6 +147,25 @@ gulp.task('clean', [
 
 gulp.task('serve', () => {
     browserSync.init(config.plugins.browserSync);
+});
+
+// ----------------------------------------
+//   Task: Deploy
+// ----------------------------------------
+
+gulp.task('deploy', ['build'], () => {
+    const conn = ftp.create({
+        ...config.plugins.ftp,
+        log
+    });
+
+    return gulp
+        .src(config.paths.deploy.src, {
+            base: config.paths.dest,
+            buffer: false,
+        })
+        .pipe(conn.newer(config.paths.deploy.dest))
+        .pipe(conn.dest(config.paths.deploy.dest));
 });
 
 // ----------------------------------------

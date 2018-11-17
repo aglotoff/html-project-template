@@ -5,21 +5,16 @@ HTML/CSS conversion, etc.
 
 Features
 --------
-* HTML
-  * Markup generation with the Pug template engine
-* CSS:
-  * Linting with Stylelint
-  * Sass preprocessor
-  * Automatic vendor prefixes using autoprefixer
-  * Minification and optimization using cssnano
-* JavaScript:
-  * Linting with ESLint
-  * Transpiling to ES5 with Babel
-  * Bundling with webpack
+* BEM code organizaton
+* HTML Markup generation with Pug
+* Sass & automatic vendor prefixes
+* JavaScript bundling with Webpack & Babel
+* Code linting with Stylelint & ESLint
+* CSS & JS minification and optimization
 * Image optimization
 * SVG sprite icon system
-* BEM code organization
 * Development server with live reloading
+* Automatic deployment over FTP
 
 Installation
 ------------
@@ -42,6 +37,25 @@ npm run build
 ```
 The ready for deployment code will be placed into the `dist` folder.
 
+To automatically deploy the production files over FTP, add your connection
+details to the `gulp/config.js` file:
+```
+...
+const config = {
+  ...
+  plugins: {
+    ...
+    ftp: {
+      host:     'host',
+      user:     'user',
+      password: 'password',
+      ...
+```
+and then run:
+```
+npm run deploy
+```
+
 To execute a specific gulp task, run:
 ```
 npm run gulp -- [task]
@@ -59,6 +73,7 @@ Available Gulp Tasks
 | ----------------------| ------------------------------------------------- |
 | ```default```         | Run development server and watch code for changes |
 | ```serve```           | Run development server                            |
+| ```deploy```          | Compile the entire project and deploy through ftp |
 | ```build```           | Compile the entire project                        |
 | ```build:css```       | Compile only CSS                                  |
 | ```build:fonts```     | Copy fonts into the destination directory         |

@@ -35,6 +35,13 @@ const config = {
             watch:  `${SRC}/**/*.scss`,
             clean:  `${DIST}/css/**/*.css`
         },
+        deploy: {
+            src: [
+                `${DIST}/**`,
+                `!${DIST}/**/*.map`,
+            ],
+            dest:   `/htdocs/test`,
+        },
         fonts: {
             src:   `${SRC}/fonts/*.{ttf,woff,woff2}`,
             dest:  `${DIST}/fonts`,
@@ -98,6 +105,12 @@ const config = {
         eslint: (env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
+        ftp: {
+            host:     'host',
+            user:     'user',
+            password: 'password',
+            parallel: 10,
+        },
         htmlBeautify: {
             unformatted: [
                 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'del',
