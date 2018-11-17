@@ -15,7 +15,6 @@ const {env} = minimist(process.argv.slice(2), {
 /**
  * Path prefixes
  */
-const LIB = './node_modules';
 const SRC  = './src';
 const DIST = './dist';
 
@@ -69,12 +68,8 @@ const config = {
             clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg}`
         },
         js: {
-            vendor: [
-                `${LIB}/svg4everybody/dist/svg4everybody.min.js`,
-                `${LIB}/jquery/dist/jquery.min.js`,
-            ],
             src: [
-                `${SRC}/blocks/**/*.js`,
+                `${SRC}/js/vendor.js`,
                 `${SRC}/js/main.js`,
             ],
             dest: `${DIST}/js`,
@@ -91,20 +86,12 @@ const config = {
         css: {
             cssnano: env === 'production',
         },
-        js: {
-            babel: true,
-            uglify: env === 'production',
-        },
     },
 
     /*
      * Plugin options
      */
     plugins: {
-        babel: {
-            compact: false,
-            presets: ['@babel/preset-env'],
-        },
         browserSync: {
             server: DIST
         },
@@ -152,7 +139,27 @@ const config = {
                 console: true
             }]
         },
-    }
+        webpack: {
+            output: {
+                filename: '[name].js',
+            },
+            module: {
+                rules: [{
+                    test: /\.js$/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                }],
+            },
+            mode: (env === 'production')
+                ? 'production'
+                : 'development',
+            devtool: 'source-map',
+        },
+    },
 };
 
 module.exports = config;

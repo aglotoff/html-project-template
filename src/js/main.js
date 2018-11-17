@@ -1,3 +1,1 @@
-/* global svg4everybody */
-
-svg4everybody();
+// Import statemenets for your blocks go here

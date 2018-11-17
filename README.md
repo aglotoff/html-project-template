@@ -15,6 +15,7 @@ Features
 * JavaScript:
   * Linting with ESLint
   * Transpiling to ES5 with Babel
+  * Bundling with webpack
 * Image optimization
 * SVG sprite icon system
 * BEM code organization
@@ -65,7 +66,6 @@ Available Gulp Tasks
 | ```build:icons```     | Build only icons                                  |
 | ```build:img```       | Optimize images                                   |
 | ```build:js```        | Compile only JavaScript                           |
-| ```build:vendor-js``` | Compile only JavaScript libraries                 |
 | ```lint```            | Check source files                                |
 | ```lint:css```        | Check only CSS                                    |
 | ```lint:js```         | Check only JavaScript                             |
@@ -107,7 +107,8 @@ src/
 |   |-- bar.jpg
 |   `-- ...
 |-- js/
-|   `-- main.js               # main script file
+|   |-- main.js               # main script file (only imports)
+|   `-- vendor.js             # third-party libs (imports and initialization)
 |-- pug/
 |   |-- data/
 |   |   |-- globals.json      # global data
