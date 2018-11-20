@@ -1,1 +1,3 @@
-// Import statemenets for your blocks go here
+import * as Page from '../blocks/page/page';
+
+Page.initModule();

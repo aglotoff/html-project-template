@@ -11,8 +11,8 @@ html(lang="en")
             title #{data.siteTitle} &#8211; #{data.siteTagline}
 
         link(rel="stylesheet", href="css/style.css")
-    body       
-        button.btn hello
+    body.page     
 
-        script(src="js/vendor.js")
-        script(src="js/main.js")
+        block scripts
+            script(src="js/vendor.js")
+            script(src="js/main.js")
