@@ -39,41 +39,44 @@
 //   Modules
 // ----------------------------------------
 //
-// @babel/core        : Babel compiler core
-// @babel/preset-env  : A Babel preset for each environment
-// autoprefixer       : Parse CSS and add vendor prefixes to CSS rules
-// babel-loader       : transpiling JavaScript files using Babel and webpack
-// browser-sync       : Keep multiple browsers & devices in sync
-// cssnano            : A modular minifier, built on top of PostCSS
-// del                : Delete files and folders using globs
-// fancy-log          : Log things, prefixed with a timestamp
-// gulp               : The streaming build system
-// gulp-changed       : Only pass through changed files
-// gulp-data          : Generate a data object for other plugins to consume
-// gulp-eslint        : A gulp plugin for ESLint
-// gulp-html-beautify : A gulp plugin to beautify HTML files
-// gulp-if            : Conditionally control the flow of vinyl objects
-// gulp-imagemin      : Minify PNG, JPEG, GIF and SVG images with imagemin
-// gulp-plumber       : Prevent pipe breaking caused by errors from plugins
-// gulp-postcss       : PostCSS gulp plugin
-// gulp-pug           : Gulp plugin for compiling Pug templates
-// gulp-sass          : Sass plugin for Gulp
-// gulp-sourcemaps    : Write inline source maps
-// gulp-stylelint     : Run stylelint results through a list of reporters
-// gulp-svg-sprite    : Create SVG sprites
-// gulp-uglify        : Minify JavaScript with UglifyJS3
-// gulp-wait          : Insert a delay before calling the next function
-// gulp-watch         : File watcher
-// imagemin-mozjpeg   : Imagemin plugin for mozjpeg
-// minimist           : Parse argument options
-// require-dir        : Helper to require() directories
-// run-sequence       : Runs a sequence of gulp tasks in the specified order
-// stylelint          : A mighty, modern CSS linter
-// stylelint-scss     : A collection of SCSS specific rules for stylelint
-// vinyl-ftp          : Blazing fast vinyl adapter for FTP
-// vinyl-named        : Give vinyl files arbitrary chunk names
-// webpack            : A module bundler
-// webpack-stream     : Run webpack as a stream
+// @babel/core          : Babel compiler core
+// @babel/preset-env    : A Babel preset for each environment
+// autoprefixer         : Parse CSS and add vendor prefixes to CSS rules
+// babel-loader         : transpiling JavaScript files using Babel and webpack
+// browser-sync         : Keep multiple browsers & devices in sync
+// cssnano              : A modular minifier, built on top of PostCSS
+// del                  : Delete files and folders using globs
+// fancy-log            : Log things, prefixed with a timestamp
+// gulp                 : The streaming build system
+// gulp-changed         : Only pass through changed files
+// gulp-data            : Generate a data object for other plugins to consume
+// gulp-eslint          : A gulp plugin for ESLint
+// gulp-html-beautify   : A gulp plugin to beautify HTML files
+// gulp-if              : Conditionally control the flow of vinyl objects
+// gulp-imagemin        : Minify PNG, JPEG, GIF and SVG images with imagemin
+// gulp-plumber         : Prevent pipe breaking caused by errors from plugins
+// gulp-postcss         : PostCSS gulp plugin
+// gulp-pug             : Gulp plugin for compiling Pug templates
+// gulp-pug-inheritance : Rebuild only changed pug files and all it dependencies
+// gulp-sass            : Sass plugin for Gulp
+// gulp-sourcemaps      : Write inline source maps
+// gulp-stylelint       : Run stylelint results through a list of reporters
+// gulp-svg-sprite      : Create SVG sprites
+// gulp-tap             : Easily tap into a pipeline.
+// gulp-uglify          : Minify JavaScript with UglifyJS3
+// gulp-wait            : Insert a delay before calling the next function
+// gulp-watch           : File watcher
+// imagemin-mozjpeg     : Imagemin plugin for mozjpeg
+// lazypipe             : Create immutable, lazily-initialized pipelines
+// minimist             : Parse argument options
+// require-dir          : Helper to require() directories
+// run-sequence         : Runs a sequence of gulp tasks in the specified order
+// stylelint            : A mighty, modern CSS linter
+// stylelint-scss       : A collection of SCSS specific rules for stylelint
+// vinyl-ftp            : Blazing fast vinyl adapter for FTP
+// vinyl-named          : Give vinyl files arbitrary chunk names
+// webpack              : A module bundler
+// webpack-stream       : Run webpack as a stream
 //
 // ----------------------------------------
 

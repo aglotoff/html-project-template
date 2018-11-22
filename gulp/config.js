@@ -15,14 +15,16 @@ const {env} = minimist(process.argv.slice(2), {
 /**
  * Path prefixes
  */
-const SRC  = './src';
-const DIST = './dist';
+const TOP  = '.';
+const SRC  = `${TOP}/src`
+const DIST = `${TOP}/dist`;
 
 const config = {
     /*
      * Path information
      */
     paths: {
+        top:  TOP,
         src:  SRC,
         dest: DIST,
         css: {
@@ -52,6 +54,7 @@ const config = {
             src: `${SRC}/pug/pages/*.pug`,
             globalData: `${SRC}/pug/data/globals.json`,
             pageData: `${SRC}/pug/data/pages`,
+            pages: `${SRC}/pug/pages/`,
             dest: `${DIST}`,
             watch: [
                 `${SRC}/**/*.pug`,
@@ -127,6 +130,10 @@ const config = {
                     {removeAttrs:{attrs:'(fill|stroke|style)'}}
                 ]
             },
+        },
+        pugInheritance: {
+            basedir: `${SRC}/pug`,
+            skip: 'node_modules',
         },
         sass: {
             outputStyle: 'expanded',
