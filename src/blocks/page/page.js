@@ -6,10 +6,23 @@
 // ...
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const RESIZE_INTERVAL = 200; // Resize throttling interval
+const RESIZE_INTERVAL = 200;    // Resize debouncing interval
+const SCROLL_INTERVAL = 200;    // Scroll throttling interval
 
 let resizeTimer = null;
+let scrollTimer = null;
+let wasScrolled = false;
 // --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN EVENT HANDLERS ---------------------------
+const onWindowScroll = function() {
+    // TODO: add code here
+};
+
+const onWindowResize = function() {
+    // TODO: add code here
+};
+// ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
@@ -27,11 +40,24 @@ export const initModule = function() {
     $(window).on({
         resize: function() {
             clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
+        },
+        scroll: function() {
+            if (scrollTimer) {
+                // ensure that we catch and execute that last invocation
+                wasScrolled = true;
+                return;
+            }
 
-            resizeTimer = setTimeout(function() {
-                // TODO: your code here
-                // ...
-            }, RESIZE_INTERVAL);
+            onWindowScroll();
+
+            scrollTimer = this.setTimeout(function() {
+                scrollTimer = null;
+                if (wasScrolled) {
+                    onWindowScroll();
+                    wasScrolled = false;
+                }
+            }, SCROLL_INTERVAL);
         },
     });
 
