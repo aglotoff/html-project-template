@@ -10,14 +10,12 @@
 //   `gulp deploy`
 //   `gulp build`
 //   `gulp build:css`
+//   `gulp lint:css`
 //   `gulp build:fonts`
 //   `gulp build:html`
 //   `gulp build:icons`
 //   `gulp build:img`
 //   `gulp build:js`
-//   `gulp lint`
-//   `gulp lint:css`
-//   `gulp lint:js`
 //   `gulp watch`
 //   `gulp watch:css`
 //   `gulp watch:fonts`
@@ -108,15 +106,6 @@ gulp.task('build', (callback) => {
         callback
     );
 });
-
-// ----------------------------------------
-//   Task: Lint
-// ----------------------------------------
-
-gulp.task('lint', [
-    'lint:css',
-    'lint:js'
-]);
 
 // ----------------------------------------
 //   Task: Watch

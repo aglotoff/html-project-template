@@ -105,9 +105,6 @@ const config = {
         browserSync: {
             server: DIST
         },
-        eslint: (env === 'production') ?
-            JSON.parse(readFileSync('./.eslintrc.json')) :
-            JSON.parse(readFileSync('./.eslintrc.dev.json')),
         ftp: {
             host:     'host',
             user:     'user',
@@ -165,7 +162,18 @@ const config = {
             },
             module: {
                 rules: [{
+                    enforce: 'pre',
                     test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'eslint-loader',
+                        options: (env === 'production') ?
+                            JSON.parse(readFileSync('./.eslintrc.json')) :
+                            JSON.parse(readFileSync('./.eslintrc.dev.json'))
+                    }
+                }, {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
                         options: {

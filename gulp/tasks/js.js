@@ -1,7 +1,6 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const eslint = require('gulp-eslint');
 const plumber = require('gulp-plumber');
 const watch = require('gulp-watch');
 const named = require('vinyl-named');
@@ -10,20 +9,10 @@ const webpack = require('webpack-stream');
 const config = require('../config');
 
 // ----------------------------------------
-//   Task: Lint: JavaScript
-// ----------------------------------------
-
-gulp.task('lint:js', () => {
-    return gulp.src(config.paths.js.lint)
-        .pipe(eslint(config.plugins.eslint))
-        .pipe(eslint.format());
-});
-
-// ----------------------------------------
 //   Task: Build: JavaScript
 // ----------------------------------------
 
-gulp.task('build:js', ['lint:js'], () => {
+gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(plumber())
         .pipe(named())

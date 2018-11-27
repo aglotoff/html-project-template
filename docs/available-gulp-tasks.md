@@ -21,14 +21,12 @@ optimized, and linters will complain about the use of some featues such as
 | ```deploy```          | Compile the entire project and deploy through ftp |
 | ```build```           | Compile the entire project                        |
 | ```build:css```       | Compile only CSS                                  |
+| ```lint:css```        | Check CSS                                         |
 | ```build:fonts```     | Copy fonts into the destination directory         |
 | ```build:html```      | Compile only HTML                                 |
 | ```build:icons```     | Build only icons                                  |
 | ```build:img```       | Optimize images                                   |
 | ```build:js```        | Compile only JavaScript                           |
-| ```lint```            | Check source files                                |
-| ```lint:css```        | Check only CSS                                    |
-| ```lint:js```         | Check only JavaScript                             |
 | ```watch```           | Watch all source files for changes                |
 | ```watch:css```       | Watch only for CSS changes                        |
 | ```watch:fonts```     | Watch only for font changes                       |
