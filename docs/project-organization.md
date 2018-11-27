@@ -10,8 +10,6 @@ The file structure looks as follows:
 dist/                         # destination directory
 gulp/
 |-- tasks/                    # task implementations
-|   |-- css.js
-|   `-- ...
 `-- config.js                 # Gulp config
 src/
 |-- blocks/                   # blocks
@@ -21,11 +19,8 @@ src/
 |   |   `-- button.scss       # block's styles
 |   `-- ...
 |-- fonts/                    # web fonts
-|   |-- foo.woff
-|   `-- ...
+|-- icons/                    # SVG icons for sprite generation
 |-- img/                      # images
-|   |-- bar.jpg
-|   `-- ...
 |-- js/
 |   |-- main.js               # main script file (only imports)
 |   `-- vendor.js             # third-party libs (imports and initialization)
@@ -39,16 +34,17 @@ src/
 |       |-- index.pug
 |       `-- ...
 |-- sass/
+|   |-- _base.scss            # base styles
+|   |-- _fonts.scss           # font-face declarations
 |   |-- _mixins.scss          # project mixins
-|   |-- _placeholders.scss    # project placeholders
-|   |-- _reset.scss           # CSS reset
 |   |-- _variables.scss       # project variables
 |   `-- style.scss            # main stylesheet (only imports)
-|--  icons/                   # SVG icons for sprite generation
-|    |-- baz.svg
-|    `-- ...
-|--  templates/
-|    `-- icon.mustache        # template for generating SVG icon classes
+|-- templates/
+|   |-- block.js.mustache     # template for auto-generated block behavior
+|   |-- block.pug.mustache    # template for auto-generated block markup
+|   |-- block.scss.mustcahe   # template for auto-generated block styles
+|   `-- icon.mustache         # template for generating SVG icon classes
+|-- utils/                    # command-line utilities
 |-- .eslintrc.dev.json        # ESLint config (development)
 |-- .eslintrc.json            # ESLint config (production)
 |-- .stylelintrc              # Stylelint config
