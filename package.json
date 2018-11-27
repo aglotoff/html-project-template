@@ -4,7 +4,7 @@
   "description": "My Frontend Project Template",
   "main": "index.js",
   "scripts": {
-    "make-block": "node utils/bin/make-block",
+    "make-block": "node utils/make-block",
     "start": "./node_modules/.bin/gulp",
     "build": "./node_modules/.bin/gulp build --env=production",
     "deploy": "./node_modules/.bin/gulp deploy --env=production",
@@ -52,6 +52,8 @@
     "jquery": "^3.3.1",
     "lazypipe": "^1.0.1",
     "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "mustache": "^3.0.1",
     "require-dir": "^1.1.0",
     "run-sequence": "^2.2.1",
     "stylelint": "^9.8.0",
