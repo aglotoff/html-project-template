@@ -2,11 +2,22 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
-const watch = require('gulp-watch');
+const lazypipe = require('lazypipe');
 const named = require('vinyl-named');
 const webpack = require('webpack-stream');
 
 const config = require('../config');
+
+let watching = false;
+
+const jsTasks = lazypipe()
+    .pipe(plumber)
+    .pipe(named)
+    .pipe(() => webpack({
+        ...config.plugins.webpack,
+        watch: watching,
+    }))
+    .pipe(gulp.dest, config.paths.js.dest);
 
 // ----------------------------------------
 //   Task: Build: JavaScript
@@ -14,11 +25,7 @@ const config = require('../config');
 
 gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
-        .pipe(plumber())
-        .pipe(named())
-        .pipe(webpack(config.plugins.webpack))
-        .pipe(gulp.dest(config.paths.js.dest))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(jsTasks());
 });
 
 // ----------------------------------------
@@ -26,9 +33,10 @@ gulp.task('build:js', () => {
 // ----------------------------------------
 
 gulp.task('watch:js', () => {
-    return watch(config.paths.js.watch, () => {
-        gulp.start('build:js');
-    });
+    watching = true;
+    return gulp.src(config.paths.js.src)
+        .pipe(jsTasks())
+        .pipe(browserSync.reload({stream: true}));
 });
 
 // ----------------------------------------
