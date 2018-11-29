@@ -1,9 +1,13 @@
 Project Organization
 ====================
 
-This template project follows the BEM methodology invented at Yandex. You can
-read about it [here](https://en.bem.info/methodology/).
+This template project follows the 
+[BEM methodology](https://en.bem.info/methodology/) for web development
+invented at Yandex. The user interface is divided into independent, reusable
+**blocks** which makes development and maintenance faster and easier.
 
+File Structure
+--------------
 The file structure looks as follows:
 
 ```
@@ -51,8 +55,35 @@ src/
 `-- gulpfile.js               # Gulpfile
 ```
 
-Each block corresponds to a single directory inside `src/blocks` with the name
-of the block that contains the files for implementing the block.
+Block Implementation
+--------------------
 
-The main files (`src/js/main.js`, `src/sass/style.scss`) contain only import
-statements for each block.
+Each block corresponds to a single directory inside the `src/blocks` folder
+containing separate files for each implementation technology:
+
+* a `.pug` file for the block's markup
+* a `.scss` file for the block's styles
+* a `.js` file for the block's behavior.
+
+If one of your blocks doesn't use a particular technology, simply don't provide
+the corresponding file(s).
+
+You can use a command-line utility to speed up generating these files, see
+[Block Generation](block-generation.md).
+
+Fonts & Images
+--------------
+
+To use web fonts and images in your project, simply put them into corresponding
+folders inside the `src` directory.
+
+The font files in TTF, WOFF, and WOFF2 formats are copied from `src/fonts` to
+`dest/fonts` during the build process. The corresponding `@font-face`
+declarations should go into the `src/sass/_fonts.scss` file.
+
+All images in GIF, JPEG, PNG, ICO, and SVG formats should be placed inside
+`src/img`, possibly split into multiple subdirectories. During the build
+process, they are optimized and then saved into `dest/img` preserving the
+subdirectory structure.
+
+Automatic generation of SVG icon sprite is supported.
