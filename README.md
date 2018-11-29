@@ -20,3 +20,10 @@ Features
 Documentation
 -------------
 Check out the [documentation (in progress)](/docs/README.md)!
+
+Known Issues
+------------
+* Watching for changes currently doesn't work on Windows machines if your 
+  project path contains non-ASCII characters. See
+  [this issue](https://github.com/floatdrop/gulp-watch/issues/306) in the
+  `gulp-watch` package.
