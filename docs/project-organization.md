@@ -34,6 +34,7 @@ src/
 |   |   `-- pages/            # page data
 |   |       |-- index.json
 |   |       `-- ...
+|   |-- layouts/              # layout templates
 |   `-- pages/                # page templates
 |       |-- index.pug
 |       `-- ...
@@ -61,15 +62,15 @@ Block Implementation
 Each block corresponds to a single directory inside the `src/blocks` folder
 containing separate files for each implementation technology:
 
-* a `.pug` file for the block's markup
+* a `.pug` file for the block's markup (see [HTML](html.md))
 * a `.scss` file for the block's styles
 * a `.js` file for the block's behavior.
 
 If one of your blocks doesn't use a particular technology, simply don't provide
 the corresponding file(s).
 
-You can use a command-line utility to speed up generating these files, see
-[Block Generation](block-generation.md).
+You can use a command-line utility to speed up generating these files, see the
+[Block Generation](block-generation.md) section.
 
 Fonts & Images
 --------------

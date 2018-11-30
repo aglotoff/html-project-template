@@ -1,0 +1,22 @@
+include ../../blocks/icon/icon.pug
+//- TODO: include common block templates
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+
+        if data.pageTitle
+            title #{data.pageTitle} | #{data.siteTitle}
+        else
+            title #{data.siteTitle} &#8211; #{data.siteTagline}
+
+        link(rel="stylesheet", href="css/style.css")
+    body.page
+        block page
+
+        block scripts
+            script(src="js/vendor.js")
+            script(src="js/main.js")

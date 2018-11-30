@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+extends ../layouts/base.pug
 
-        if data.pageTitle
-            title #{data.pageTitle} | #{data.siteTitle}
-        else
-            title #{data.siteTitle} &#8211; #{data.siteTagline}
+//- TODO: include page-specific block templates
 
-        link(rel="stylesheet", href="css/style.css")
-    body.page
-
-        block scripts
-            script(src="js/vendor.js")
-            script(src="js/main.js")
+block page
+    //- TODO: add code here
