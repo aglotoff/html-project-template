@@ -1,12 +1,10 @@
 Documentation
 =============
 
-* [Getting Started](getting-started.md) - Installaton & basic usage
-* [Available Gulp Tasks](available-gulp-tasks.md) - The complete list of
-available gulp tasks
-* [Project Organization](project-organization.md) - Source code organization
-* [Block Generation](block-generation.md) - Block generation using a
-command-line utility
-* [HTML](html.md) - How HTML markup is generated
-* [Deploying over FTP](deploying-over-ftp.md) - How to deploy the
-production-ready files
+* [Getting Started](getting-started.md)
+* [List of Gulp Tasks](gulp-tasks.md)
+* [File Structure](file-structure.md)
+* [Blocks Implementation](blocks.md)
+* [Page Generation](pages.md)
+* [SVG Sprite Icon System](icons.md)
+* [Deploying over FTP](deploying.md)

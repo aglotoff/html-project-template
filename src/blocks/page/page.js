@@ -29,12 +29,14 @@ const onWindowResize = function() {
  * @return true
  */
 export const initModule = function() {
-    // Initialize handlers for window events
     $(window).on({
+        // Debounce the window resize event 
         resize: function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
         },
+
+        // Throttle the window scroll event
         scroll: function() {
             if (scrollTimer) {
                 // ensure that we catch and execute that last invocation

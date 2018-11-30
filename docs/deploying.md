@@ -1,8 +1,9 @@
 Deploying over FTP
 ==================
 
-To automatically deploy the production files over FTP, first add your connection
-details to the `gulp/config.js` file:
+To deploy the production-ready files over FTP, first edit the following fields
+in `gulp/config.js`:
+
 ```
 ...
 const config = {
@@ -11,7 +12,7 @@ const config = {
     ...
     deploy: {
       ...
-      dest: `/path-to-root-folder`,
+      dest: `/path-to-document-root-folder`,
     }
   }
 
@@ -26,7 +27,9 @@ const config = {
     }
 }
 ```
+
 and then run:
+
 ```
 npm run deploy
 ```
