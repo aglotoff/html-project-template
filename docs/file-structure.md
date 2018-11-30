@@ -5,7 +5,6 @@ The project's file system looks as follows:
 
 ```
 dist/                         # destination directory
-docs/                         # documentation
 gulp/
 |-- tasks/                    # task implementations
 `-- config.js                 # Gulp configuration
@@ -40,6 +39,7 @@ src/
 |   `-- style.scss            # main stylesheet (only imports)
 `-- templates/                # templates for auto-generated blocks
 utils/                        # command-line utilities
+.babelrc                      # Babel config
 .eslintrc.dev.json            # ESLint config (for development mode)
 .eslintrc.json                # ESLint config (for production mode)
 .stylelintrc.json             # Stylelint config
