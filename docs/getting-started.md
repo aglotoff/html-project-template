@@ -6,7 +6,7 @@ Installation
 
 Clone the repository:
 ```
-https://github.com/polarfawx/frontend-template.git
+git clone https://github.com/polarfawx/frontend-template.git
 ```
 Install the dependencies:
 ```
@@ -37,12 +37,12 @@ Running Specific Gulp Tasks
 
 To execute a specific gulp task, run:
 ```
-npm run gulp -- [task]
+npm run gulp [task]
 ```
-You can pass the following option to specify that you want run the task in 
+You can pass the following option to specify that you want to run the task in 
 production mode:
 ```
-npm run gulp -- [task] --env=production
+npm run gulp [task] -- --env=production
 ```
 Running in production mode means that all CSS and JS files will be minimized and
 optimized, and linters will complain about the use of some featues such as

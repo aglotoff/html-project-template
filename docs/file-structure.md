@@ -22,7 +22,7 @@ src/
 |   |-- main.js               # main JavaScript file (only imports)
 |   `-- vendor.js             # third-party JavaScript imports
 |-- pug/
-|   |-- data/
+|   |-- data/                 # data for markup generation
 |   |   |-- globals.json      # global data
 |   |   `-- pages/            # page-specific data
 |   |       |-- index.json

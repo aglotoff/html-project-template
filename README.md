@@ -1,14 +1,14 @@
 frontend-template
 =================
 
-This is a starter template that I use for static web pages creation, design to
-HTML/CSS conversion, etc.
+This is a starter template that I use to create static web pages, convert design
+to HTML/CSS, etc.
 
 Features
 --------
 * Tasks automation with Gulp
-* BEM code organizaton
-* HTML Markup generation with Pug
+* BEM code organization methodology
+* HTML markup generation with Pug
 * Sass & automatic vendor prefixes
 * JavaScript bundling with Webpack & Babel
 * Code linting with Stylelint & ESLint

@@ -2,9 +2,9 @@ Blocks Implementation
 =====================
 
 This template project follows the 
-[BEM methodology](https://en.bem.info/methodology/) for web development
-invented at Yandex. The user interface is divided into independent, reusable
-**blocks** which makes development and maintenance faster and easier.
+[BEM web development methodology](https://en.bem.info/methodology/) invented at
+Yandex. The user interface is divided into independent, reusable blocks which
+makes development and maintenance faster and easier.
 
 Implementation Technologies
 ---------------------------
@@ -20,7 +20,7 @@ If one of your blocks doesn't use a particular technology, simply don't provide
 the corresponding file(s).
 
 Blocks Generation
-=================
+-----------------
 
 Instead of creating implementation files manually, you can use a special
 command-line utility:
@@ -41,9 +41,10 @@ npm run make-block header -- -hc
 ```
 will produce the `.pug` and `.scss` files for the `header` block.
 
-**NOTE:** if you want to pass any options, the `--` before them is required.
+**NOTE:** if you want to pass any options, the double-dash (`--`) before them is
+required.
 
-You also can create multiple blocks at once and optionally place them into
+You can also create multiple blocks at once and optionally place them into
 subdirectories as follows:
 ```
 npm run make-block common/header common/footer blog/archive blog/post
