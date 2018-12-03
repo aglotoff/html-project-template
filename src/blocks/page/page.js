@@ -1,5 +1,5 @@
 /**
- * Implementation of the page block
+ * @file Implementation of the page block
  */
 
 // TODO: block imports here
