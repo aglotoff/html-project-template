@@ -30,16 +30,16 @@ const onWindowResize = function() {
  */
 export const initModule = function() {
     $(window).on({
-        // Debounce the window resize event 
+        // Debounce the window resize event.
         resize: function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
         },
 
-        // Throttle the window scroll event
+        // Throttle the window scroll event.
         scroll: function() {
             if (scrollTimer) {
-                // ensure that we catch and execute that last invocation
+                // ensure that we catch and execute that last invocation.
                 wasScrolled = true;
                 return;
             }
@@ -56,8 +56,12 @@ export const initModule = function() {
         },
     });
 
-    // Initialize all blocks
+    // Initialize blocks.
     // TODO: add code here
+
+    // Process the initial window size and scroll position.
+    onWindowResize();
+    onWindowScroll();
 
     return true;
 };
