@@ -33,7 +33,7 @@ const htmlTasks = lazypipe()
         };
     })
     .pipe(pug, config.plugins.pug)
-    .pipe(htmlBeautify, config.plugins.htmlBeautify)
+    .pipe(htmlBeautify)
     .pipe(gulp.dest, config.paths.html.dest)
     .pipe(browserSync.reload, {stream: true});
 

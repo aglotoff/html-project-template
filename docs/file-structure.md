@@ -42,6 +42,7 @@ utils/                        # command-line utilities
 .babelrc                      # Babel config
 .eslintrc.dev.json            # ESLint config (for development mode)
 .eslintrc.json                # ESLint config (for production mode)
+.jsbeautifyrc                 # js-beautify config (used to reformat Pug output)
 .stylelintrc.json             # Stylelint config
 gulpfile.js                   # the Gulpfile
 ```

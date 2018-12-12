@@ -111,14 +111,6 @@ const config = {
             password: 'password',
             parallel: 10,
         },
-        htmlBeautify: {
-            unformatted: [
-                'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'del',
-                'dfn', 'em', 'i', 'ins', 'kbd', 'mark', 'q', 's', 'samp',
-                'small', 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var',
-                'wbr',
-            ],
-        },
         imagemin: {
             svgo: {
                 plugins: [
