@@ -79,13 +79,13 @@
 // ----------------------------------------
 
 const browserSync = require('browser-sync');
-const log = require('fancy-log');
-const gulp = require('gulp');
+const log         = require('fancy-log');
+const gulp        = require('gulp');
 const runSequence = require('run-sequence');
-const requireDir = require('require-dir');
-const ftp = require('vinyl-ftp');
+const requireDir  = require('require-dir');
+const ftp         = require('vinyl-ftp');
 
-const config = require('./gulp/config');
+const config      = require('./gulp/config');
 
 requireDir('./gulp/tasks', {recurse: true});
 
