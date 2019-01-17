@@ -7,4 +7,21 @@
     line-height: $line-height-base;
 
     // other general styles go here
+
+    &__container {
+        padding: 0 15px;
+
+        @include breakpoint-up(md) {
+            margin: 0 auto;
+            width: $container-md;
+        }
+
+        @include breakpoint-up(lg) {
+            width: $container-lg;
+        }
+
+        @include breakpoint-up(xl) {
+            width: $container-xl;
+        }
+    }
 }
