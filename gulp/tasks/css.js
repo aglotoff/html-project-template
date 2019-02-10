@@ -1,17 +1,17 @@
 const autoprefixer = require('autoprefixer');
 const browserSync  = require('browser-sync');
-const cssnano      = require('cssnano');
-const del          = require('del');
-const gulp         = require('gulp');
-const plumber      = require('gulp-plumber');
-const postCss      = require('gulp-postcss');
-const sass         = require('gulp-sass');
-const sourcemaps   = require('gulp-sourcemaps');
-const stylelint    = require('gulp-stylelint');
-const wait         = require('gulp-wait');
-const watch        = require('gulp-watch');
+const cssnano = require('cssnano');
+const del = require('del');
+const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const postCss = require('gulp-postcss');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const stylelint = require('gulp-stylelint');
+const wait = require('gulp-wait');
+const watch = require('gulp-watch');
 
-const config       = require('../config');
+const config = require('../config');
 
 // ----------------------------------------
 //   Task: Lint: CSS

@@ -1,20 +1,20 @@
-const fs             = require('fs');
-const path           = require('path');
+const fs = require('fs');
+const path = require('path');
 
-const browserSync    = require('browser-sync');
-const del            = require('del');
-const gulp           = require('gulp');
-const data           = require('gulp-data');
-const filter         = require('gulp-filter');
-const htmlBeautify   = require('gulp-html-beautify');
-const plumber        = require('gulp-plumber');
-const pug            = require('gulp-pug');
+const browserSync = require('browser-sync');
+const del = require('del');
+const gulp = require('gulp');
+const data = require('gulp-data');
+const filter = require('gulp-filter');
+const htmlBeautify = require('gulp-html-beautify');
+const plumber = require('gulp-plumber');
+const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
-const tap            = require('gulp-tap');
-const watch          = require('gulp-watch');
-const lazypipe       = require('lazypipe');
+const tap = require('gulp-tap');
+const watch = require('gulp-watch');
+const lazypipe = require('lazypipe');
 
-const config         = require('../config');
+const config = require('../config');
 
 const htmlTasks = lazypipe()
     .pipe(data, (file) => {

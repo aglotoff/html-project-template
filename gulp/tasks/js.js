@@ -1,10 +1,10 @@
 const browserSync = require('browser-sync');
-const del         = require('del');
-const gulp        = require('gulp');
-const named       = require('vinyl-named');
-const webpack     = require('webpack-stream');
+const del = require('del');
+const gulp = require('gulp');
+const named = require('vinyl-named');
+const webpack = require('webpack-stream');
 
-const config      = require('../config');
+const config = require('../config');
 
 // ----------------------------------------
 //   Task: Build: JavaScript

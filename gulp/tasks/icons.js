@@ -1,11 +1,11 @@
 const browserSync = require('browser-sync');
-const del         = require('del');
-const gulp        = require('gulp');
-const plumber     = require('gulp-plumber');
-const svgSprite   = require('gulp-svg-sprite');
-const watch       = require('gulp-watch');
+const del = require('del');
+const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const svgSprite = require('gulp-svg-sprite');
+const watch = require('gulp-watch');
 
-const config      = require('../config');
+const config = require('../config');
 
 // ----------------------------------------
 //   Task: Build: Icons

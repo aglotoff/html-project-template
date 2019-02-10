@@ -1,13 +1,13 @@
 const browserSync = require('browser-sync');
-const del         = require('del');
-const gulp        = require('gulp');
-const changed     = require('gulp-changed');
-const imagemin    = require('gulp-imagemin');
-const plumber     = require('gulp-plumber');
-const watch       = require('gulp-watch');
-const mozjpeg     = require('imagemin-mozjpeg');
+const del = require('del');
+const gulp = require('gulp');
+const changed = require('gulp-changed');
+const imagemin = require('gulp-imagemin');
+const plumber = require('gulp-plumber');
+const watch = require('gulp-watch');
+const mozjpeg = require('imagemin-mozjpeg');
 
-const config      = require('../config');
+const config = require('../config');
 
 // ----------------------------------------
 //   Task: Build: Images
