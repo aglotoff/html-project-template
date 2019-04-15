@@ -2,7 +2,6 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const changed = require('gulp-changed');
-const watch = require('gulp-watch');
 
 const config = require('../config');
 
@@ -24,9 +23,7 @@ gulp.task('build:fonts', () => {
 // ----------------------------------------
 
 gulp.task('watch:fonts', () => {
-    return watch(config.paths.fonts.watch, () => {
-        gulp.start('build:fonts');
-    });
+    return gulp.watch(config.paths.fonts.watch, gulp.series('watch:fonts'));
 });
 
 // ----------------------------------------

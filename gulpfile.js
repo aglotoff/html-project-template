@@ -63,12 +63,10 @@
 // gulp-tap             : Easily tap into a pipeline.
 // gulp-uglify          : Minify JavaScript with UglifyJS3
 // gulp-wait            : Insert a delay before calling the next function
-// gulp-watch           : File watcher
 // imagemin-mozjpeg     : Imagemin plugin for mozjpeg
 // lazypipe             : Create immutable, lazily-initialized pipelines
 // minimist             : Parse argument options
 // require-dir          : Helper to require() directories
-// run-sequence         : Runs a sequence of gulp tasks in the specified order
 // stylelint            : A mighty, modern CSS linter
 // stylelint-scss       : A collection of SCSS specific rules for stylelint
 // vinyl-ftp            : Blazing fast vinyl adapter for FTP
@@ -81,78 +79,79 @@
 const browserSync = require('browser-sync');
 const log = require('fancy-log');
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
-const requireDir = require('require-dir');
 const ftp = require('vinyl-ftp');
+const requireDir = require('require-dir');
 
 const config = require('./gulp/config');
 
 requireDir('./gulp/tasks', {recurse: true});
 
-// ----------------------------------------
-//   Task: Build
-// ----------------------------------------
-
-gulp.task('build', (callback) => {
-    runSequence(
-        'build:icons',
-        [
-            'build:css',
-            'build:fonts',
-            'build:html',
-            'build:img',
-            'build:js',
-        ],
-        callback
-    );
-});
-
-// ----------------------------------------
-//   Task: Watch
-// ----------------------------------------
-
-gulp.task('watch', [
-    'watch:css',
-    'watch:fonts',
-    'watch:html',
-    'watch:icons',
-    'watch:img',
-    'watch:js',
-]);
+global.isWatching = false;
 
 // ----------------------------------------
 //   Task: Clean
 // ----------------------------------------
 
-gulp.task('clean', [
+gulp.task('clean', gulp.parallel(
     'clean:css',
     'clean:fonts',
     'clean:html',
     'clean:icons',
     'clean:img',
-    'clean:js',
-]);
+    'clean:js'
+));
+
+// ----------------------------------------
+//   Task: Build
+// ----------------------------------------
+
+gulp.task('build', gulp.series(
+    'clean',
+    gulp.parallel(
+        gulp.series(
+            'build:icons',
+            'lint:css',
+            'build:css',
+            'build:img'
+        ),
+        'build:fonts',
+        'build:html',
+        'build:js'
+    )
+));
+
+// ----------------------------------------
+//   Task: Watch
+// ----------------------------------------
+
+gulp.task('watch', gulp.parallel(
+    'watch:css',
+    'watch:fonts',
+    'watch:html',
+    'watch:icons',
+    'watch:img',
+    'watch:js'
+));
 
 // ----------------------------------------
 //   Task: Serve
 // ----------------------------------------
 
 gulp.task('serve', () => {
-    browserSync.init(config.plugins.browserSync);
+    return browserSync.init(config.plugins.browserSync);
 });
 
 // ----------------------------------------
 //   Task: Deploy
 // ----------------------------------------
 
-gulp.task('deploy', ['build'], () => {
+gulp.task('deploy', () => {
     const conn = ftp.create({
         ...config.plugins.ftp,
         log
     });
 
-    return gulp
-        .src(config.paths.deploy.src, {
+    return gulp.src(config.paths.deploy.src, {
             base: config.paths.dest,
             buffer: false,
         })
@@ -164,10 +163,7 @@ gulp.task('deploy', ['build'], () => {
 //   Task: Default
 // ----------------------------------------
 
-gulp.task('default', (callback) => {
-    runSequence(
-        'build',
-        ['serve', 'watch'],
-        callback
-    );
-});
+gulp.task('default', gulp.series(
+    'build',
+    gulp.parallel('serve', 'watch')
+));

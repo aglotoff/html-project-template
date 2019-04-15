@@ -9,7 +9,6 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('gulp-stylelint');
 const wait = require('gulp-wait');
-const watch = require('gulp-watch');
 
 const config = require('../config');
 
@@ -26,7 +25,7 @@ gulp.task('lint:css', () => {
 //   Task: Build: CSS
 // ----------------------------------------
 
-gulp.task('build:css', ['lint:css'], () => {
+gulp.task('build:css', () => {
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
         .pipe(wait(500))
@@ -47,9 +46,10 @@ gulp.task('build:css', ['lint:css'], () => {
 // ----------------------------------------
 
 gulp.task('watch:css', () => {
-    return watch(config.paths.css.watch, () => {
-        gulp.start('build:css');
-    });
+    return gulp.watch(config.paths.css.watch, gulp.series(
+        'lint:css',
+        'build:css'
+    ));
 });
 
 // ----------------------------------------

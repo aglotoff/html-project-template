@@ -13,7 +13,10 @@ const config = require('../config');
 gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(named())
-        .pipe(webpack(config.plugins.webpack))
+        .pipe(webpack({
+            ...config.plugins.webpack,
+            watch: global.isWatching,
+        }))
         .on('error', function() {
             this.emit('end');
         })
@@ -25,7 +28,6 @@ gulp.task('build:js', () => {
 // ----------------------------------------
 
 gulp.task('watch:js', () => {
-    watching = true;
     return gulp.src(config.paths.js.src)
         .pipe(named())
         .pipe(webpack({

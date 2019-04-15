@@ -11,7 +11,6 @@ const plumber = require('gulp-plumber');
 const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
 const tap = require('gulp-tap');
-const watch = require('gulp-watch');
 const lazypipe = require('lazypipe');
 
 const config = require('../config');
@@ -41,10 +40,11 @@ const htmlTasks = lazypipe()
 //   Task: Build: HTML
 // ----------------------------------------
 
-gulp.task('build:html', () => {
-    return gulp.src(config.paths.html.src)
+gulp.task('build:html', (cb) => {
+    gulp.src(config.paths.html.src)
         .pipe(plumber())
-        .pipe(htmlTasks());
+        .pipe(htmlTasks())
+        .on('end', cb);
 });
 
 // ----------------------------------------
@@ -52,42 +52,53 @@ gulp.task('build:html', () => {
 // ----------------------------------------
 
 gulp.task('watch:html', () => {
-    return watch(config.paths.html.watch, (file) => {
-        if (file.extname === '.pug') {
-            // some pug files have changed, rebuild only dependent pages
-            gulp.src(file.path)
-                .pipe(plumber())
-                .pipe(pugInheritance(config.plugins.pugInheritance))
-                .pipe(tap((file) => {
-                    // make all paths relative to the src/pug/pages subdirectory
-                    file.base = config.paths.html.pages;
-                }))
-                .pipe(filter((file) => {
-                    // exclude all files outside the src/pug/pages subdirectory,
-                    // e.g. layout files
-                    return !file.relative.startsWith('..');
-                }))
-                .pipe(htmlTasks());
-        } else { // if (file.extname === '.json')
-            const filePath = path.relative(config.paths.top, file.path);
-            if (filePath === path.normalize(config.paths.html.globalData)) {
-                // global data has changed, rebuild all pages
-                gulp.start('build:html');
-            } else {
-                // page data has changed, rebuild only the corresponding page
-                const pageFile = path.join(
-                    config.paths.html.pages,
-                    path
-                        .relative(config.paths.html.pageData, file.path)
-                        .replace(/.json$/, '.pug')
-                );
-
-                gulp.src(pageFile)
-                    .pipe(plumber())
-                    .pipe(htmlTasks());
+    return gulp.watch(config.paths.html.watch)
+        .on('all', (e, filePath) => {
+            if ((e !== 'add' && (e !== 'change'))) {
+                return;
             }
-        }
-    });
+
+            if (path.extname(filePath) === '.pug') {
+                // some pug files have changed, rebuild only dependent pages
+                gulp.src(filePath)
+                    .pipe(plumber())
+                    .pipe(pugInheritance(config.plugins.pugInheritance))
+                    .pipe(tap((file) => {
+                        // make all paths relative to src/pug/pages
+                        file.base = config.paths.html.pages;
+                    }))
+                    .pipe(filter((file) => {
+                        // exclude all files outside src/pug/pages,
+                        // e.g. layout files
+                        return !file.relative.startsWith('..');
+                    }))
+                    .pipe(htmlTasks());
+            } else { // if (extname === '.json')
+                const normPath = path.relative(config.paths.top, filePath);
+                if (normPath === path.normalize(config.paths.html.globalData)) {
+                    // global data has changed, rebuild all pages
+                    
+                    gulp.src(config.paths.html.src)
+                        .pipe(plumber())
+                        .pipe(htmlTasks())
+                } else {
+                    // page data has changed, build only the corresponding page
+                    const pageFile = path.join(
+                        config.paths.html.pages,
+                        path
+                            .relative(config.paths.html.pageData, filePath)
+                            .replace(/.json$/, '.pug')
+                    );
+
+                    gulp.src(pageFile, {
+                        allowEmpty: true,
+                        base: config.paths.html.pages,
+                    })
+                        .pipe(plumber())
+                        .pipe(htmlTasks());
+                }
+            }
+        });
 });
 
 // ----------------------------------------

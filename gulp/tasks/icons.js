@@ -3,7 +3,6 @@ const del = require('del');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const svgSprite = require('gulp-svg-sprite');
-const watch = require('gulp-watch');
 
 const config = require('../config');
 
@@ -26,9 +25,7 @@ gulp.task('build:icons', () => {
 // ----------------------------------------
 
 gulp.task('watch:icons', () => {
-    return watch(config.paths.icons.watch, () => {
-        gulp.start('build:icons');
-    });
+    return gulp.watch(config.paths.icons.watch, gulp.series('build:icons'));
 });
 
 // ----------------------------------------
