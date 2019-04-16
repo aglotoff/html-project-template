@@ -1,5 +1,3 @@
-const {readFileSync} = require('fs');
-
 const minimist = require('minimist');
 
 /**
@@ -20,6 +18,8 @@ const SRC = `${TOP}/src`
 const DIST = `${TOP}/dist`;
 
 const config = {
+    env,
+
     /*
      * Path information
      */
@@ -133,34 +133,6 @@ const config = {
                 formatter: 'string',
                 console: true
             }],
-        },
-        webpack: {
-            output: {
-                filename: '[name].js',
-            },
-            module: {
-                rules: [{
-                    enforce: 'pre',
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'eslint-loader',
-                        options: (env === 'production') ?
-                            JSON.parse(readFileSync('./.eslintrc.json')) :
-                            JSON.parse(readFileSync('./.eslintrc.dev.json'))
-                    }
-                }, {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
-                }],
-            },
-            mode: (env === 'production')
-                ? 'production'
-                : 'development',
-            devtool: 'source-map',
         },
     },
 };

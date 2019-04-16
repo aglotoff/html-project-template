@@ -5,6 +5,7 @@ const named = require('vinyl-named');
 const webpack = require('webpack-stream');
 
 const config = require('../config');
+const webpackConfig = require('../../webpack.config')({mode: config.env});
 
 // ----------------------------------------
 //   Task: Build: JavaScript
@@ -13,11 +14,9 @@ const config = require('../config');
 gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(named())
-        .pipe(webpack({
-            ...config.plugins.webpack,
-            watch: global.isWatching,
-        }))
-        .on('error', function() {
+        .pipe(webpack(webpackConfig))
+        .on('error', function(err) {
+            console.log(err.message);
             this.emit('end');
         })
         .pipe(gulp.dest(config.paths.js.dest));
@@ -30,10 +29,7 @@ gulp.task('build:js', () => {
 gulp.task('watch:js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(named())
-        .pipe(webpack({
-            ...config.plugins.webpack,
-            watch: true,
-        }))
+        .pipe(webpack({...webpackConfig, watch: true}))
         .on('error', function() {
             this.emit('end');
         })
