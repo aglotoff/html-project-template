@@ -119,7 +119,7 @@ module.exports = {
 					sprite: '../img/icons.svg',
 					render: {
 						scss: {
-							dest: '../blocks/icon/icon.scss',
+							dest: '../blocks/common/icon/icon.scss',
 							template: `${SRC}/templates/icon.mustache`,
 						}
 					}
