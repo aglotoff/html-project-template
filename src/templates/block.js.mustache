@@ -20,11 +20,15 @@
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
- * Initialize the {{block}} module.
- * @return true
+ * Initialize the {{block}} block.
+ * @return true if the block is present on the page, false otherwise
  */
-export const initModule = function() {
+function initBlock() {
     // TODO: add code here
     return true;
-};
+}
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+export default {
+    initBlock,
+};

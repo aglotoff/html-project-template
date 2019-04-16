@@ -1,3 +1,9 @@
-mixin icon(type)
-    svg(class=`icon icon_${type}`)&attributes(attributes)
-        use(xlink:href=`img/icons.svg#${type}`)
+//-
+    name: icon
+    description: Markup for the icon block
+    arguments:
+        - {string} name - icon name
+
+mixin icon(name)
+    svg(class=`icon icon_${name}`)&attributes(attributes)
+        use(xlink:href=`img/icons.svg#${name}`)

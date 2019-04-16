@@ -2,33 +2,40 @@
  * @file Implementation of the page block
  */
 
-// TODO: block imports here
+// TODO: block imports go here
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const RESIZE_INTERVAL = 200;    // Resize debouncing interval
 const SCROLL_INTERVAL = 200;    // Scroll throttling interval
 
 let resizeTimer = null;
+
 let scrollTimer = null;
 let wasScrolled = false;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onWindowScroll = function() {
-    // TODO: add code here
-};
+/**
+ * Handle the window scroll event
+ */
+function onWindowScroll() {
+    // TODO: add code
+}
 
-const onWindowResize = function() {
-    // TODO: add code here
-};
+/**
+ * Handle the window resize event
+ */
+function onWindowResize() {
+    // TODO: add code
+}
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
- * Initialize the page module.
+ * Initialize the page block.
  * @return true
  */
-export const initModule = function() {
+function initBlock() {
     $(window).on({
         // Debounce the window resize event.
         resize: function() {
@@ -56,13 +63,16 @@ export const initModule = function() {
         },
     });
 
-    // Initialize blocks.
-    // TODO: add code here
+    // TODO: initialize blocks
 
     // Process the initial window size and scroll position.
     onWindowResize();
     onWindowScroll();
 
     return true;
-};
+}
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+export default {
+    initBlock,
+};

@@ -54,8 +54,10 @@
 
 /// Responsive fixed-width container
 /// @group layout
-/// @require $container-md $container-lg $container-xl
+/// @require $container-md $container-lg $container-xl $gutter
 @mixin container() {
+    padding: 0 $gutter;
+
     @include breakpoint-up(md) {
         width: $container-md;
         margin: 0 auto;

@@ -17,7 +17,7 @@ const TOP = '.';
 const SRC = `${TOP}/src`
 const DIST = `${TOP}/dist`;
 
-const config = {
+module.exports = {
     env,
 
     /*
@@ -136,5 +136,3 @@ const config = {
         },
     },
 };
-
-module.exports = config;
