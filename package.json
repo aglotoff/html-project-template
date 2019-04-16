@@ -1,14 +1,14 @@
 {
   "name": "frontend-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My Frontend Project Template",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "make-block": "node utils/make-block",
-    "start": "./node_modules/.bin/gulp",
-    "build": "./node_modules/.bin/gulp build --env=production",
-    "deploy": "./node_modules/.bin/gulp deploy --env=production",
-    "gulp": "./node_modules/.bin/gulp"
+    "start": "gulp",
+    "build": "gulp build --env=production",
+    "deploy": "gulp deploy",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
