@@ -48,10 +48,11 @@ module.exports = {
         html: {
             src: `${SRC}/pug/pages/*.pug`,
             globalData: `${SRC}/pug/data/globals.json`,
-            pageData: `${SRC}/pug/data/pages`,
-            pages: `${SRC}/pug/pages/`,
+            pageData: `${SRC}/pug/data/pages/**/*.json`,
+            pageDataDir: `${SRC}/pug/data/pages`,
+            pagesDir: `${SRC}/pug/pages/`,
             dest: `${DIST}`,
-            watch: [`${SRC}/**/*.pug`, `${SRC}/pug/data/**/*.json`],
+            watch: `${SRC}/**/*.pug`,
             clean: `${DIST}/**/*.html`,
         },
         icons: {

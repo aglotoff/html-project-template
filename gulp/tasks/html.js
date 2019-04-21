@@ -22,7 +22,7 @@ const htmlTasks = lazypipe()
             fs.readFileSync(config.paths.html.globalData)
         );
         const dataFile = path.join(
-            config.paths.html.pageData,
+            config.paths.html.pageDataDir,
             file.relative.replace(/.pug$/, '.json')
         );
         return {
@@ -48,58 +48,78 @@ gulp.task('build:html', (cb) => {
 });
 
 // ----------------------------------------
-//   Task: Watch: HTML
+//   Task: Watch: HTML: Templates
 // ----------------------------------------
 
-gulp.task('watch:html', () => {
+gulp.task('watch:html:templates', () => {
     return gulp.watch(config.paths.html.watch)
         .on('all', (e, filePath) => {
-            if ((e !== 'add' && (e !== 'change'))) {
+            if ((e !== 'add') && (e !== 'change')) {
                 return;
             }
 
-            if (path.extname(filePath) === '.pug') {
-                // some pug files have changed, rebuild only dependent pages
-                gulp.src(filePath)
-                    .pipe(plumber())
-                    .pipe(pugInheritance(config.plugins.pugInheritance))
-                    .pipe(tap((file) => {
-                        // make all paths relative to src/pug/pages
-                        file.base = config.paths.html.pages;
-                    }))
-                    .pipe(filter((file) => {
-                        // exclude all files outside src/pug/pages,
-                        // e.g. layout files
-                        return !file.relative.startsWith('..');
-                    }))
-                    .pipe(htmlTasks());
-            } else { // if (extname === '.json')
-                const normPath = path.relative(config.paths.top, filePath);
-                if (normPath === path.normalize(config.paths.html.globalData)) {
-                    // global data has changed, rebuild all pages
-                    
-                    gulp.src(config.paths.html.src)
-                        .pipe(plumber())
-                        .pipe(htmlTasks())
-                } else {
-                    // page data has changed, build only the corresponding page
-                    const pageFile = path.join(
-                        config.paths.html.pages,
-                        path
-                            .relative(config.paths.html.pageData, filePath)
-                            .replace(/.json$/, '.pug')
-                    );
-
-                    gulp.src(pageFile, {
-                        allowEmpty: true,
-                        base: config.paths.html.pages,
-                    })
-                        .pipe(plumber())
-                        .pipe(htmlTasks());
-                }
-            }
+            // Rebuild only changed .pug files and their dependents
+            return gulp.src(filePath)
+                .pipe(plumber())
+                .pipe(pugInheritance(config.plugins.pugInheritance))
+                .pipe(tap((file) => {
+                    // make all paths relative to the src/pug/pages folder
+                    file.base = config.paths.html.pagesDir;
+                }))
+                .pipe(filter((file) => {
+                    // exclude all files outside the src/pug/pages folder,
+                    // e.g. layout files
+                    return !file.relative.startsWith('..');
+                }))
+                .pipe(htmlTasks());
         });
 });
+
+// ----------------------------------------
+//   Task: Watch: HTML: Global Data
+// ----------------------------------------
+
+gulp.task('watch:html:global-data', () => {
+    return gulp.watch(config.paths.html.globalData, gulp.series('build:html'));
+});
+
+// ----------------------------------------
+//   Task: Watch: HTML: Page Data
+// ----------------------------------------
+
+gulp.task('watch:html:page-data', () => {
+    return gulp.watch(config.paths.html.pageData)
+        .on('all', (e, filePath) => {
+            if ((e !== 'add') && (e !== 'change')) {
+                return;
+            }
+
+            // Rebuild only the page whose data has changed
+            const pageFile = path.join(
+                config.paths.html.pagesDir,
+                path
+                    .relative(config.paths.html.pageDataDir, filePath)
+                    .replace(/.json$/, '.pug')
+            );
+                    
+            gulp.src(pageFile, {
+                allowEmpty: true,
+                base: config.paths.html.pagesDir,
+            })
+                .pipe(plumber())
+                .pipe(htmlTasks());
+        });
+});
+
+// ----------------------------------------
+//   Task: Watch: HTML
+// ----------------------------------------
+
+gulp.task('watch:html', gulp.parallel(
+    'watch:html:templates',
+    'watch:html:global-data',
+    'watch:html:page-data'
+));
 
 // ----------------------------------------
 //   Task: Clean: HTML
