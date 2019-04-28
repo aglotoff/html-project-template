@@ -10,10 +10,10 @@ gulp/
 `-- config.js                 # Gulp configuration
 src/
 |-- blocks/                   # blocks
-|   |-- button/
-|   |   |-- button.js         # block's JavaScript
-|   |   |-- button.pug        # block's markup template
-|   |   `-- button.scss       # block's styles
+|   |-- my-block/
+|   |   |-- my-block.js       # block's behavior
+|   |   |-- my-block.pug      # block's markup template
+|   |   `-- my-block.scss     # block's styles
 |   `-- ...
 |-- fonts/                    # directory for web fonts
 |-- icons/                    # SVG icons for sprite generation
@@ -28,7 +28,7 @@ src/
 |   |       |-- index.json
 |   |       `-- ...
 |   |-- layouts/              # layout templates
-|   `-- pages/                # pages
+|   `-- pages/                # page templates
 |       |-- index.pug
 |       `-- ...
 |-- sass/
@@ -42,7 +42,8 @@ utils/                        # command-line utilities
 .babelrc                      # Babel config
 .eslintrc.dev.json            # ESLint config (for development mode)
 .eslintrc.json                # ESLint config (for production mode)
-.jsbeautifyrc                 # js-beautify config (used to reformat Pug output)
+.jsbeautifyrc                 # js-beautify config (use to reformat Pug output)
 .stylelintrc.json             # Stylelint config
 gulpfile.js                   # the Gulpfile
+webpack.config.js             # Webpack config
 ```
