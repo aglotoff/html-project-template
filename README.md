@@ -1,18 +1,18 @@
 frontend-template
 =================
 
-This is a starter template that I use to create static web pages, convert design
-to HTML/CSS, etc.
+This is a starter template for frontend development without a framework. Its
+primary use is design to HTML/CSS conversion, static web page creation, etc. 
 
 Features
 --------
 * Tasks automation with Gulp
-* BEM code organization methodology
+* Code organization using the BEM methodology
 * HTML markup generation with Pug
-* Sass & automatic vendor prefixes
-* JavaScript bundling with Webpack & Babel
+* CSS processing with Sass & autoprefixer
+* Transpiling and bundling JavaScript with Webpack + Babel
 * Code linting with Stylelint & ESLint
-* CSS & JS minification and optimization
+* Source code minification and optimization
 * Image optimization
 * Icon system with SVG sprites
 * Development server with live-reload capability
