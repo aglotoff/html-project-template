@@ -69,3 +69,8 @@ body {
 :root {
     font-size: ($font-size-default / 16px) + em;
 }
+
+/* universal max-width rule for images */
+img {
+    max-width: 100%;
+}
