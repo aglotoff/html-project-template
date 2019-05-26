@@ -2,9 +2,12 @@
  * @file Implementation of the page block
  */
 
-// TODO: imports other blocks
+import LazyLoader from '../../../js/utils/lazy-loader';
+
+// TODO: import other blocks
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+
 const RESIZE_INTERVAL = 200;    // Resize event debouncing interval
 const SCROLL_INTERVAL = 200;    // Scroll event throttling interval
 
@@ -12,13 +15,17 @@ let resizeTimer = null;
 
 let scrollTimer = null;
 let wasScrolled = false;
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
+
 /**
  * Handle the window scroll event
  */
 function handleWindowScroll() {
+    LazyLoader.scanImages();
+
     // TODO: add code
 }
 
@@ -57,9 +64,11 @@ function throttleWindowScroll() {
         }
     }, SCROLL_INTERVAL);
 }
+
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
  * Initialize the page block.
  * @return true
@@ -70,6 +79,8 @@ function initBlock() {
         scroll: throttleWindowScroll,
     });
 
+    LazyLoader.init();
+
     // TODO: initialize other blocks
 
     // Process the initial window size and scroll position
@@ -78,6 +89,7 @@ function initBlock() {
 
     return true;
 }
+
 // ---------------------------- END PUBLIC METHODS ----------------------------
 
 export default {

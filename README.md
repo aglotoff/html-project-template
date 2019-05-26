@@ -13,7 +13,7 @@ Features
 * Transpiling and bundling JavaScript with Webpack + Babel
 * Code linting with Stylelint & ESLint
 * Source code minification and optimization
-* Image optimization
+* Image optimization and lazy loading
 * Icon system with SVG sprites
 * Development server with live-reload capability
 * Deployment over FTP
