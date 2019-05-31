@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polarfawx/frontend-template.git"
+    "url": "git+https://github.com/aglotoff/frontend-template.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/polarfawx/frontend-template/issues"
+    "url": "https://github.com/aglotoff/frontend-template/issues"
   },
-  "homepage": "https://github.com/polarfawx/frontend-template#readme",
+  "homepage": "https://github.com/aglotoff/frontend-template#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
