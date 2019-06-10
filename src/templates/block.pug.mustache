@@ -2,7 +2,7 @@
     name: {{block}}
     description: Markup for the {{block}} block
     arguments:
-        - {object} data - block data
+        - {object} props - block properties
 
-mixin {{block}}(data = {})
+mixin {{block}}(props = {})
     .{{block}}&attributes(attributes)
