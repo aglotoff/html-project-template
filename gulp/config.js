@@ -65,7 +65,7 @@ module.exports = {
             src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             dest: `${DIST}/img`,
             watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg}`,
+            clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
             src: [`${SRC}/js/vendor.js`, `${SRC}/js/main.js`],

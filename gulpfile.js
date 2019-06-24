@@ -44,11 +44,14 @@
 // browser-sync         : Keep multiple browsers & devices in sync
 // cssnano              : A modular minifier, built on top of PostCSS
 // del                  : Delete files and folders using globs
+// event-stream         : Construct pipes of streams of events
 // fancy-log            : Log things, prefixed with a timestamp
 // gulp                 : The streaming build system
 // gulp-changed         : Only pass through changed files
+// gulp-clone           : Duplicate files in memory
 // gulp-data            : Generate a data object for other plugins to consume
 // gulp-eslint          : A gulp plugin for ESLint
+// gulp-filter          : Filter files in a vinyl stream
 // gulp-html-beautify   : A gulp plugin to beautify HTML files
 // gulp-if              : Conditionally control the flow of vinyl objects
 // gulp-imagemin        : Minify PNG, JPEG, GIF and SVG images with imagemin
