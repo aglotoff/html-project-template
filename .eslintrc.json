@@ -10,10 +10,6 @@
         "sourceType": "module"
     },
     "rules": {
-        "array-bracket-spacing": [
-            2,
-            "never"
-        ],
         "arrow-parens": [
             "error",
             "always"
@@ -39,10 +35,6 @@
             "windows"
         ],
         "no-var": "error",
-        "object-curly-spacing": [
-            "error",
-            "never"
-        ],
         "prefer-const": "error",
         "quotes": [
             "error",

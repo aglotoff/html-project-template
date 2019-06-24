@@ -2,7 +2,7 @@
  * @file Implementation of the page block
  */
 
-import LazyLoader from '../../../js/utils/lazy-loader';
+import * as LazyLoader from '../../../js/utils/lazy-loader';
 
 // TODO: import other blocks
 
@@ -73,7 +73,7 @@ function throttleWindowScroll() {
  * Initialize the page block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     $(window).on({
         resize: debounceWindowResize,
         scroll: throttleWindowScroll,
@@ -91,7 +91,3 @@ function initBlock() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-};

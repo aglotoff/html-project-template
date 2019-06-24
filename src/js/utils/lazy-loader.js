@@ -36,7 +36,7 @@ function isInViewport($elem) {
  */
 function loadImage($img) {
     if ($img.parent().is('picture')) {
-        $img.siblings('source').forEach(function() {
+        $img.siblings('source').each(function() {
             const $source = $(this);
             $source
                 .attr('srcset', $source.attr('data-srcset'))
@@ -45,8 +45,10 @@ function loadImage($img) {
     }
 
     $img
-        .attr('src', $img.attr('data-src'))
-        .attr('srcset', $img.attr('data-srcset'))
+        .attr({
+            src: $img.attr('data-src'),
+            srcset: $img.attr('data-srcset'),
+        })
         .removeAttr('data-src data-srcset')
         .removeClass('lazy');
 }
@@ -58,14 +60,14 @@ function loadImage($img) {
 /**
  * Initialize the lazy image loader
  */
-function init() {
+export function init() {
     $images = $(LAZY_SELECTOR);
 }
 
 /**
  * Load all images that have been scrolled into the viewport for the first time
  */
-function scanImages() {
+export function scanImages() {
     if ($images.length === 0) {
         return;
     }
@@ -84,8 +86,3 @@ function scanImages() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    init,
-    scanImages,
-};
