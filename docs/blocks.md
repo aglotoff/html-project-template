@@ -9,7 +9,7 @@ makes development and maintenance faster and easier.
 Implementation Technologies
 ---------------------------
 
-Each block corresponds to a single directory inside the `src/blocks` folder
+Each block corresponds to a single directory inside the `src/blocks/` folder
 containing separate files for each implementation technology:
 
 * a `.pug` file for the block's markup
@@ -41,11 +41,21 @@ npm run make-block header -- -hc
 ```
 will produce the `.pug` and `.scss` files for the `header` block.
 
-**NOTE:** if you want to pass any options, the double-dash (`--`) before them is
-required.
+**NOTE:** A double-dash (`--`) before the option list is required.
 
 You can also create multiple blocks at once and optionally place them into
 subdirectories as follows:
 ```
 npm run make-block common/header common/footer blog/archive blog/post
 ```
+
+Template Files
+--------------
+
+The following template files are used to generate blocks:
+
+* `src/templates/block.js.mustache` - Template for block's JavaScript
+* `src/templates/block.pug.mustache` - Template for block's markup
+* `src/templates/block.js.scss` - Template for block's styles
+
+You can edit them if you want.
