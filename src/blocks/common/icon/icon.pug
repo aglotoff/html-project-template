@@ -3,7 +3,10 @@
     description: Markup for the icon block
     arguments:
         - {string} name - icon name
+        - {string} title - optional title (for accessibility purposes)
 
-mixin icon(name)
+mixin icon(name, title)
     svg(class=`icon icon_${name}`)&attributes(attributes)
+        if title
+            title= title
         use(xlink:href=`img/icons.svg#${name}`)
