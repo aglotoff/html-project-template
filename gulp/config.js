@@ -29,14 +29,14 @@ module.exports = {
         dest: DIST,
 
         css: {
-            src: [`${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss`],
+            src: [ `${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss` ],
             dest: `${DIST}/css`,
             lint: `${SRC}/**/*.scss`,
             watch: `${SRC}/**/*.scss`,
             clean: `${DIST}/css/**/*.css`,
         },
         deploy: {
-            src: [`${DIST}/**`, `!${DIST}/**/*.map`],
+            src: [ `${DIST}/**`, `!${DIST}/**/*.map` ],
             dest: `/htdocs/test`,
         },
         fonts: {
@@ -59,7 +59,10 @@ module.exports = {
             src: `${SRC}/icons/*.svg`,
             dest: `${SRC}`,
             watch: `${SRC}/icons/*.svg`,
-            clean: [`${SRC}/img/icons.svg`, `${SRC}/blocks/icon/icon.scss`],
+            clean: [
+                `${SRC}/img/icons.svg`,
+                `${SRC}/blocks/common/icon/icon.scss`
+            ],
         },
         img: {
             src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
@@ -68,7 +71,7 @@ module.exports = {
             clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
-            src: [`${SRC}/js/vendor.js`, `${SRC}/js/main.js`],
+            src: [ `${SRC}/js/vendor.js`, `${SRC}/js/main.js` ],
             dest: `${DIST}/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,
@@ -101,9 +104,9 @@ module.exports = {
         imagemin: {
             svgo: {
                 plugins: [
-                    {removeXMLProcInst: false},
-                    {cleanupIDs:false},
-                    {removeAttrs: {attrs: '(fill|stroke|style)'}}
+                    { removeXMLProcInst: false },
+                    { cleanupIDs: false },
+                    { removeAttrs: { attrs: '(fill|stroke|style)' } }
                 ]
             },
         },
@@ -121,7 +124,7 @@ module.exports = {
 					render: {
 						scss: {
 							dest: '../blocks/common/icon/icon.scss',
-							template: `${SRC}/templates/icon.mustache`,
+							template: `${SRC}/blocks/common/icon/icon.mustache`,
 						}
 					}
 				}
