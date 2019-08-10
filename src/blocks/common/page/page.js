@@ -2,7 +2,8 @@
  * @file Implementation of the page block
  */
 
-import * as LazyLoader from '../../../js/utils/lazy-loader';
+import { debounce, throttle } from '../../../js/util/index';
+import * as LazyLoader from '../../../js/util/lazy-loader';
 
 // TODO: import other blocks
 
@@ -10,11 +11,6 @@ import * as LazyLoader from '../../../js/utils/lazy-loader';
 
 const RESIZE_INTERVAL = 200;    // Resize event debouncing interval
 const SCROLL_INTERVAL = 200;    // Scroll event throttling interval
-
-let resizeTimer = null;
-
-let scrollTimer = null;
-let wasScrolled = false;
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
@@ -36,48 +32,19 @@ function handleWindowResize() {
     // TODO: add code
 }
 
-/**
- * Debounce the window resize event
- */
-function debounceWindowResize() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleWindowResize, RESIZE_INTERVAL);
-}
-
-/**
- * Throttle the window scroll event
- */
-function throttleWindowScroll() {
-    if (scrollTimer) {
-        // Ensure that we catch and execute that last invocation.
-        wasScrolled = true;
-        return;
-    }
-
-    handleWindowScroll();
-
-    scrollTimer = this.setTimeout(function() {
-        scrollTimer = null;
-        if (wasScrolled) {
-            handleWindowScroll();
-            wasScrolled = false;
-        }
-    }, SCROLL_INTERVAL);
-}
-
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
  * Initialize the page block.
- * @return true
  */
 export function initBlock() {
-    $(window).on({
-        resize: debounceWindowResize,
-        scroll: throttleWindowScroll,
-    });
+    const debouncedWindowResize = debounce(handleWindowResize, RESIZE_INTERVAL);
+    const throttledWindowScroll = throttle(handleWindowScroll, SCROLL_INTERVAL);
+
+    window.addEventListener('resize', debouncedWindowResize);
+    window.addEventListener('scroll', throttledWindowScroll);
 
     LazyLoader.init();
 
@@ -86,8 +53,6 @@ export function initBlock() {
     // Process the initial window size and scroll position
     handleWindowResize();
     handleWindowScroll();
-
-    return true;
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------

@@ -10,6 +10,7 @@ gulp/
 `-- config.js                 # Gulp configuration
 src/
 |-- blocks/                   # blocks
+|   |-- templates/            # templates for auto-generated blocks
 |   |-- my-block/
 |   |   |-- my-block.js       # block's behavior
 |   |   |-- my-block.pug      # block's markup template
@@ -31,13 +32,12 @@ src/
 |   `-- pages/                # page templates
 |       |-- index.pug
 |       `-- ...
-|-- sass/
-|   |-- _base.scss            # CSS reset & base styles
-|   |-- _fonts.scss           # @font-face declarations
-|   |-- _mixins.scss          # project mixins
-|   |-- _variables.scss       # project variables
-|   `-- style.scss            # main stylesheet (only imports)
-`-- templates/                # templates for auto-generated blocks
+`-- sass/
+    |-- _base.scss            # CSS reset & base styles
+    |-- _fonts.scss           # @font-face declarations
+    |-- _mixins.scss          # project mixins
+    |-- _variables.scss       # project variables
+    `-- style.scss            # main stylesheet (only imports)
 utils/                        # command-line utilities
 .babelrc                      # Babel config
 .eslintrc.dev.json            # ESLint config (for development mode)
