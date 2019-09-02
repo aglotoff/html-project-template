@@ -4,7 +4,7 @@
   "description": "My Frontend Project Template",
   "private": true,
   "scripts": {
-    "make-block": "node utils/make-block",
+    "make-block": "node scripts/make-block",
     "start": "gulp",
     "build": "gulp build --env=production",
     "deploy": "gulp deploy",
