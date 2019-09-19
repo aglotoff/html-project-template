@@ -16,7 +16,6 @@ Features
 * Image optimization and lazy loading
 * Icon system with SVG sprites
 * Development server with live-reload capability
-* Deployment over FTP
 
 Documentation
 -------------

@@ -7,4 +7,3 @@ Documentation
 * [Blocks Implementation](blocks.md)
 * [Page Generation](pages.md)
 * [SVG Sprite Icon System](icons.md)
-* [Deploying over FTP](deploying.md)
