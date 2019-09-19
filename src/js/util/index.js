@@ -199,3 +199,13 @@ export function throttle(cb, interval) {
         }, interval);
     };
 }
+
+/**
+ * Determine the size of 1 em for the given element
+ * 
+ * @param {HTMLElement} elem The element whose em size is to be computed
+ * @return {number} The size of 1 em in pixels
+ */
+export function getEmSize(elem) {
+    return +getComputedStyle(elem).fontSize.match(/\d*\.?\d*/)[0];
+}
