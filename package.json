@@ -4,11 +4,11 @@
   "description": "My Frontend Project Template",
   "private": true,
   "scripts": {
-    "make-block": "node utils/make-block",
-    "start": "gulp",
-    "build": "gulp build --env=production",
-    "deploy": "gulp deploy",
-    "gulp": "gulp"
+    "make-block": "node scripts/make-block",
+    "start": "gulp --cwd . --gulpfile config/gulpfile.js",
+    "build": "gulp build --cwd . --gulpfile config/gulpfile.js --env=production",
+    "deploy": "gulp deploy --cwd . --gulpfile config/gulpfile.js",
+    "gulp": "gulp --cwd . --gulpfile config/gulpfile.js"
   },
   "repository": {
     "type": "git",
@@ -33,11 +33,11 @@
     "event-stream": "^4.0.1",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.0",
+    "gulp-beautify": "^3.0.0",
     "gulp-changed": "^3.2.0",
     "gulp-clone": "^2.0.1",
     "gulp-data": "^1.3.1",
     "gulp-filter": "^5.1.0",
-    "gulp-html-beautify": "^1.0.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^5.0.3",
     "gulp-plumber": "^1.2.1",
