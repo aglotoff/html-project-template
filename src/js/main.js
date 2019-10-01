@@ -1,4 +1,4 @@
-import { initBlock as initPage } from '../blocks/common/page/page';
+import * as LazyLoader from './util/lazy-loader';
 
-// The page block is responsible for initialization of all other blocks
-initPage();
+// TODO: import all blocks
+window.LazyLoader = LazyLoader;

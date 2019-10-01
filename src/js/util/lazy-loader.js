@@ -2,12 +2,24 @@
  * @file Lazy loader for images
  */
 
+import { throttle } from './index';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const BUFFER_HEIGHT = 50;
-const LAZY_CLASS = 'lazy';
+// Scroll event throttling interval
+const SCROLL_INTERVAL = 200; 
 
-let images = [];
+// Vertical offset allowing the image to start loading before we scroll to it
+const BUFFER_HEIGHT = 50;       
+
+// Class applied to all images that have to be lazy-loaded
+const LAZY_CLASS = 'lazy';      
+
+// The list of all images 
+let images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
+
+// Throttle the window scroll event handler
+const handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
@@ -20,7 +32,7 @@ let images = [];
  * @return {boolean} <tt>true</tt> if the element is in the viewport,
  *      <tt>false</tt> otherwise
  */
-export function isInViewport(element) {
+function isInViewport(element) {
     const elementTop = element.getBoundingClientRect().top;
     return (elementTop <= window.innerHeight + BUFFER_HEIGHT);
 }
@@ -32,12 +44,12 @@ export function isInViewport(element) {
 /**
  * Lazy-load the given <tt>img</tt> element.
  * 
- * @param {HTMLImageElement} img The image element
+ * @param {HTMLImageElement} img The image element to be loaded
  */
 function loadImage(img) {
     const parentElement = img.parentElement;
     if (parentElement.tagName === 'PICTURE') {
-        const sources = parent.querySelectorAll('source');
+        const sources = parentElement.querySelectorAll('source');
         for (let i = 0; i < sources.length; i++) {
             const source = sources[i];
 
@@ -57,26 +69,23 @@ function loadImage(img) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
- * Initialize the lazy image loader
- */
-export function init() {
-    images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
-}
-
-/**
  * Load all images that have been scrolled into the viewport for the first time
  * 
  * @return {number} The number of images not yet scheduled for loading
  */
 export function scanImages() {
     if (images.length > 0) {
-        images = images.filter((img) => {
+        images = images.filter(function(img) {
             if (isInViewport(img)) {
                 loadImage(img);
                 return false;
             }
             return true;
         });
+
+        if (images.length === 0) {
+            window.removeEventListener('scroll', handleWindowScroll);
+        }
     }
 
     return images.length;
@@ -89,6 +98,12 @@ export function scanImages() {
  */
 export function addImage(img) {
     images.push(img);
+
+    if (images.length === 1) {
+        window.addEventListener('scroll', handleWindowScroll);
+    }
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+window.addEventListener('scroll', handleWindowScroll);
