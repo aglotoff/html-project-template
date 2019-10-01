@@ -6,7 +6,7 @@ const del = require('del');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const filter = require('gulp-filter');
-const htmlBeautify = require('gulp-html-beautify');
+const beautify = require('gulp-beautify');
 const plumber = require('gulp-plumber');
 const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
@@ -32,7 +32,7 @@ const htmlTasks = lazypipe()
         };
     })
     .pipe(pug, config.plugins.pug)
-    .pipe(htmlBeautify)
+    .pipe(beautify.html, config.plugins.beautify)
     .pipe(gulp.dest, config.paths.html.dest)
     .pipe(browserSync.reload, {stream: true});
 

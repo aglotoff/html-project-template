@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const minimist = require('minimist');
 
 /**
@@ -16,6 +18,7 @@ const {env} = minimist(process.argv.slice(2), {
 const TOP = '.';
 const SRC = `${TOP}/src`
 const DIST = `${TOP}/dist`;
+const CONFIG = `${TOP}/config`;
 
 module.exports = {
     env,
@@ -101,6 +104,7 @@ module.exports = {
             password: 'password',
             parallel: 10,
         },
+        beautify: JSON.parse(fs.readFileSync(`${CONFIG}/.jsbeautifyrc.json`)),
         imagemin: {
             svgo: {
                 plugins: [
@@ -137,6 +141,7 @@ module.exports = {
                 formatter: 'string',
                 console: true
             }],
+            configFile: `${CONFIG}/.stylelintrc.json`,
         },
     },
 };

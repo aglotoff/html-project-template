@@ -7,7 +7,6 @@
 // Available tasks:
 //   `gulp`
 //   `gulp serve`
-//   `gulp deploy`
 //   `gulp build`
 //   `gulp build:css`
 //   `gulp lint:css`
@@ -45,14 +44,13 @@
 // cssnano              : A modular minifier, built on top of PostCSS
 // del                  : Delete files and folders using globs
 // event-stream         : Construct pipes of streams of events
-// fancy-log            : Log things, prefixed with a timestamp
 // gulp                 : The streaming build system
+// gulp-beautify        : Asset beautification using js-beautify
 // gulp-changed         : Only pass through changed files
 // gulp-clone           : Duplicate files in memory
 // gulp-data            : Generate a data object for other plugins to consume
 // gulp-eslint          : A gulp plugin for ESLint
 // gulp-filter          : Filter files in a vinyl stream
-// gulp-html-beautify   : A gulp plugin to beautify HTML files
 // gulp-if              : Conditionally control the flow of vinyl objects
 // gulp-imagemin        : Minify PNG, JPEG, GIF and SVG images with imagemin
 // gulp-plumber         : Prevent pipe breaking caused by errors from plugins
@@ -72,7 +70,6 @@
 // require-dir          : Helper to require() directories
 // stylelint            : A mighty, modern CSS linter
 // stylelint-scss       : A collection of SCSS specific rules for stylelint
-// vinyl-ftp            : Blazing fast vinyl adapter for FTP
 // vinyl-named          : Give vinyl files arbitrary chunk names
 // webpack              : A module bundler
 // webpack-stream       : Run webpack as a stream
@@ -80,9 +77,7 @@
 // ----------------------------------------
 
 const browserSync = require('browser-sync');
-const log = require('fancy-log');
 const gulp = require('gulp');
-const ftp = require('vinyl-ftp');
 const requireDir = require('require-dir');
 
 const config = require('./gulp/config');
@@ -142,24 +137,6 @@ gulp.task('watch', gulp.parallel(
 
 gulp.task('serve', () => {
     return browserSync.init(config.plugins.browserSync);
-});
-
-// ----------------------------------------
-//   Task: Deploy
-// ----------------------------------------
-
-gulp.task('deploy', () => {
-    const conn = ftp.create({
-        ...config.plugins.ftp,
-        log
-    });
-
-    return gulp.src(config.paths.deploy.src, {
-            base: config.paths.dest,
-            buffer: false,
-        })
-        .pipe(conn.newer(config.paths.deploy.dest))
-        .pipe(conn.dest(config.paths.deploy.dest));
 });
 
 // ----------------------------------------
