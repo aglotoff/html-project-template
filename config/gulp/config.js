@@ -38,10 +38,6 @@ module.exports = {
             watch: `${SRC}/**/*.scss`,
             clean: `${DIST}/css/**/*.css`,
         },
-        deploy: {
-            src: [ `${DIST}/**`, `!${DIST}/**/*.map` ],
-            dest: `/htdocs/test`,
-        },
         fonts: {
             src: `${SRC}/fonts/*.{ttf,woff,woff2}`,
             dest: `${DIST}/fonts`,
@@ -97,12 +93,6 @@ module.exports = {
     plugins: {
         browserSync: {
             server: DIST
-        },
-        ftp: {
-            host: 'host',
-            user: 'user',
-            password: 'password',
-            parallel: 10,
         },
         beautify: JSON.parse(fs.readFileSync(`${CONFIG}/.jsbeautifyrc.json`)),
         imagemin: {

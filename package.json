@@ -7,7 +7,6 @@
     "make-block": "node scripts/make-block",
     "start": "gulp --cwd . --gulpfile config/gulpfile.js",
     "build": "gulp build --cwd . --gulpfile config/gulpfile.js --env=production",
-    "deploy": "gulp deploy --cwd . --gulpfile config/gulpfile.js",
     "gulp": "gulp --cwd . --gulpfile config/gulpfile.js"
   },
   "repository": {
