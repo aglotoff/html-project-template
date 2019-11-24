@@ -4,9 +4,9 @@
             "abbr", "b",    "bdi",   "bdo",    "br",  "cite", "code", "data", 
             "del",  "dfn",  "em",    "i",      "ins", "kbd",  "mark", "q", 
             "s",    "samp", "small", "strong", "sub", "sup",  "u",    "var",
-            "wbr", "div"
+            "wbr"
         ]
     },
-    "indent-size": 2,
-    "indentSize": 2
+    "indent-size": 4,
+    "indentSize": 4
 }

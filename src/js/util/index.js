@@ -190,7 +190,7 @@ export function throttle(cb, interval) {
 
         cb();
 
-        timer = this.setTimeout(function() {
+        timer = setTimeout(function() {
             timer = null;
             if (called) {
                 cb();
