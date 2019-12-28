@@ -1,8 +1,8 @@
 /**
- * @file Lazy loader for images
+ * @file Lazy loader for images.
  */
 
-import { throttle } from './index';
+import { throttle } from './helpers';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
@@ -16,7 +16,7 @@ const BUFFER_HEIGHT = 50;
 const LAZY_CLASS = 'lazy';      
 
 // The list of all images 
-let images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
+let images = [];
 
 // Throttle the window scroll event handler
 const handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
@@ -44,7 +44,7 @@ function isInViewport(element) {
 /**
  * Lazy-load the given <tt>img</tt> element.
  * 
- * @param {HTMLImageElement} img The image element to be loaded
+ * @param {HTMLImageElement} img The image element to be loaded.
  */
 function loadImage(img) {
     const parentElement = img.parentElement;
@@ -69,9 +69,9 @@ function loadImage(img) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
- * Load all images that have been scrolled into the viewport for the first time
+ * Load all images that have been scrolled into the viewport for the first time.
  * 
- * @return {number} The number of images not yet scheduled for loading
+ * @return {number} The number of images not yet scheduled for loading.
  */
 export function scanImages() {
     if (images.length > 0) {
@@ -92,9 +92,9 @@ export function scanImages() {
 }
 
 /**
- * Add new image to be lazy-loaded
+ * Add new image to be lazy-loaded.
  * 
- * @param {HTMLImageElement} img The image element to be added
+ * @param {HTMLImageElement} img The image element to be added.
  */
 export function addImage(img) {
     images.push(img);
@@ -106,4 +106,13 @@ export function addImage(img) {
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
 
-window.addEventListener('scroll', handleWindowScroll);
+/**
+ * Initialize the lazy loader.
+ */
+export function init() {
+    images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`))
+    
+    if (images.length > 0) {
+        window.addEventListener('scroll', handleWindowScroll);
+    }
+}
