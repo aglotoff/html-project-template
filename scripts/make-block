@@ -47,12 +47,25 @@ const readTemplate = function(type) {
 };
 
 const renderTemplate = function(dirName, blockName, type) {
-    const outputFile = path.join(dirName, blockName + '.' + type);
+    const extension = (type === 'class.js') ? 'js' : type;
+    const outputFile = path.join(dirName, blockName + '.' + extension);
+
+    // Kebab case to Pascal case
+    const blockClass = blockName.split('-').reduce((result, word) => {
+        return result + word.substr(0, 1).toUpperCase() + word.substr(1);
+    }, '');
+
+    // Hyphens to spaces
+    const blockDesc = blockName.replace(/-/g, ' ');
+
     return readTemplate(type)
         .then((templateData) => {
             const result = Mustache.render(templateData.toString(), {
-                block: blockName
+                blockName,
+                blockDesc,
+                blockClass,
             });
+
             return new Promise((resolve, reject) => {
                 fs.writeFile(outputFile, result, 'utf8', (err) => {
                     if (err) {
@@ -71,9 +84,13 @@ Create one or multiple BLOCK(s)
 
 Select implementation technologies:
   -a, --all     Generate .scss, .pug, and .js files (default)
-  -c, --css     Generate a .scss file for block styles
-  -h, --html    Generate a .pug file for block markup
-  -j, --js      Generate a .js file for block behavior`;
+  -s, --scss    Generate a .scss file for block styles
+  -p, --pug     Generate a .pug file for block markup
+  -j, --js      Generate a .js file for block behavior
+
+Additional options:
+  -c, --class   Generate a JS class definition for the block
+`;
 
 const opts = minimist(process.argv.slice(2));
 
@@ -82,34 +99,37 @@ if (opts._.length === 0) {
     process.exit(1);
 }
 
-let params;
+let types = {};
+let jsClass = false;
 
 if (Object.keys(opts).length > 1) {
-    params = {};
-
     Object.keys(opts).forEach((option) => {
         switch (option) {
         case '_':
             break;
         case 'a':
         case 'all':
-            params = {
+            types = {
                 pug: true,
                 scss: true,
                 js: true,
             }
             break;
-        case 'h':
-        case 'html':
-            params.pug = true;
+        case 'p':
+        case 'pug':
+            types.pug = true;
             break;
-        case 'c':
-        case 'css':
-            params.scss = true;
+        case 's':
+        case 'scss':
+            types.scss = true;
             break;
         case 'j':
         case 'js':
-            params.js = true;
+            types.js = true;
+            break;
+        case 'c':
+        case 'class':
+            jsClass = true;
             break;
         default:
             console.error('Uknown option:', option);
@@ -118,11 +138,13 @@ if (Object.keys(opts).length > 1) {
             process.exit(1);
         }
     });
-} else {
-    params = {
-        pug  : true,
-        scss : true,
-        js   : true,
+}
+
+if (Object.keys(types).length === 0) {
+    types = {
+        pug: true,
+        scss: true,
+        js: true,
     };
 }
 
@@ -141,9 +163,13 @@ const results = opts._.map((file) => {
 
         resolve(createDirectory(normalized).then((dirName) => {
             const results = [];
-            for (const type in params) {
-                if (params.hasOwnProperty(type)) {
-                    results.push(renderTemplate(dirName, blockName, type));
+            for (const type in types) {
+                if (types.hasOwnProperty(type)) {
+                    results.push(renderTemplate(
+                        dirName,
+                        blockName,
+                        ((type === 'js') && jsClass) ? 'class.js' : type
+                    ));
                 }
             }
             return Promise.all(results);
