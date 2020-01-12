@@ -70,7 +70,7 @@ module.exports = {
             clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
-            src: [ `${SRC}/js/vendor.js`, `${SRC}/js/main.js` ],
+            src: `${SRC}/js/*.js`,
             dest: `${DIST}/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,

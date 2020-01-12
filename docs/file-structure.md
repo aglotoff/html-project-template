@@ -32,8 +32,7 @@ src/
 |-- img/                      # directory for images
 |-- js/
 |   |-- util/                 # helper scripts
-|   |-- main.js               # main JavaScript file
-|   `-- vendor.js             # third-party JavaScript imports
+|   `-- main.js               # main JavaScript file
 |-- pug/
 |   |-- data/                 # data for markup generation
 |   |   |-- globals.json      # global data
