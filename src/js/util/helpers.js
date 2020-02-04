@@ -1,8 +1,9 @@
 /**
  * @file Miscellaneous helper functions.
+ * @author Andrey Glotov
  */
 
- /**
+/**
  * Debounce function execution.
  * 
  * @param {function} cb The function to execute.

@@ -74,3 +74,13 @@ body {
 img {
     max-width: 100%;
 }
+
+/* remove default focus styles */
+a, button, input {
+    outline: 0;
+
+    &::-moz-focus-inner {
+        outline: 0;
+        border: 0;
+    }
+}

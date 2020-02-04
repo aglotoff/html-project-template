@@ -1,5 +1,6 @@
 /**
  * @file Lazy loader for images.
+ * @author Andrey Glotov
  */
 
 import { throttle } from './helpers';
@@ -104,15 +105,15 @@ export function addImage(img) {
     }
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
-
 /**
  * Initialize the lazy loader.
  */
 export function init() {
-    images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`))
+    images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
     
     if (images.length > 0) {
         window.addEventListener('scroll', handleWindowScroll);
     }
 }
+
+// ---------------------------- END PUBLIC METHODS ----------------------------

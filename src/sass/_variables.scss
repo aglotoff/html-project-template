@@ -1,12 +1,8 @@
-// Minimum and maximum screen sizes
-$screen-xl-min: 1200px;
-$screen-lg-max: ($screen-xl-min - 1);
-$screen-lg-min: 992px;
-$screen-md-max: ($screen-lg-min - 1);
-$screen-md-min: 768px;
-$screen-sm-max: ($screen-md-min - 1);
-$screen-sm-min: 480px;
-$screen-xs-max: ($screen-sm-min - 1);
+// Minimum screen sizes
+$screen-xl-min: 75em;
+$screen-lg-min: 62em;
+$screen-md-min: 48em;
+$screen-sm-min: 30em;
 
 // Breakpoints based on minimum screen width
 $breakpoints-up: (
@@ -16,41 +12,24 @@ $breakpoints-up: (
     xl: $screen-xl-min
 );
 
-// Breakpoints based on maximum screen width
-$breakpoints-down: (
-    xs: $screen-xs-max,
-    sm: $screen-sm-max,
-    md: $screen-md-max,
-    lg: $screen-lg-max
-);
-
-// Breakpoints based on minimum and maximum screen widths
-$breakpoints-only: (
-    sm: ($screen-sm-min, $screen-sm-max),
-    md: ($screen-md-min, $screen-md-max),
-    lg: ($screen-lg-min, $screen-lg-max)
-);
-
 // Container width
-$container-xl: 1170px;
-$container-lg: 970px;
-$container-md: 750px;
+$container-xl: 73em;
+$container-lg: 60em;
+$container-md: 46em;
 
 // Column gutter
-$gutter: 15px;
+$gutter: 1em;
 
 // Fonts
-$font-family-sans-serif: Helvetica, Arial, sans-serif;
+$font-family-default: Helvetica, Arial, sans-serif;
 
-// Font sizes
+// Base font size and line height
 $font-size-default: 16px;
+$line-height-default: 1.2;
 
 // Font weight values
 $font-weight-regular: 400;
 $font-weight-bold: 700;
-
-// Line height values
-$line-height-base: 1.5;
 
 // Color palette
 $color-black: #000;

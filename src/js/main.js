@@ -1,16 +1,17 @@
-// Import polyfills
+// Polyfill imports
 import 'promise-polyfill/src/polyfill';
 
-// Import third-party libraries
+// Third-party imports
 import svg4everybody from 'svg4everybody';
 
-import { init as initLazyLoader } from './util/lazy-loader';
+// Utility imports
+import * as FocusUtility from './util/focus';
+import * as LazyLoader from './util/lazy-loader';
 
-// TODO: import blocks
+// Block imports
+// TODO: add code here
 
-// Manually initialize third-party libraries
 svg4everybody();
 
-initLazyLoader();
-
-// TODO: initialize blocks
+FocusUtility.init();
+LazyLoader.init();

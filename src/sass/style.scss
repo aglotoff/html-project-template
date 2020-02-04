@@ -1,10 +1,11 @@
+// Partial imports
 @import "variables";
 @import "mixins";
 @import "fonts";
 @import "base";
 
-// TODO: include third-party styles
+// Third-party imports
+// TODO: add code here
 
+// Block imports
 @import "../blocks/common/page/page.scss";
-
-// TODO: include other block styles

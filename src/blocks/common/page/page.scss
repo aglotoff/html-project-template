@@ -3,9 +3,10 @@
  */
 .page {
     // Selector styles
-    font-family: $font-family-sans-serif;
+    font-family: $font-family-default;
+    font-size: 1rem;
     font-weight: $font-weight-regular;
-    line-height: $line-height-base;
+    line-height: $line-height-default;
 
     // @media queries
     // TODO: add code

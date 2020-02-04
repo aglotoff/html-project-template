@@ -1,5 +1,6 @@
 /**
  * @file DOM helper functions.
+ * @author Andrey Glotov
  */
 
 const matches =
