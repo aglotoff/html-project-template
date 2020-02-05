@@ -1,183 +1,185 @@
 #!/usr/bin/env node
 
+// Node Imports
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 
+// Imports
 const minimist = require('minimist');
-const mkdirp = require('mkdirp');
 const Mustache = require('mustache');
 
+// Constants
 const BLOCK_DIR = './src/blocks';
+const BLOCK_NAME_REGEXP = /^([a-z][0-9a-z]*)(-[0-9a-z]+)*$/;
 const TEMPLATE_DIR = './src/blocks/templates';
 
-const createDirectory = function(normalized) {
-    return new Promise((resolve, reject) => {
-        const dirName = path.join(BLOCK_DIR, normalized);
-        fs.exists(dirName, (exists) => {
-            if (exists) {
-                reject(new Error('Block already exists: ' + normalized));
-            } else {
-                resolve(dirName);
-            }
-        });
-    }).then((dirName) => {
-        return new Promise((resolve, reject) => {
-            mkdirp(dirName, (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(dirName);
-                }
-            });
-        });
-    });
-};
+// Promisified Functions
+const exists = util.promisify(fs.exists);
+const mkdir = util.promisify(fs.mkdir);
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
-const readTemplate = function(type) {
-    const templateFile = path.join(TEMPLATE_DIR, `block.${type}.mustache`);
-    return new Promise((resolve, reject) => {
-        fs.readFile(templateFile, 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(data);
-            }
-        });
-    });
-};
-
-const renderTemplate = function(dirName, blockName, type) {
-    const extension = (type === 'class.js') ? 'js' : type;
-    const outputFile = path.join(dirName, blockName + '.' + extension);
-
-    // Kebab case to Pascal case
-    const blockClass = blockName.split('-').reduce((result, word) => {
-        return result + word.substr(0, 1).toUpperCase() + word.substr(1);
-    }, '');
-
-    // Hyphens to spaces
-    const blockDesc = blockName.replace(/-/g, ' ');
-
-    return readTemplate(type)
-        .then((templateData) => {
-            const result = Mustache.render(templateData.toString(), {
-                blockName,
-                blockDesc,
-                blockClass,
-            });
-
-            return new Promise((resolve, reject) => {
-                fs.writeFile(outputFile, result, 'utf8', (err) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve();
-                    }
-                });
-            });
-        });
-};
-
-const usageStr = 
-`Usage: make-block BLOCK... [OPTION]...
-Create one or multiple BLOCK(s)
-
-Select implementation technologies:
-  -a, --all     Generate .scss, .pug, and .js files (default)
-  -s, --scss    Generate a .scss file for block styles
-  -p, --pug     Generate a .pug file for block markup
-  -j, --js      Generate a .js file for block behavior
-
-Additional options:
-  -c, --class   Generate a JS class definition for the block
-`;
-
-const opts = minimist(process.argv.slice(2));
-
-if (opts._.length === 0) {
-    console.error(usageStr);
-    process.exit(1);
+function capitalize(word) {
+    return word.substr(0, 1).toUpperCase() + word.substr(1);
 }
 
-let types = {};
-let jsClass = false;
+function getConstructorName(blockName) {
+    return blockName.split('-').reduce((result, word) => {
+        return result + capitalize(word);
+    }, '');
+}
 
-if (Object.keys(opts).length > 1) {
-    Object.keys(opts).forEach((option) => {
+function getBlockTitle(blockName) {
+    return blockName.replace(/-/g, ' ');
+}
+
+async function createDirectory(dirName) {
+    const blockExists = await exists(dirName);
+    if (blockExists) {
+        throw new Error(`Block already exists: ${dirName}`);
+    }
+
+    return await mkdir(dirName, { recursive: true });
+};
+
+async function renderTemplate(templateName, tags, outputPath) {
+    const templatePath = path.join(TEMPLATE_DIR, templateName);
+    const template = await readFile(templatePath, 'utf8');
+    const result = Mustache.render(template.toString(), tags);
+    await writeFile(outputPath, result, 'utf8');
+}
+
+function renderAllTemplates(dirName, options) {
+    const blockName = path.basename(dirName);
+
+    const tags = {
+        blockName,
+        blockTitle: getBlockTitle(blockName),
+        constructorName: getConstructorName(blockName),
+    };
+
+    const results = [];
+    for (const type of Object.keys(options.types)) {
+        let templateName = `block.${type}.mustache`;
+        if (type === 'js' && options.generateClass) {
+            templateName = 'block.class.js.mustache';
+        }
+
+        const outputPath = path.join(dirName, `${blockName}.${type}`);
+        results.push(renderTemplate(templateName, tags, outputPath));
+
+        if (type === 'js') {
+            results.push(renderTemplate('index.js.mustache', tags, path.join(
+                dirName,
+                'index.js'
+            )));
+        }
+    }
+
+    return Promise.all(results);
+}
+
+async function createBlock(blockPath, options) {
+    const dirName = path.join(BLOCK_DIR, blockPath);
+
+    const blockName = path.basename(dirName);
+    if (!BLOCK_NAME_REGEXP.test(blockName)) {
+        throw new Error(`Invalid block name: ${blockName}`);
+    }
+
+    await createDirectory(dirName);
+    await renderAllTemplates(dirName, options);
+}
+
+async function createAllBlocks(blocks, options) {
+    try {
+        for (const block of blocks) {
+            await createBlock(block, options);
+        }
+    } catch (err) {
+        console.error(err.message);
+        process.exit(1);
+    }
+}
+
+(async () => {
+    const usageStr = 
+    `Usage: make-block BLOCK... [OPTION]...
+    Create one or multiple BLOCK(s)
+
+    Select implementation technologies:
+    -a, --all     Generate .scss, .pug, and .js files (default)
+    -s, --scss    Generate a .scss file for block styles
+    -p, --pug     Generate a .pug file for block markup
+    -j, --js      Generate a .js file for block behavior
+
+    Additional options:
+    -c, --class   Generate a JS class definition for the block
+    `;
+
+    const parsedArgs = minimist(process.argv.slice(2));
+
+    const blocks = parsedArgs._;
+    if (blocks.length === 0) {
+        console.error(usageStr);
+        process.exit(1);
+    }
+
+    const options = {
+        types: {},
+        generateClass: false,
+    };
+
+    for (const option of Object.keys(parsedArgs)) {
         switch (option) {
         case '_':
             break;
+
         case 'a':
         case 'all':
-            types = {
+            options.types = {
                 pug: true,
                 scss: true,
                 js: true,
             }
             break;
+        
         case 'p':
         case 'pug':
-            types.pug = true;
+            options.types.pug = true;
             break;
+
         case 's':
         case 'scss':
-            types.scss = true;
+            options.types.scss = true;
             break;
+
         case 'j':
         case 'js':
-            types.js = true;
+            options.types.js = true;
             break;
+
         case 'c':
         case 'class':
-            jsClass = true;
+            options.generateClass = true;
             break;
+
         default:
             console.error('Uknown option:', option);
             console.error('');
             console.error(usageStr);
             process.exit(1);
         }
-    });
-}
+    }
 
-if (Object.keys(types).length === 0) {
-    types = {
-        pug: true,
-        scss: true,
-        js: true,
-    };
-}
-
-const results = opts._.map((file) => {
-    return new Promise((resolve, reject) => {
-        const normalized = path.normalize(file);
-
-        if (path.isAbsolute(normalized) || normalized.startsWith('..')) {
-            return reject(new Error('Invalid block name: ' + normalized));
+    if (Object.keys(options.types).length === 0) {
+        options.types = {
+            pug: true,
+            scss: true,
+            js: true,
         }
+    }
 
-        const blockName = path.basename(normalized);
-        if (!/^[a-z](-?[a-z0-9])*$/.test(blockName)) {
-            return reject(new Error('Invalid block name: ' + normalized));
-        }
-
-        resolve(createDirectory(normalized).then((dirName) => {
-            const results = [];
-            for (const type in types) {
-                if (types.hasOwnProperty(type)) {
-                    results.push(renderTemplate(
-                        dirName,
-                        blockName,
-                        ((type === 'js') && jsClass) ? 'class.js' : type
-                    ));
-                }
-            }
-            return Promise.all(results);
-        }));
-    });
-});
-
-Promise.all(results).catch((err) => {
-    console.error(err.message);
-    process.exit(1);
-});
+    await createAllBlocks(blocks, options);
+})();

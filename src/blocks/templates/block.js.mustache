@@ -1,8 +1,18 @@
 /**
- * @file Implementation of the {{blockDesc}} block
+ * @file Implementation of the {{blockTitle}} block.
  */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+const BLOCK_NAME = '{{blockName}}';
+
+const CLASSNAME = {
+    BLOCK: BLOCK_NAME,
+};
+
+const SELECTOR = {
+    BLOCK: `.${BLOCK_NAME}`,
+};
 
 // TODO: add code here
 
@@ -29,11 +39,18 @@
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
- * Initialize the {{blockDesc}} block.
- * @return true if the block is present on the page, false otherwise
+ * Initialize the {{blockTitle}} block.
+ *
+ * @return {boolean} true if the block is present on the page; false otherwise.
  */
 export function initBlock() {
+    const block = document.querySelector(SELECTOR.BLOCK);
+    if (block == null) {
+        return false;
+    }
+
     // TODO: add code here
+
     return true;
 }
 
