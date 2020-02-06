@@ -18,6 +18,7 @@ config/                       # project configuration
 dist/                         # destination directory (created automatically)
 docs/                         # documentation directory
 src/
+|-- assets/                   # fonts and other assets to copy without touching
 |-- blocks/                   # blocks
 |   |-- templates/            # templates for generating blocks
 |   |-- common/
@@ -27,7 +28,6 @@ src/
 |   |   |   `-- my-block.scss # block's styles
 |   |   `-- ...
 |   `-- ...
-|-- fonts/                    # directory for web fonts
 |-- icons/                    # SVG icons for sprite generation
 |-- img/                      # directory for images
 |-- js/

@@ -12,9 +12,10 @@ Implementation Technologies
 Each block corresponds to a single directory inside the `src/blocks/` folder
 containing separate files for each implementation technology:
 
-* a `.pug` file for the block's markup
-* a `.scss` file for the block's styles
-* a `.js` file for the block's behavior
+* `block-name.pug` - contains the block's markup
+* `block-name.scss` - contains the block's styles
+* `block-name.js` - contains the block's behavior
+* `index.js` - entry point to simplify import of `block-name.js` 
 
 If one of your blocks doesn't use a particular technology, simply don't provide
 the corresponding file(s).
@@ -30,10 +31,12 @@ npm run make-block BLOCK... -- [OPTION]...
 
 This command will create a directory for `BLOCK` as well as stub files for its
 implementation. You can pass the following `OPTIONS`(s):
-* `-h, --html` - generate a `.pug` file for the block's markup
-* `-c, --css` - generate a `.scss` file for the block's styles
+* `-p, --pug` - generate a `.pug` file for the block's markup
+* `-s, --scss` - generate a `.scss` file for the block's styles
 * `-j, --js` - generate a `.js` file for the block's behavior
 * `-a, --all` - all above (default)
+* `-c, --class` - if the `--js` option is provided, generate a class definition
+  for the block
 
 For example, the following invocation:
 ```
@@ -54,8 +57,12 @@ Template Files
 
 The following template files are used to generate blocks:
 
-* `src/templates/block.js.mustache` - Template for block's JavaScript
 * `src/templates/block.pug.mustache` - Template for block's markup
-* `src/templates/block.js.scss` - Template for block's styles
+* `src/templates/block.scss.mustache` - Template for block's styles
+* `src/templates/block.js.mustcahe` - Template for block's JavaScript (if
+  the `--class` option is not specified)
+* `src/templates/block.class.js.mustcahe` - Template for block's JavaScript
+  (if the `--class` option is specified)
+* `src/templates/index.js.mustcahe` - JavaScript entry point for the block
 
 You can edit them if you want.
