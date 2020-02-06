@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+// Node Imports
+const fs = require('fs');
+const util = require('util');
+
+// Promisified Functions
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
+
+async function replaceInFile(fileName, regexp, replaceValue) {
+    try {
+        const content = await readFile(fileName, 'utf8');
+        const result = content.replace(regexp, replaceValue);
+        await writeFile(fileName, result, 'utf8');
+    } catch (err) {
+        console.error(err.message);
+        process.exit(1);
+    }
+}
+
+(async () => {
+    const version = process.argv[2];
+    if (!/^\d+\.\d+\.\d+$/.test(version)) {
+        console.error(`Invalid version string: ${version}`);
+        process.exit(1);
+    }
+
+    replaceInFile(
+        'package.json',
+        /"version": "\d+\.\d+\.\d+"/,
+        `"version": "${version}"`
+    );
+
+    replaceInFile(
+        'src/pug/data/globals.json',
+        /"version": "\d+\.\d+\.\d+"/,
+        `"version": "${version}"`
+    );
+})();

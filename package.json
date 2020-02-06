@@ -1,13 +1,14 @@
 {
   "name": "frontend-template",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "My Frontend Project Template",
   "private": true,
   "scripts": {
-    "make-block": "node scripts/make-block",
     "start": "gulp --cwd . --gulpfile config/gulpfile.js",
     "build": "gulp build --cwd . --gulpfile config/gulpfile.js --env=production",
-    "gulp": "gulp --cwd . --gulpfile config/gulpfile.js"
+    "gulp": "gulp --cwd . --gulpfile config/gulpfile.js",
+    "make-block": "node scripts/make-block",
+    "bump-version": "node scripts/bump-version"
   },
   "repository": {
     "type": "git",
