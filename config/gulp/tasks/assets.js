@@ -6,30 +6,30 @@ const changed = require('gulp-changed');
 const config = require('../config');
 
 // ----------------------------------------
-//   Task: Build: Fonts
+//   Task: Build: Assets
 // ----------------------------------------
 
-gulp.task('build:fonts', () => {
-    return gulp.src(config.paths.fonts.src)
-        .pipe(changed(config.paths.fonts.dest))
-        .pipe(gulp.dest(config.paths.fonts.dest))
+gulp.task('build:assets', () => {
+    return gulp.src(config.paths.assets.src)
+        .pipe(changed(config.paths.assets.dest))
+        .pipe(gulp.dest(config.paths.assets.dest))
         .pipe(browserSync.reload({
             stream: true
         }));
 });
 
 // ----------------------------------------
-//   Task: Watch: Fonts
+//   Task: Watch: Assets
 // ----------------------------------------
 
-gulp.task('watch:fonts', () => {
-    return gulp.watch(config.paths.fonts.watch, gulp.series('watch:fonts'));
+gulp.task('watch:assets', () => {
+    return gulp.watch(config.paths.assets.watch, gulp.series('build:assets'));
 });
 
 // ----------------------------------------
-//   Task: Clean: Fonts
+//   Task: Clean: Assets
 // ----------------------------------------
 
-gulp.task('clean:fonts', () => {
-    return del(config.paths.fonts.clean);
+gulp.task('clean:assets', () => {
+    return del(config.paths.assets.clean);
 });

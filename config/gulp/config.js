@@ -31,18 +31,21 @@ module.exports = {
         src:  SRC,
         dest: DIST,
 
+        assets: {
+            src: `${SRC}/assets/**/*`,
+            dest: `${DIST}/assets`,
+            watch: `${SRC}/assets/**/*`,
+            clean: [
+                `${DIST}/assets/**/*`,
+                `!${DIST}/assets/{css,img,js}/**/*`,
+            ],
+        },
         css: {
             src: [ `${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss` ],
-            dest: `${DIST}/css`,
+            dest: `${DIST}/assets/css`,
             lint: `${SRC}/**/*.scss`,
             watch: `${SRC}/**/*.scss`,
-            clean: `${DIST}/css/**/*.css`,
-        },
-        fonts: {
-            src: `${SRC}/fonts/*.{ttf,woff,woff2}`,
-            dest: `${DIST}/fonts`,
-            watch: `${SRC}/fonts/*.{ttf,woff,woff2}`,
-            clean: `${DIST}/fonts/*.{ttf,woff,woff2}`,
+            clean: `${DIST}/assets/css/**/*.css{,.map}`,
         },
         html: {
             src: `${SRC}/pug/pages/*.pug`,
@@ -65,16 +68,16 @@ module.exports = {
         },
         img: {
             src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            dest: `${DIST}/img`,
+            dest: `${DIST}/assets/img`,
             watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
+            clean: `${DIST}/assets/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
             src: `${SRC}/js/*.js`,
-            dest: `${DIST}/js`,
+            dest: `${DIST}/assets/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,
-            clean: `${DIST}/js/**/*.js{,.map}`,
+            clean: `${DIST}/assets/js/**/*.js{,.map}`,
         },
     },
 

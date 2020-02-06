@@ -1,5 +1,6 @@
+//- Common Block Imports
 include ../../blocks/common/icon/icon.pug
-//- TODO: include common block templates
+//- TODO: add code here
 
 <!DOCTYPE html>
 html(lang="en")
@@ -13,9 +14,9 @@ html(lang="en")
         else
             title #{data.siteTitle} &#8211; #{data.siteTagline}
 
-        link(rel="stylesheet", href=`css/style.css?v=${data.version}`)
+        link(rel="stylesheet", href=`assets/css/style.css?v=${data.version}`)
     body.page
         block page
 
         block scripts
-            script(src=`js/main.js?v=${data.version}`)
+            script(src=`assets/js/main.js?v=${data.version}`)
