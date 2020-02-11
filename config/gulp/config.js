@@ -103,7 +103,7 @@ module.exports = {
                 plugins: [
                     { removeXMLProcInst: false },
                     { cleanupIDs: false },
-                    { removeAttrs: { attrs: '(fill|stroke|style)' } }
+                    { removeAttrs: { attrs: '' } }
                 ]
             },
         },
