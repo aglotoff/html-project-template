@@ -59,8 +59,8 @@ export function getTransitionDuration(el) {
         return 0;
     }
     
-    const floatDuration = parseFloat(duration.split(','));
-    const floatDelay = parseFloat(delay.split(','));
+    const floatDuration = parseFloat(duration);
+    const floatDelay = parseFloat(delay);
     
     const msDuration = (floatDuration + floatDelay) * 1000;
     return isNaN(msDuration) ? 0 : msDuration;
