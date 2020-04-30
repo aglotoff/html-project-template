@@ -4,12 +4,15 @@
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
+// Block name
 const BLOCK_NAME = '{{blockName}}';
 
+// Element class names
 const CLASSNAME = {
     BLOCK: BLOCK_NAME,
 };
 
+// Element selectors
 const SELECTOR = {
     BLOCK: `.${BLOCK_NAME}`,
 };
@@ -22,12 +25,13 @@ const SELECTOR = {
  * {{blockTitle}}.
  */
 export class {{constructorName}} {
+
     /**
      * Initialize the {{blockTitle}} block.
      * 
-     * @param {HTMLElement} rootElement The root element of the block.
+     * @param {HTMLElement} root The root element of the block.
      */
-    constructor(rootElement) {
+    constructor(root) {
         // TODO: add code here
     }
 
@@ -49,10 +53,9 @@ export class {{constructorName}} {
      * Initialize all {{blockTitle}} blocks on the page.
      */
     static initAll() {
-        const blocks = [].slice.call(document.querySelectorAll(SELECTOR.BLOCK));
-        for (const block of blocks) {
+        [].forEach.call(document.querySelectorAll(SELECTOR.BLOCK), (root) => {
             new {{constructorName}}(block);
-        }
+        });
     }
 
     // --------------------------- END PUBLIC METHODS -------------------------
