@@ -17,6 +17,9 @@ const SELECTOR = {
     BLOCK: `.${BLOCK_NAME}`,
 };
 
+// Associate class instances with DOM elements using a weak map
+const instanceMap = new WeakMap();
+
 // TODO: add code here
 
 // --------------------------- END MODULE VARIABLES ---------------------------
@@ -33,6 +36,8 @@ export class {{constructorName}} {
      */
     constructor(root) {
         // TODO: add code here
+
+        instanceMap.set(root, this);
     }
 
     // ------------------------- BEGIN PRIVATE METHODS ------------------------
@@ -50,11 +55,22 @@ export class {{constructorName}} {
     // -------------------------- BEGIN PUBLIC METHODS ------------------------
 
     /**
+     * Get a block instance associated with the given DOM element.
+     *
+     * @param {HTMLElement} element The element.
+     * @returns {Object | null} The associated instance or null if no such
+     *  instance exists.
+     */
+    static getInstance(element) {
+        return instanceMap.get(element);
+    }
+
+    /**
      * Initialize all {{blockTitle}} blocks on the page.
      */
     static initAll() {
         [].forEach.call(document.querySelectorAll(SELECTOR.BLOCK), (root) => {
-            new {{constructorName}}(block);
+            new {{constructorName}}(root);
         });
     }
 
