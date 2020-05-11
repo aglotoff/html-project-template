@@ -1,0 +1,8 @@
+#
+# Global data
+#
+
+version: "0.1.0"
+
+siteTitle: "Site Title"
+siteTagline: "Site Tagline"

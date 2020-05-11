@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "svg4everybody": "^2.1.9"
+    "svg4everybody": "^2.1.9",
+    "yaml": "^1.9.2"
   }
 }

@@ -12,23 +12,25 @@ const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
 const tap = require('gulp-tap');
 const lazypipe = require('lazypipe');
+const YAML = require('yaml');
 
 const config = require('../config');
 
 const htmlTasks = lazypipe()
     .pipe(data, (file) => {
-        // pass JSON data to pug
-        const globalData = JSON.parse(
-            fs.readFileSync(config.paths.html.globalData)
+        // pass YAML data to pug
+        const globalData = YAML.parse(
+            fs.readFileSync(config.paths.html.globalData).toString()
         );
         const dataFile = path.join(
             config.paths.html.pageDataDir,
-            file.relative.replace(/.pug$/, '.json')
+            file.relative.replace(/.pug$/, '.yml')
         );
         return {
-            data: fs.existsSync(dataFile)
-                ? {...globalData, ...JSON.parse(fs.readFileSync(dataFile))}
-                : globalData
+            data: fs.existsSync(dataFile) ? {
+                ...globalData,
+                ...YAML.parse(fs.readFileSync(dataFile).toString()),
+            } : globalData,
         };
     })
     .pipe(pug, config.plugins.pug)

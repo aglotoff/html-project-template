@@ -5,11 +5,11 @@ const minimist = require('minimist');
 /**
  * Read in an environment flag
  */
-const {env} = minimist(process.argv.slice(2), {
+const { env } = minimist(process.argv.slice(2), {
     string: 'env',
     default: { 
         env: process.env.NODE_ENV || 'development'
-    }
+    },
 });
 
 /**
@@ -49,8 +49,8 @@ module.exports = {
         },
         html: {
             src: `${SRC}/pug/pages/*.pug`,
-            globalData: `${SRC}/pug/data/globals.json`,
-            pageData: `${SRC}/pug/data/pages/**/*.json`,
+            globalData: `${SRC}/pug/data/globals.yml`,
+            pageData: `${SRC}/pug/data/pages/**/*.yml`,
             pageDataDir: `${SRC}/pug/data/pages`,
             pagesDir: `${SRC}/pug/pages/`,
             dest: `${DIST}`,

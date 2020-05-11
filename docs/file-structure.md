@@ -35,9 +35,9 @@ src/
 |   `-- main.js               # main JavaScript file
 |-- pug/
 |   |-- data/                 # data for markup generation
-|   |   |-- globals.json      # global data
+|   |   |-- globals.yml       # global data
 |   |   `-- pages/            # page-specific data
-|   |       |-- index.json
+|   |       |-- index.yml
 |   |       `-- ...
 |   |-- layouts/              # layout templates
 |   `-- pages/                # page templates
