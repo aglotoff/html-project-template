@@ -1,8 +1,9 @@
-frontend-template
-=================
+static-site-template
+====================
 
-This is a starter template for frontend development without a framework. Its
-primary use is design to HTML/CSS conversion, static web page creation, etc. 
+This is a starter template for static website development. Its primary usage is
+to create HTML pages that could be hosted statically or later converted into a
+CMS theme.
 
 Features
 --------

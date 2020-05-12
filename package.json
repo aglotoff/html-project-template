@@ -1,7 +1,7 @@
 {
-  "name": "frontend-template",
-  "version": "0.1.0",
-  "description": "My Frontend Project Template",
+  "name": "static-site-template",
+  "version": "0.2.0",
+  "description": "Starter template for static website creation",
   "private": true,
   "scripts": {
     "start": "gulp --cwd . --gulpfile config/gulpfile.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aglotoff/frontend-template.git"
+    "url": "git+https://github.com/aglotoff/static-site-template.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aglotoff/frontend-template/issues"
+    "url": "https://github.com/aglotoff/static-site-template/issues"
   },
-  "homepage": "https://github.com/aglotoff/frontend-template#readme",
+  "homepage": "https://github.com/aglotoff/static-site-template#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
