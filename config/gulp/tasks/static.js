@@ -6,30 +6,30 @@ const changed = require('gulp-changed');
 const config = require('../config');
 
 // ----------------------------------------
-//   Task: Build: Assets
+//   Task: Build: Static Assets
 // ----------------------------------------
 
-gulp.task('build:assets', () => {
-    return gulp.src(config.paths.assets.src)
-        .pipe(changed(config.paths.assets.dest))
-        .pipe(gulp.dest(config.paths.assets.dest))
+gulp.task('build:static', () => {
+    return gulp.src(config.paths.static.src)
+        .pipe(changed(config.paths.static.dest))
+        .pipe(gulp.dest(config.paths.static.dest))
         .pipe(browserSync.reload({
             stream: true
         }));
 });
 
 // ----------------------------------------
-//   Task: Watch: Assets
+//   Task: Watch: Static Assets
 // ----------------------------------------
 
-gulp.task('watch:assets', () => {
-    return gulp.watch(config.paths.assets.watch, gulp.series('build:assets'));
+gulp.task('watch:static', () => {
+    return gulp.watch(config.paths.static.watch, gulp.series('build:static'));
 });
 
 // ----------------------------------------
-//   Task: Clean: Assets
+//   Task: Clean: Static Assets
 // ----------------------------------------
 
-gulp.task('clean:assets', () => {
-    return del(config.paths.assets.clean);
+gulp.task('clean:static', () => {
+    return del(config.paths.static.clean);
 });

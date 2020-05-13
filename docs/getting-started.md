@@ -29,8 +29,7 @@ To build the site for production, run:
 ```
 npm run build
 ```
-The ready for deployment code will be placed into the `dist` folder. See the
-[Deploying over FTP](deploying.md) section for further instructions. 
+The ready for deployment code will be placed into the `dist` folder.
 
 Running Specific Gulp Tasks
 ---------------------------

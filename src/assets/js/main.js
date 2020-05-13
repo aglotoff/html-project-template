@@ -24,3 +24,6 @@ bxPanelFix((panel, isFixed) => {
     void(panel);
     void(isFixed);
 });
+
+// Initialize blocks
+// TODO: add code here

@@ -2,25 +2,24 @@ Page Generation
 ===============
 
 All Pug files that will directly create HTML pages should be placed into the
-`src/pug/pages` directory.
+`src/pages` directory.
 
 The data is passed to Pug from external JSON files. The global data for all
-pages (e.g. website name) is defined in the `src/pug/data/globals.yml` file.
-You can also provide data for a particular page by creating a YAML file with a
+pages (e.g. website name) is defined in the `src/data/globals.yml` file. You
+can also provide data for a particular page by creating a YAML file with a
 name matching the corresponding page, e.g.:
 
 ```
-pug/
-|-- data/
-|   |-- pages/
-|   |   |-- index.yml   # data for the home page
-|   |   |-- about.yml   # data for the about page
-|   |   `-- ...
-|   `-- globals.yml     # global data
-`-- pages/
-    |-- index.pug       # template for the home page
-    |-- about.pug       # template for the about page
-    `-- ...
+data/
+|-- pages/
+|   |-- index.yml   # data for the home page
+|   |-- about.yml   # data for the about page
+|   `-- ...
+`-- globals.yml     # global data
+pages/
+|-- index.pug       # template for the home page
+|-- about.pug       # template for the about page
+`-- ...
 ```
 
 The data from both YAML files will be merged into a single object accessible

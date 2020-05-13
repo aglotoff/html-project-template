@@ -1,10 +1,10 @@
 SVG Sprite Icon System
 ======================
 
-Every individual SVG icon is placed into the `src/icons/` directory. The name of
-the file becomes the name of the icon, e.g.:
+Every individual SVG icon is placed into the `src/assets/icons/` directory. The
+name of the file becomes the name of the icon, e.g.:
 ```
-src/icons/
+src/assets/icons/
 |-- card.svg        # class="icon icon_card"
 `-- search.svg      # class="icon icon_search"
 ```
@@ -12,7 +12,7 @@ src/icons/
 During the build process, the following files will be automatically generated:
 
 * `src/blocks/common/icon/icon.scss` - styles for icon classes
-* `src/img/icons.svg` - the resulting sprite
+* `src/assets/img/icons.svg` - the resulting sprite
 
 To use the sprite in your markup, include the `icon` mixin from the
 `src/blocks/common/icon/icon.pug` file and pass the icon's name to it as a
@@ -30,4 +30,4 @@ purposes:
 ```
 
 If you want to customize the generated CSS icon classes, edit the template file
-`src/templates/icon.mustache`.
+`src/blocks/common/icon/icon.mustache`.

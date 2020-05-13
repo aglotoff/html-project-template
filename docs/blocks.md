@@ -57,12 +57,13 @@ Template Files
 
 The following template files are used to generate blocks:
 
-* `src/templates/block.pug.mustache` - Template for block's markup
-* `src/templates/block.scss.mustache` - Template for block's styles
-* `src/templates/block.js.mustcahe` - Template for block's JavaScript (if
-  the `--class` option is not specified)
-* `src/templates/block.class.js.mustcahe` - Template for block's JavaScript
-  (if the `--class` option is specified)
-* `src/templates/index.js.mustcahe` - JavaScript entry point for the block
+* `src/blocks/templates/block.pug.mustache` - Template for block's markup
+* `src/blocks/templates/block.scss.mustache` - Template for block's styles
+* `src/blocks/templates/block.js.mustcahe` - Template for block's JavaScript
+  (if the `--class` option is not specified)
+* `src/blocks/templates/block.class.js.mustcahe` - Template for block's
+  JavaScript (if the `--class` option is specified)
+* `src/blocks/templates/index.js.mustcahe` - JavaScript entry point for the
+  block
 
 You can edit them if you want.

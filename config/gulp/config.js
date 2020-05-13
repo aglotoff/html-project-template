@@ -31,49 +31,49 @@ module.exports = {
         src:  SRC,
         dest: DIST,
 
-        assets: {
-            src: `${SRC}/assets/**/*`,
+        static: {
+            src: `${SRC}/assets/static/**/*`,
             dest: `${DIST}/assets`,
-            watch: `${SRC}/assets/**/*`,
+            watch: `${SRC}/assets/static/**/*`,
             clean: [
                 `${DIST}/assets/**/*`,
                 `!${DIST}/assets/{css,img,js}/**/*`,
             ],
         },
         css: {
-            src: [ `${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss` ],
+            src: [ `${SRC}/assets/sass/*.scss`, `!${SRC}/assets/sass/_*.scss` ],
             dest: `${DIST}/assets/css`,
             lint: `${SRC}/**/*.scss`,
             watch: `${SRC}/**/*.scss`,
             clean: `${DIST}/assets/css/**/*.css{,.map}`,
         },
         html: {
-            src: `${SRC}/pug/pages/*.pug`,
-            globalData: `${SRC}/pug/data/globals.yml`,
-            pageData: `${SRC}/pug/data/pages/**/*.yml`,
-            pageDataDir: `${SRC}/pug/data/pages`,
-            pagesDir: `${SRC}/pug/pages/`,
+            src: `${SRC}/pages/*.pug`,
+            globalData: `${SRC}/data/globals.yml`,
+            pageData: `${SRC}/data/pages/**/*.yml`,
+            pageDataDir: `${SRC}/data/pages`,
+            pagesDir: `${SRC}/pages/`,
             dest: `${DIST}`,
             watch: `${SRC}/**/*.pug`,
             clean: `${DIST}/**/*.html`,
         },
         icons: {
-            src: `${SRC}/icons/*.svg`,
-            dest: `${SRC}`,
-            watch: `${SRC}/icons/*.svg`,
+            src: `${SRC}/assets/icons/*.svg`,
+            dest: `${SRC}/assets/`,
+            watch: `${SRC}/assets/icons/*.svg`,
             clean: [
-                `${SRC}/img/icons.svg`,
+                `${SRC}/assets/img/icons.svg`,
                 `${SRC}/blocks/common/icon/icon.scss`
             ],
         },
         img: {
-            src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+            src: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             dest: `${DIST}/assets/img`,
-            watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+            watch: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             clean: `${DIST}/assets/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
-            src: `${SRC}/js/*.js`,
+            src: `${SRC}/assets/js/*.js`,
             dest: `${DIST}/assets/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,
@@ -107,6 +107,9 @@ module.exports = {
                 ]
             },
         },
+        pug: {
+            pretty: true,
+        },
         pugInheritance: {
             basedir: `${SRC}/pug`,
             skip: 'node_modules',
@@ -120,7 +123,7 @@ module.exports = {
 					sprite: '../img/icons.svg',
 					render: {
 						scss: {
-							dest: '../blocks/common/icon/icon.scss',
+							dest: '../../blocks/common/icon/icon.scss',
 							template: `${SRC}/blocks/common/icon/icon.mustache`,
 						}
 					}
