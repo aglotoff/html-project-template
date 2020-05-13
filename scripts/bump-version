@@ -33,7 +33,7 @@ async function replaceInFile(fileName, regexp, replaceValue) {
     );
 
     replaceInFile(
-        'src/pug/data/globals.yml',
+        'src/data/globals.yml',
         /version: "\d+\.\d+\.\d+"/,
         `version: "${version}"`
     );
