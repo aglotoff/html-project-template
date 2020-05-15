@@ -67,7 +67,6 @@
 // imagemin-mozjpeg     : Imagemin plugin for mozjpeg
 // lazypipe             : Create immutable, lazily-initialized pipelines
 // minimist             : Parse argument options
-// require-dir          : Helper to require() directories
 // stylelint            : A mighty, modern CSS linter
 // stylelint-scss       : A collection of SCSS specific rules for stylelint
 // vinyl-named          : Give vinyl files arbitrary chunk names
@@ -79,13 +78,15 @@
 
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
-const requireDir = require('require-dir');
 
 const config = require('./gulp/config');
 
-requireDir('./gulp/tasks', {recurse: true});
-
-global.isWatching = false;
+require('./gulp/tasks/css');
+require('./gulp/tasks/html');
+require('./gulp/tasks/icons');
+require('./gulp/tasks/img');
+require('./gulp/tasks/js');
+require('./gulp/tasks/static');
 
 // ----------------------------------------
 //   Task: Clean

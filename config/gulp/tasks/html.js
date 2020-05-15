@@ -101,7 +101,7 @@ gulp.task('watch:html:page-data', () => {
                 config.paths.html.pagesDir,
                 path
                     .relative(config.paths.html.pageDataDir, filePath)
-                    .replace(/.json$/, '.pug')
+                    .replace(/.yml$/, '.pug')
             );
                     
             gulp.src(pageFile, {

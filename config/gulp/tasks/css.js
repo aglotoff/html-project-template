@@ -28,12 +28,12 @@ gulp.task('lint:css', () => {
 gulp.task('build:css', () => {
     return gulp.src(config.paths.css.src)
         .pipe(plumber())
-        .pipe(wait(500))
+        .pipe(wait(500))    // Error Workaround
         .pipe(sourcemaps.init())
         .pipe(sass.sync(config.plugins.sass))
         .pipe(postCss(config.run.css.cssnano
-            ? [autoprefixer, cssnano]
-            : [autoprefixer]))
+            ? [ autoprefixer, cssnano ]
+            : [ autoprefixer ]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({

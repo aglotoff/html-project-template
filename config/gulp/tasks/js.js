@@ -5,7 +5,7 @@ const named = require('vinyl-named');
 const webpack = require('webpack-stream');
 
 const config = require('../config');
-const webpackConfig = require('../../webpack.config')({mode: config.env});
+const webpackConfig = require('../../webpack.config')({ mode: config.env });
 
 // ----------------------------------------
 //   Task: Build: JavaScript
@@ -29,12 +29,12 @@ gulp.task('build:js', () => {
 gulp.task('watch:js', () => {
     return gulp.src(config.paths.js.src)
         .pipe(named())
-        .pipe(webpack({...webpackConfig, watch: true}))
+        .pipe(webpack({ ...webpackConfig, watch: true }))
         .on('error', function() {
             this.emit('end');
         })
         .pipe(gulp.dest(config.paths.js.dest))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 });
 
 // ----------------------------------------

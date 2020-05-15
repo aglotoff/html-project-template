@@ -3,7 +3,7 @@ const fs = require('fs');
 const minimist = require('minimist');
 
 /**
- * Read in an environment flag
+ * Read in the environment flag
  */
 const { env } = minimist(process.argv.slice(2), {
     string: 'env',
@@ -40,6 +40,7 @@ module.exports = {
                 `!${DIST}/assets/{css,img,js}/**/*`,
             ],
         },
+
         css: {
             src: [ `${SRC}/assets/sass/*.scss`, `!${SRC}/assets/sass/_*.scss` ],
             dest: `${DIST}/assets/css`,
@@ -47,6 +48,7 @@ module.exports = {
             watch: `${SRC}/**/*.scss`,
             clean: `${DIST}/assets/css/**/*.css{,.map}`,
         },
+
         html: {
             src: `${SRC}/pages/*.pug`,
             globalData: `${SRC}/data/globals.yml`,
@@ -57,6 +59,7 @@ module.exports = {
             watch: `${SRC}/**/*.pug`,
             clean: `${DIST}/**/*.html`,
         },
+
         icons: {
             src: `${SRC}/assets/icons/*.svg`,
             dest: `${SRC}/assets/`,
@@ -66,12 +69,15 @@ module.exports = {
                 `${SRC}/blocks/common/icon/icon.scss`
             ],
         },
+
         img: {
             src: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             dest: `${DIST}/assets/img`,
             watch: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
             clean: `${DIST}/assets/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
+            webp: '**/*.{jpg,jpeg,png}',
         },
+
         js: {
             src: `${SRC}/assets/js/*.js`,
             dest: `${DIST}/assets/js`,
@@ -97,7 +103,9 @@ module.exports = {
         browserSync: {
             server: DIST
         },
+    
         beautify: JSON.parse(fs.readFileSync(`${CONFIG}/.jsbeautifyrc.json`)),
+        
         imagemin: {
             svgo: {
                 plugins: [
@@ -107,16 +115,20 @@ module.exports = {
                 ]
             },
         },
+
         pug: {
             pretty: true,
         },
+
         pugInheritance: {
             basedir: `${SRC}/pug`,
             skip: 'node_modules',
         },
+
         sass: {
             outputStyle: 'expanded',
         },
+
         svgSprite: {
 			mode: {
 				symbol: {
@@ -129,7 +141,8 @@ module.exports = {
 					}
 				}
 			}
-		},
+        },
+
         stylelint: {
             failAfterError: false,
             fix: true,

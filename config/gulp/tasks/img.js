@@ -21,15 +21,15 @@ gulp.task('build:img', () => {
         .pipe(changed(config.paths.img.dest))
         .pipe(plumber())
         .pipe(imagemin([
-            imagemin.gifsicle({interlaced: true}),
-            imagemin.jpegtran({progressive: true}),
-            imagemin.optipng({optimizationLevel: 7}),
+            imagemin.gifsicle({ interlaced: true }),
+            imagemin.jpegtran({ progressive: true }),
+            imagemin.optipng({ optimizationLevel: 7 }),
             imagemin.svgo(config.plugins.imagemin.svgo),
-            mozjpeg({progressive: true}),
+            mozjpeg({ progressive: true }),
         ]));
 
     const webpImages = images.pipe(clone())
-        .pipe(filter('**/*.{jpg,jpeg,png}'))
+        .pipe(filter(config.paths.img.webp))
         .pipe(webp());
 
     return es.merge(images, webpImages)
