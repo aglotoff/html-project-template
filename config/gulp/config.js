@@ -121,7 +121,7 @@ module.exports = {
         },
 
         pugInheritance: {
-            basedir: `${SRC}/pug`,
+            basedir: `${SRC}`,
             skip: 'node_modules',
         },
 
