@@ -4,9 +4,9 @@
   "description": "Starter template for static website creation",
   "private": true,
   "scripts": {
-    "start": "gulp --cwd . --gulpfile config/gulpfile.js",
-    "build": "gulp build --cwd . --gulpfile config/gulpfile.js --env=production",
-    "gulp": "gulp --cwd . --gulpfile config/gulpfile.js",
+    "start": "gulp",
+    "build": "gulp build --env=production",
+    "gulp": "gulp",
     "make-block": "node scripts/make-block",
     "bump-version": "node scripts/bump-version"
   },

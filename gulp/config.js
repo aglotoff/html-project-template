@@ -152,5 +152,7 @@ module.exports = {
             }],
             configFile: `${CONFIG}/.stylelintrc.json`,
         },
+
+        webpack: require('../config/webpack.config')({ mode: env }),
     },
 };
