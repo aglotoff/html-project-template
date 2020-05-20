@@ -1,10 +1,10 @@
 /**
  * Utility to handle focus styles for accessibility users.
- * 
+ *
  * When the user tabs to an element on the page, add a special utility class to
  * the root HTML element, and use CSS cascade to add specific styles to the
  * currently active element.
- * 
+ *
  * @author Andrey Glotov
  */
 
@@ -22,7 +22,7 @@ const rootElement = document.documentElement;
 /**
  * Detect tab key press event and apply the focus utility class to the root
  * element.
- * 
+ *
  * @param {KeyboardEvent} e The event object.
  */
 function handleKeyDown(e) {
@@ -36,16 +36,16 @@ function handleKeyDown(e) {
 /**
  * Detect mouse down event and remove the focus utility class when clicked
  * outside of the active element.
- * 
+ *
  * @param {MouseEvent} e The event object.
  */
 function handleMouseDown(e) {
-    const activeElement = document.activeElement;
+    const { activeElement } = document;
     if (!activeElement) {
         return;
     }
 
-    const target = e.target;
+    const { target } = e;
     if ((target === document) || activeElement.contains(target)) {
         return;
     }

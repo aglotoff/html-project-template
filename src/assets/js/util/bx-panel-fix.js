@@ -9,7 +9,7 @@ import { throttle } from './helpers';
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 // Scroll event throttling interval
-const SCROLL_INTERVAL = 100; 
+const SCROLL_INTERVAL = 100;
 
 // Element selectors
 const SELECTOR = {

@@ -5,7 +5,7 @@
 
 /**
  * Debounce function execution.
- * 
+ *
  * @param {function} cb The function to execute.
  * @param {number} interval The debouncing interval in milliseconds.
  * @return {function} The debounced function.
@@ -13,7 +13,7 @@
 export function debounce(cb, interval) {
     let timer = null;
 
-    return function() {
+    return () => {
         clearTimeout(timer);
         timer = setTimeout(cb, interval);
     };
@@ -21,7 +21,7 @@ export function debounce(cb, interval) {
 
 /**
  * Throttle function execution.
- * 
+ *
  * @param {function} cb The function to execute.
  * @param {number} interval The throttling interval in milliseconds.
  * @return {function} The throttled function.
@@ -30,7 +30,7 @@ export function throttle(cb, interval) {
     let called = false;
     let timer = null;
 
-    return function() {
+    return () => {
         if (timer !== null) {
             // Ensure that we catch and execute that last invocation.
             called = true;
@@ -39,7 +39,7 @@ export function throttle(cb, interval) {
 
         cb();
 
-        timer = setTimeout(function() {
+        timer = setTimeout(() => {
             timer = null;
             if (called) {
                 cb();

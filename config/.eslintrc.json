@@ -5,27 +5,15 @@
         "es6": true,
         "jquery": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "airbnb-base",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
     "parserOptions": {
         "sourceType": "module"
     },
     "rules": {
-        "arrow-parens": [
-            "error",
-            "always"
-        ],
-        "brace-style": [
-            "error",
-            "1tbs"
-        ],
-        "curly": [
-            "error",
-            "all"
-        ],
-        "function-paren-newline": [
-            "error",
-            "multiline"
-        ],
         "indent": [
             "error",
             4
@@ -34,15 +22,15 @@
             "error",
             "windows"
         ],
-        "no-var": "error",
-        "prefer-const": "error",
-        "quotes": [
+        "no-plusplus": "off",
+        "import/prefer-default-export": "off",
+        "no-use-before-define": "off",
+        "prefer-arrow-callback": [
             "error",
-            "single"
+            {
+                "allowNamedFunctions": true
+            }
         ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "no-new": "off"
     }
 }

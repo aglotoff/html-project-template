@@ -6,7 +6,6 @@ import 'core-js/features/promise';
 import svg4everybody from 'svg4everybody';
 
 // Utility imports
-import bxPanelFix from './util/bx-panel-fix';
 import * as FocusUtility from './util/focus';
 import * as LazyLoader from './util/lazy-loader';
 
@@ -19,11 +18,6 @@ svg4everybody();
 // Initialize utilities
 FocusUtility.init();
 LazyLoader.init();
-
-bxPanelFix((panel, isFixed) => {
-    void(panel);
-    void(isFixed);
-});
 
 // Initialize blocks
 // TODO: add code here

@@ -8,19 +8,19 @@ import { throttle } from './helpers';
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 // Scroll event throttling interval
-const SCROLL_INTERVAL = 200; 
+const SCROLL_INTERVAL = 200;
 
 // Vertical offset allowing the image to start loading before we scroll to it
-const BUFFER_HEIGHT = 50;       
+const BUFFER_HEIGHT = 50;
 
 // Class applied to all images that have to be lazy-loaded
-const LAZY_CLASS = 'lazy';      
+const LAZY_CLASS = 'lazy';
 
-// The list of all images 
+// The list of all images
 let images = [];
 
 // Throttle the window scroll event handler
-const handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
+let handleWindowScroll = null;
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
@@ -28,7 +28,7 @@ const handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
 
 /**
  * Check if <tt>elem</tt> is in the browser's viewport.
- * 
+ *
  * @param {HTMLElement} element The element to check
  * @return {boolean} <tt>true</tt> if the element is in the viewport,
  *      <tt>false</tt> otherwise
@@ -44,11 +44,11 @@ function isInViewport(element) {
 
 /**
  * Lazy-load the given <tt>img</tt> element.
- * 
+ *
  * @param {HTMLImageElement} img The image element to be loaded.
  */
 function loadImage(img) {
-    const parentElement = img.parentElement;
+    const { parentElement } = img;
     if (parentElement.tagName === 'PICTURE') {
         const sources = parentElement.querySelectorAll('source');
         for (let i = 0; i < sources.length; i++) {
@@ -71,12 +71,12 @@ function loadImage(img) {
 
 /**
  * Load all images that have been scrolled into the viewport for the first time.
- * 
+ *
  * @return {number} The number of images not yet scheduled for loading.
  */
 export function scanImages() {
     if (images.length > 0) {
-        images = images.filter(function(img) {
+        images = images.filter((img) => {
             if (isInViewport(img)) {
                 loadImage(img);
                 return false;
@@ -94,7 +94,7 @@ export function scanImages() {
 
 /**
  * Add new image to be lazy-loaded.
- * 
+ *
  * @param {HTMLImageElement} img The image element to be added.
  */
 export function addImage(img) {
@@ -109,8 +109,10 @@ export function addImage(img) {
  * Initialize the lazy loader.
  */
 export function init() {
+    handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
+
     images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
-    
+
     if (images.length > 0) {
         window.addEventListener('scroll', handleWindowScroll);
     }

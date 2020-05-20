@@ -3,17 +3,16 @@
  * @author Andrey Glotov
  */
 
-const matches =
-    Element.prototype.matches || 
-    Element.prototype.mozMatchesSelector ||
-    Element.prototype.msMatchesSelector ||
-    Element.prototype.oMatchesSelector ||
-    Element.prototype.webkitMatchesSelector;
+const matches = Element.prototype.matches
+    || Element.prototype.mozMatchesSelector
+    || Element.prototype.msMatchesSelector
+    || Element.prototype.oMatchesSelector
+    || Element.prototype.webkitMatchesSelector;
 
 /**
  * Starting with the element itself, and traversing up through its ancestors,
  * find the first element that matches the provided selector.
- * 
+ *
  * @param {HTMLElement} element The element to start testing.
  * @param {string} selector String containing a selector list.
  * @return {HTMLElement|null} The first matching element, or null if no such
@@ -22,71 +21,69 @@ const matches =
 export function closest(element, selector) {
     if (Element.prototype.closest) {
         return element.closest(selector);
-    } else {
-        while (element != null) {
-            if (matches.call(element, selector)) {
-                return element;
-            }
-
-            element = element.parentElement;
-        }
-        return null;
     }
+
+    for (let el = element; el != null; el = el.parentElement) {
+        if (matches.call(el, selector)) {
+            return el;
+        }
+    }
+    return null;
 }
 
 /**
  * Force a reflow.
- * 
+ *
  * @param {HTMLElement} el The element whose styles have been changed.
  */
 export function forceReflow(el) {
-    void(el.offsetHeight);
+    return el.offsetHeight;
 }
 
 /**
  * Get transition duration for the specified element.
- * 
+ *
  * @param {HTMLElement} el The element to compute transition duration on.
  * @return {number} transition duration in milliseconds.
  */
 export function getTransitionDuration(el) {
     const style = getComputedStyle(el);
-    
+
     const duration = style.transitionDuration || '';
     const delay = style.transitionDelay || '';
-    
+
     if (!duration && !delay) {
         return 0;
     }
-    
+
     const floatDuration = parseFloat(duration);
     const floatDelay = parseFloat(delay);
-    
+
     const msDuration = (floatDuration + floatDelay) * 1000;
-    return isNaN(msDuration) ? 0 : msDuration;
+    return Number.isNaN(msDuration) ? 0 : msDuration;
 }
 
 /**
  * Detect the end of CSS transition.
- * 
+ *
  * @param {HTMLElement} el The element to detect transition end on.
  * @return {Promise} Promise that resolves when CSS transition ends.
  */
 export function detectTransitionEnd(el) {
     const duration = getTransitionDuration(el);
-    
+
     let handleTransitionEnd;
-    
-    return new Promise(function(resolve) {
+
+    return new Promise((resolve) => {
         handleTransitionEnd = (e) => {
             if (e.target === el) {
                 resolve();
             }
         };
         el.addEventListener('transitionend', handleTransitionEnd, false);
-      
+
         // In case the 'transitionend' event is not supported, or is somehow
-        // lost, or there is no transition property defined, setup a timer to 
+        // lost, or there is no transition property defined, setup a timer to
         // resolve the promise after the given duration.
         setTimeout(resolve, duration);
     }).then(() => {
@@ -96,7 +93,7 @@ export function detectTransitionEnd(el) {
 
 /**
  * Generic animation function.
- * 
+ *
  * @param {function} cb The callback to invoke for each animation step.
  * @param {number} duration Animation duration in milliseconds.
  */
@@ -120,9 +117,9 @@ export function animate(cb, duration) {
 
 /**
  * Scroll smoothly to a given element.
- * 
+ *
  * @param {HTMLElement} target The element to scroll to.
- * @param {number} duration A number of milliseconds determining how long 
+ * @param {number} duration A number of milliseconds determining how long
  *  the scrolling animation will run.
  * @return {Promise} A promise that resolves when the animation completes.
  */
@@ -140,7 +137,7 @@ export function scrollTo(target, duration) {
         targetOffset = target.offsetTop;
     }
 
-    return new Promise(function(resolve) {
+    return new Promise((resolve) => {
         animate(function onStep(progress) {
             if (progress === 1) {
                 window.scroll(leftOffset, targetOffset);
@@ -148,7 +145,7 @@ export function scrollTo(target, duration) {
             } else {
                 window.scroll(
                     leftOffset,
-                    startOffset + progress * (targetOffset - startOffset)
+                    startOffset + progress * (targetOffset - startOffset),
                 );
             }
         }, duration);
@@ -157,7 +154,7 @@ export function scrollTo(target, duration) {
 
 /**
  * Determine the size of 1 em for the given element.
- * 
+ *
  * @param {HTMLElement} elem The element whose em size is to be computed.
  * @return {number} The size of 1 em in pixels.
  */
