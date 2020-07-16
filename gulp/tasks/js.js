@@ -10,36 +10,30 @@ const config = require('../config');
 //   Task: Build: JavaScript
 // ----------------------------------------
 
-gulp.task('build:js', () => {
-    return gulp.src(config.paths.js.src)
-        .pipe(named())
-        .pipe(webpack(config.plugins.webpack))
-        .on('error', function(err) {
-            console.log(err.message);
-            this.emit('end');
-        })
-        .pipe(gulp.dest(config.paths.js.dest));
-});
+gulp.task('build:js', () => gulp.src(config.paths.js.src)
+    .pipe(named())
+    .pipe(webpack(config.plugins.webpack))
+    .on('error', function handleBuildJsError(err) {
+        console.log(err.message);
+        this.emit('end');
+    })
+    .pipe(gulp.dest(config.paths.js.dest)));
 
 // ----------------------------------------
 //   Task: Watch: JavaScript
 // ----------------------------------------
 
-gulp.task('watch:js', () => {
-    return gulp.src(config.paths.js.src)
-        .pipe(named())
-        .pipe(webpack({ ...config.plugins.webpack, watch: true }))
-        .on('error', function() {
-            this.emit('end');
-        })
-        .pipe(gulp.dest(config.paths.js.dest))
-        .pipe(browserSync.reload({ stream: true }));
-});
+gulp.task('watch:js', () => gulp.src(config.paths.js.src)
+    .pipe(named())
+    .pipe(webpack({ ...config.plugins.webpack, watch: true }))
+    .on('error', function handleWatchJsError() {
+        this.emit('end');
+    })
+    .pipe(gulp.dest(config.paths.js.dest))
+    .pipe(browserSync.reload({ stream: true })));
 
 // ----------------------------------------
 //   Task: Clean: JavaScript
 // ----------------------------------------
 
-gulp.task('clean:js', () => {
-    return del(config.paths.js.clean);
-});
+gulp.task('clean:js', () => del(config.paths.js.clean));

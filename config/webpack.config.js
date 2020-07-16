@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = ({mode = 'development'}) => ({
+module.exports = ({ mode = 'development' }) => ({
     output: {
         filename: '[name].js',
     },
@@ -16,17 +16,17 @@ module.exports = ({mode = 'development'}) => ({
                         ? path.join(__dirname, '.eslintrc.json')
                         : path.join(__dirname, '.eslintrc.dev.json'),
                     emitWarning: true,
-                }
-            }
+                },
+            },
         }, {
             test: /\.js$/,
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
                 options: {
-                    configFile: path.join(__dirname, 'babel.config.js')
-                }
-            }
+                    configFile: path.join(__dirname, 'babel.config.js'),
+                },
+            },
         }],
     },
     mode,

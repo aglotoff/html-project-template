@@ -29,12 +29,12 @@ async function replaceInFile(fileName, regexp, replaceValue) {
     replaceInFile(
         'package.json',
         /"version": "\d+\.\d+\.\d+"/,
-        `"version": "${version}"`
+        `"version": "${version}"`,
     );
 
     replaceInFile(
         'src/data/globals.yml',
         /version: "\d+\.\d+\.\d+"/,
-        `version: "${version}"`
+        `version: "${version}"`,
     );
 })();

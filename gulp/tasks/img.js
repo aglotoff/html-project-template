@@ -35,7 +35,7 @@ gulp.task('build:img', () => {
     return es.merge(images, webpImages)
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
-            stream: true
+            stream: true,
         }));
 });
 
@@ -43,14 +43,13 @@ gulp.task('build:img', () => {
 //   Task: Watch: Images
 // ----------------------------------------
 
-gulp.task('watch:img', () => {
-    return gulp.watch(config.paths.img.watch, gulp.series('build:img'));
-});
+gulp.task('watch:img', () => gulp.watch(
+    config.paths.img.watch,
+    gulp.series('build:img'),
+));
 
 // ----------------------------------------
 //   Task: Clean: Images
 // ----------------------------------------
 
-gulp.task('clean:img', () => {
-    return del(config.paths.img.clean);
-});
+gulp.task('clean:img', () => del(config.paths.img.clean));

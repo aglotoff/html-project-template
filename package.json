@@ -20,13 +20,14 @@
     "url": "https://github.com/aglotoff/static-site-template/issues"
   },
   "homepage": "https://github.com/aglotoff/static-site-template#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.5",
     "browser-sync": "^2.26.3",
     "cssnano": "^4.1.10",
+    "core-js": "^3.6.5",
     "del": "^4.1.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.1.0",
@@ -59,13 +60,10 @@
     "stylelint": "^10.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-scss": "^3.9.3",
+    "svg4everybody": "^2.1.9",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.39.1",
-    "webpack-stream": "^5.2.1"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "svg4everybody": "^2.1.9",
+    "webpack-stream": "^5.2.1",
     "yaml": "^1.9.2"
   }
 }

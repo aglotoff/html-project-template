@@ -98,7 +98,7 @@ gulp.task('clean', gulp.parallel(
     'clean:html',
     'clean:icons',
     'clean:img',
-    'clean:js'
+    'clean:js',
 ));
 
 // ----------------------------------------
@@ -112,12 +112,12 @@ gulp.task('build', gulp.series(
             'build:icons',
             'lint:css',
             'build:css',
-            'build:img'
+            'build:img',
         ),
         'build:static',
         'build:html',
-        'build:js'
-    )
+        'build:js',
+    ),
 ));
 
 // ----------------------------------------
@@ -130,16 +130,14 @@ gulp.task('watch', gulp.parallel(
     'watch:html',
     'watch:icons',
     'watch:img',
-    'watch:js'
+    'watch:js',
 ));
 
 // ----------------------------------------
 //   Task: Serve
 // ----------------------------------------
 
-gulp.task('serve', () => {
-    return browserSync.init(config.plugins.browserSync);
-});
+gulp.task('serve', () => browserSync.init(config.plugins.browserSync));
 
 // ----------------------------------------
 //   Task: Default
@@ -147,5 +145,5 @@ gulp.task('serve', () => {
 
 gulp.task('default', gulp.series(
     'build',
-    gulp.parallel('serve', 'watch')
+    gulp.parallel('serve', 'watch'),
 ));

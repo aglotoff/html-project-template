@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const fs = require('fs');
 
 const minimist = require('minimist');
@@ -7,8 +9,8 @@ const minimist = require('minimist');
  */
 const { env } = minimist(process.argv.slice(2), {
     string: 'env',
-    default: { 
-        env: process.env.NODE_ENV || 'development'
+    default: {
+        env: process.env.NODE_ENV || 'development',
     },
 });
 
@@ -16,7 +18,7 @@ const { env } = minimist(process.argv.slice(2), {
  * Path prefixes
  */
 const TOP = '.';
-const SRC = `${TOP}/src`
+const SRC = `${TOP}/src`;
 const DIST = `${TOP}/dist`;
 const CONFIG = `${TOP}/config`;
 
@@ -27,26 +29,30 @@ module.exports = {
      * Path information
      */
     paths: {
-        top:  TOP,
-        src:  SRC,
+        top: TOP,
+        src: SRC,
         dest: DIST,
 
         static: {
             src: `${SRC}/assets/static/**/*`,
-            dest: `${DIST}/assets`,
+            dest: `${DIST}`,
             watch: `${SRC}/assets/static/**/*`,
             clean: [
-                `${DIST}/assets/**/*`,
-                `!${DIST}/assets/{css,img,js}/**/*`,
+                `${DIST}/**/*`,
+                `!${DIST}/**/*.html`,
+                `!${DIST}/{css,img,js}/**/*`,
             ],
         },
 
         css: {
-            src: [ `${SRC}/assets/sass/*.scss`, `!${SRC}/assets/sass/_*.scss` ],
-            dest: `${DIST}/assets/css`,
+            src: [
+                `${SRC}/assets/sass/*.scss`,
+                `!${SRC}/assets/sass/_*.scss`,
+            ],
+            dest: `${DIST}/css`,
             lint: `${SRC}/**/*.scss`,
             watch: `${SRC}/**/*.scss`,
-            clean: `${DIST}/assets/css/**/*.css{,.map}`,
+            clean: `${DIST}/css/**/*.css{,.map}`,
         },
 
         html: {
@@ -66,24 +72,24 @@ module.exports = {
             watch: `${SRC}/assets/icons/*.svg`,
             clean: [
                 `${SRC}/assets/img/icons.svg`,
-                `${SRC}/blocks/common/icon/icon.scss`
+                `${SRC}/blocks/common/icon/icon.scss`,
             ],
         },
 
         img: {
             src: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            dest: `${DIST}/assets/img`,
+            dest: `${DIST}/img`,
             watch: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            clean: `${DIST}/assets/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
+            clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
             webp: '**/*.{jpg,jpeg,png}',
         },
 
         js: {
             src: `${SRC}/assets/js/*.js`,
-            dest: `${DIST}/assets/js`,
+            dest: `${DIST}/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,
-            clean: `${DIST}/assets/js/**/*.js{,.map}`,
+            clean: `${DIST}/js/**/*.js{,.map}`,
         },
     },
 
@@ -101,18 +107,18 @@ module.exports = {
      */
     plugins: {
         browserSync: {
-            server: DIST
+            server: DIST,
         },
-    
+
         beautify: JSON.parse(fs.readFileSync(`${CONFIG}/.jsbeautifyrc.json`)),
-        
+
         imagemin: {
             svgo: {
                 plugins: [
                     { removeXMLProcInst: false },
                     { cleanupIDs: false },
-                    { removeAttrs: { attrs: '' } }
-                ]
+                    { removeAttrs: { attrs: '' } },
+                ],
             },
         },
 
@@ -130,17 +136,17 @@ module.exports = {
         },
 
         svgSprite: {
-			mode: {
-				symbol: {
-					sprite: '../img/icons.svg',
-					render: {
-						scss: {
-							dest: '../../blocks/common/icon/icon.scss',
-							template: `${SRC}/blocks/common/icon/icon.mustache`,
-						}
-					}
-				}
-			}
+            mode: {
+                symbol: {
+                    sprite: '../img/icons.svg',
+                    render: {
+                        scss: {
+                            dest: '../../blocks/common/icon/icon.scss',
+                            template: `${SRC}/blocks/common/icon/icon.mustache`,
+                        },
+                    },
+                },
+            },
         },
 
         stylelint: {
@@ -148,11 +154,12 @@ module.exports = {
             fix: true,
             reporters: [{
                 formatter: 'string',
-                console: true
+                console: true,
             }],
             configFile: `${CONFIG}/.stylelintrc.json`,
         },
 
+        // eslint-disable-next-line global-require
         webpack: require('../config/webpack.config')({ mode: env }),
     },
 };

@@ -25,9 +25,10 @@ function capitalize(word) {
 }
 
 function getConstructorName(blockName) {
-    return blockName.split('-').reduce((result, word) => {
-        return result + capitalize(word);
-    }, '');
+    return blockName.split('-').reduce(
+        (result, word) => result + capitalize(word),
+        '',
+    );
 }
 
 function getBlockTitle(blockName) {
@@ -40,8 +41,8 @@ async function createDirectory(dirName) {
         throw new Error(`Block already exists: ${dirName}`);
     }
 
-    return await mkdir(dirName, { recursive: true });
-};
+    return mkdir(dirName, { recursive: true });
+}
 
 async function renderTemplate(templateName, tags, outputPath) {
     const templatePath = path.join(TEMPLATE_DIR, templateName);
@@ -60,7 +61,7 @@ function renderAllTemplates(dirName, options) {
     };
 
     const results = [];
-    for (const type of Object.keys(options.types)) {
+    Object.keys(options.types).forEach((type) => {
         let templateName = `block.${type}.mustache`;
         if (type === 'js' && options.generateClass) {
             templateName = 'block.class.js.mustache';
@@ -72,10 +73,10 @@ function renderAllTemplates(dirName, options) {
         if (type === 'js') {
             results.push(renderTemplate('index.js.mustache', tags, path.join(
                 dirName,
-                'index.js'
+                'index.js',
             )));
         }
-    }
+    });
 
     return Promise.all(results);
 }
@@ -94,9 +95,7 @@ async function createBlock(blockPath, options) {
 
 async function createAllBlocks(blocks, options) {
     try {
-        for (const block of blocks) {
-            await createBlock(block, options);
-        }
+        await Promise.all(blocks.map((block) => createBlock(block, options)));
     } catch (err) {
         console.error(err.message);
         process.exit(1);
@@ -104,8 +103,8 @@ async function createAllBlocks(blocks, options) {
 }
 
 (async () => {
-    const usageStr = 
-    `Usage: make-block BLOCK... [OPTION]...
+    const usageStr = `
+    Usage: make-block BLOCK... [OPTION]...
     Create one or multiple BLOCK(s)
 
     Select implementation technologies:
@@ -131,7 +130,7 @@ async function createAllBlocks(blocks, options) {
         generateClass: false,
     };
 
-    for (const option of Object.keys(parsedArgs)) {
+    Object.keys(parsedArgs).forEach((option) => {
         switch (option) {
         case '_':
             break;
@@ -142,9 +141,9 @@ async function createAllBlocks(blocks, options) {
                 pug: true,
                 scss: true,
                 js: true,
-            }
+            };
             break;
-        
+
         case 'p':
         case 'pug':
             options.types.pug = true;
@@ -171,14 +170,14 @@ async function createAllBlocks(blocks, options) {
             console.error(usageStr);
             process.exit(1);
         }
-    }
+    });
 
     if (Object.keys(options.types).length === 0) {
         options.types = {
             pug: true,
             scss: true,
             js: true,
-        }
+        };
     }
 
     await createAllBlocks(blocks, options);
