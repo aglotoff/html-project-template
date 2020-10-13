@@ -3,11 +3,12 @@
  * @author Andrey Glotov
  */
 
-const matches = Element.prototype.matches
-    || Element.prototype.mozMatchesSelector
-    || Element.prototype.msMatchesSelector
-    || Element.prototype.oMatchesSelector
-    || Element.prototype.webkitMatchesSelector;
+const matches =
+  Element.prototype.matches ||
+  Element.prototype.mozMatchesSelector ||
+  Element.prototype.msMatchesSelector ||
+  Element.prototype.oMatchesSelector ||
+  Element.prototype.webkitMatchesSelector;
 
 /**
  * Starting with the element itself, and traversing up through its ancestors,
@@ -19,16 +20,16 @@ const matches = Element.prototype.matches
  *  element exists.
  */
 export function closest(element, selector) {
-    if (Element.prototype.closest) {
-        return element.closest(selector);
-    }
+  if (Element.prototype.closest) {
+    return element.closest(selector);
+  }
 
-    for (let el = element; el != null; el = el.parentElement) {
-        if (matches.call(el, selector)) {
-            return el;
-        }
+  for (let el = element; el != null; el = el.parentElement) {
+    if (matches.call(el, selector)) {
+      return el;
     }
-    return null;
+  }
+  return null;
 }
 
 /**
@@ -37,7 +38,7 @@ export function closest(element, selector) {
  * @param {HTMLElement} el The element whose styles have been changed.
  */
 export function forceReflow(el) {
-    return el.offsetHeight;
+  return el.offsetHeight;
 }
 
 /**
@@ -47,20 +48,20 @@ export function forceReflow(el) {
  * @return {number} transition duration in milliseconds.
  */
 export function getTransitionDuration(el) {
-    const style = getComputedStyle(el);
+  const style = getComputedStyle(el);
 
-    const duration = style.transitionDuration || '';
-    const delay = style.transitionDelay || '';
+  const duration = style.transitionDuration || '';
+  const delay = style.transitionDelay || '';
 
-    if (!duration && !delay) {
-        return 0;
-    }
+  if (!duration && !delay) {
+    return 0;
+  }
 
-    const floatDuration = parseFloat(duration);
-    const floatDelay = parseFloat(delay);
+  const floatDuration = parseFloat(duration);
+  const floatDelay = parseFloat(delay);
 
-    const msDuration = (floatDuration + floatDelay) * 1000;
-    return Number.isNaN(msDuration) ? 0 : msDuration;
+  const msDuration = (floatDuration + floatDelay) * 1000;
+  return Number.isNaN(msDuration) ? 0 : msDuration;
 }
 
 /**
@@ -70,25 +71,25 @@ export function getTransitionDuration(el) {
  * @return {Promise} Promise that resolves when CSS transition ends.
  */
 export function detectTransitionEnd(el) {
-    const duration = getTransitionDuration(el);
+  const duration = getTransitionDuration(el);
 
-    let handleTransitionEnd;
+  let handleTransitionEnd;
 
-    return new Promise((resolve) => {
-        handleTransitionEnd = (e) => {
-            if (e.target === el) {
-                resolve();
-            }
-        };
-        el.addEventListener('transitionend', handleTransitionEnd, false);
+  return new Promise((resolve) => {
+    handleTransitionEnd = (e) => {
+      if (e.target === el) {
+        resolve();
+      }
+    };
+    el.addEventListener('transitionend', handleTransitionEnd, false);
 
-        // In case the 'transitionend' event is not supported, or is somehow
-        // lost, or there is no transition property defined, setup a timer to
-        // resolve the promise after the given duration.
-        setTimeout(resolve, duration);
-    }).then(() => {
-        el.removeEventListener('transitionend', handleTransitionEnd, false);
-    });
+    // In case the 'transitionend' event is not supported, or is somehow
+    // lost, or there is no transition property defined, setup a timer to
+    // resolve the promise after the given duration.
+    setTimeout(resolve, duration);
+  }).then(() => {
+    el.removeEventListener('transitionend', handleTransitionEnd, false);
+  });
 }
 
 /**
@@ -98,21 +99,22 @@ export function detectTransitionEnd(el) {
  * @param {number} duration Animation duration in milliseconds.
  */
 export function animate(cb, duration) {
-    const startTime = ('now' in window.performance)
-        ? window.performance.now()
-        : new Date().getTime();
+  const startTime =
+    'now' in window.performance
+      ? window.performance.now()
+      : new Date().getTime();
 
-    requestAnimationFrame(function step(currentTime) {
-        const deltaTime = currentTime - startTime;
-        if (deltaTime >= duration) {
-            cb(1);
-        } else {
-            const progress = deltaTime / duration;
-            cb(progress);
+  requestAnimationFrame(function step(currentTime) {
+    const deltaTime = currentTime - startTime;
+    if (deltaTime >= duration) {
+      cb(1);
+    } else {
+      const progress = deltaTime / duration;
+      cb(progress);
 
-            requestAnimationFrame(step);
-        }
-    });
+      requestAnimationFrame(step);
+    }
+  });
 }
 
 /**
@@ -124,32 +126,32 @@ export function animate(cb, duration) {
  * @return {Promise} A promise that resolves when the animation completes.
  */
 export function scrollTo(target, duration) {
-    const startOffset = window.pageYOffset;
-    const leftOffset = window.pageXOffset;
+  const startOffset = window.pageYOffset;
+  const leftOffset = window.pageXOffset;
 
-    const documentHeight = document.body.clientHeight;
-    const windowHeight = window.innerHeight;
+  const documentHeight = document.body.clientHeight;
+  const windowHeight = window.innerHeight;
 
-    let targetOffset;
-    if ((documentHeight - target.offsetTop) < windowHeight) {
-        targetOffset = documentHeight - windowHeight;
-    } else {
-        targetOffset = target.offsetTop;
-    }
+  let targetOffset;
+  if (documentHeight - target.offsetTop < windowHeight) {
+    targetOffset = documentHeight - windowHeight;
+  } else {
+    targetOffset = target.offsetTop;
+  }
 
-    return new Promise((resolve) => {
-        animate(function onStep(progress) {
-            if (progress === 1) {
-                window.scroll(leftOffset, targetOffset);
-                resolve();
-            } else {
-                window.scroll(
-                    leftOffset,
-                    startOffset + progress * (targetOffset - startOffset),
-                );
-            }
-        }, duration);
-    });
+  return new Promise((resolve) => {
+    animate(function onStep(progress) {
+      if (progress === 1) {
+        window.scroll(leftOffset, targetOffset);
+        resolve();
+      } else {
+        window.scroll(
+          leftOffset,
+          startOffset + progress * (targetOffset - startOffset)
+        );
+      }
+    }, duration);
+  });
 }
 
 /**
@@ -159,5 +161,5 @@ export function scrollTo(target, duration) {
  * @return {number} The size of 1 em in pixels.
  */
 export function getEmSize(elem) {
-    return +getComputedStyle(elem).fontSize.match(/\d*\.?\d*/)[0];
+  return +getComputedStyle(elem).fontSize.match(/\d*\.?\d*/)[0];
 }

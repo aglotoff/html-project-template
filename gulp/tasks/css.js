@@ -16,35 +16,40 @@ const config = require('../config');
 //   Task: Lint: CSS
 // ----------------------------------------
 
-gulp.task('lint:css', () => gulp.src(config.paths.css.lint)
-    .pipe(stylelint(config.plugins.stylelint)));
+gulp.task('lint:css', () =>
+  gulp.src(config.paths.css.lint).pipe(stylelint(config.plugins.stylelint))
+);
 
 // ----------------------------------------
 //   Task: Build: CSS
 // ----------------------------------------
 
-gulp.task('build:css', () => gulp.src(config.paths.css.src)
+gulp.task('build:css', () =>
+  gulp
+    .src(config.paths.css.src)
     .pipe(plumber())
     .pipe(wait(500)) // Error Workaround
     .pipe(sourcemaps.init())
     .pipe(sass.sync(config.plugins.sass))
-    .pipe(postCss(config.run.css.cssnano
-        ? [ autoprefixer, cssnano ]
-        : [ autoprefixer ]))
+    .pipe(
+      postCss(config.run.css.cssnano ? [autoprefixer, cssnano] : [autoprefixer])
+    )
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.paths.css.dest))
-    .pipe(browserSync.reload({
+    .pipe(
+      browserSync.reload({
         stream: true,
-    })));
+      })
+    )
+);
 
 // ----------------------------------------
 //   Task: Watch: CSS
 // ----------------------------------------
 
-gulp.task('watch:css', () => gulp.watch(config.paths.css.watch, gulp.series(
-    'lint:css',
-    'build:css',
-)));
+gulp.task('watch:css', () =>
+  gulp.watch(config.paths.css.watch, gulp.series('lint:css', 'build:css'))
+);
 
 // ----------------------------------------
 //   Task: Clean: CSS

@@ -2,7 +2,7 @@
 # Global data
 #
 
-version: "0.1.0"
+version: '0.1.0'
 
-siteTitle: "Site Title"
-siteTagline: "Site Tagline"
+siteTitle: 'Site Title'
+siteTagline: 'Site Tagline'

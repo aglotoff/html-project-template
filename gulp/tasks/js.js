@@ -10,27 +10,33 @@ const config = require('../config');
 //   Task: Build: JavaScript
 // ----------------------------------------
 
-gulp.task('build:js', () => gulp.src(config.paths.js.src)
+gulp.task('build:js', () =>
+  gulp
+    .src(config.paths.js.src)
     .pipe(named())
     .pipe(webpack(config.plugins.webpack))
     .on('error', function handleBuildJsError(err) {
-        console.log(err.message);
-        this.emit('end');
+      console.log(err.message);
+      this.emit('end');
     })
-    .pipe(gulp.dest(config.paths.js.dest)));
+    .pipe(gulp.dest(config.paths.js.dest))
+);
 
 // ----------------------------------------
 //   Task: Watch: JavaScript
 // ----------------------------------------
 
-gulp.task('watch:js', () => gulp.src(config.paths.js.src)
+gulp.task('watch:js', () =>
+  gulp
+    .src(config.paths.js.src)
     .pipe(named())
     .pipe(webpack({ ...config.plugins.webpack, watch: true }))
     .on('error', function handleWatchJsError() {
-        this.emit('end');
+      this.emit('end');
     })
     .pipe(gulp.dest(config.paths.js.dest))
-    .pipe(browserSync.reload({ stream: true })));
+    .pipe(browserSync.reload({ stream: true }))
+);
 
 // ----------------------------------------
 //   Task: Clean: JavaScript

@@ -26,11 +26,11 @@ const rootElement = document.documentElement;
  * @param {KeyboardEvent} e The event object.
  */
 function handleKeyDown(e) {
-    if (e.keyCode === KEY_TAB) {
-        rootElement.classList.add(FOCUS_CLASS);
-        rootElement.addEventListener('mousedown', handleMouseDown, false);
-        rootElement.removeEventListener('keydown', handleKeyDown, false);
-    }
+  if (e.keyCode === KEY_TAB) {
+    rootElement.classList.add(FOCUS_CLASS);
+    rootElement.addEventListener('mousedown', handleMouseDown, false);
+    rootElement.removeEventListener('keydown', handleKeyDown, false);
+  }
 }
 
 /**
@@ -40,19 +40,19 @@ function handleKeyDown(e) {
  * @param {MouseEvent} e The event object.
  */
 function handleMouseDown(e) {
-    const { activeElement } = document;
-    if (!activeElement) {
-        return;
-    }
+  const { activeElement } = document;
+  if (!activeElement) {
+    return;
+  }
 
-    const { target } = e;
-    if ((target === document) || activeElement.contains(target)) {
-        return;
-    }
+  const { target } = e;
+  if (target === document || activeElement.contains(target)) {
+    return;
+  }
 
-    document.documentElement.classList.remove(FOCUS_CLASS);
-    document.addEventListener('keydown', handleKeyDown, false);
-    document.removeEventListener('mousedown', handleMouseDown, false);
+  document.documentElement.classList.remove(FOCUS_CLASS);
+  document.addEventListener('keydown', handleKeyDown, false);
+  document.removeEventListener('mousedown', handleMouseDown, false);
 }
 
 // ----------------------------- END EVENT HANDLERS ---------------------------
@@ -63,7 +63,7 @@ function handleMouseDown(e) {
  * Initialize the focus utility.
  */
 export function init() {
-    document.addEventListener('keydown', handleKeyDown, false);
+  document.addEventListener('keydown', handleKeyDown, false);
 }
 
 // ----------------------------- END PUBLIC METHODS ---------------------------

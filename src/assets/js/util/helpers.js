@@ -11,12 +11,12 @@
  * @return {function} The debounced function.
  */
 export function debounce(cb, interval) {
-    let timer = null;
+  let timer = null;
 
-    return () => {
-        clearTimeout(timer);
-        timer = setTimeout(cb, interval);
-    };
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(cb, interval);
+  };
 }
 
 /**
@@ -27,24 +27,24 @@ export function debounce(cb, interval) {
  * @return {function} The throttled function.
  */
 export function throttle(cb, interval) {
-    let called = false;
-    let timer = null;
+  let called = false;
+  let timer = null;
 
-    return () => {
-        if (timer !== null) {
-            // Ensure that we catch and execute that last invocation.
-            called = true;
-            return;
-        }
+  return () => {
+    if (timer !== null) {
+      // Ensure that we catch and execute that last invocation.
+      called = true;
+      return;
+    }
 
+    cb();
+
+    timer = setTimeout(() => {
+      timer = null;
+      if (called) {
         cb();
-
-        timer = setTimeout(() => {
-            timer = null;
-            if (called) {
-                cb();
-                called = false;
-            }
-        }, interval);
-    };
+        called = false;
+      }
+    }, interval);
+  };
 }

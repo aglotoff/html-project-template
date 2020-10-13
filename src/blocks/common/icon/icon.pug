@@ -1,12 +1,12 @@
 //-
-    name: icon
-    description: Markup for the icon block
-    arguments:
-        - {string} name - icon name
-        - {string} title - optional title (for accessibility purposes)
+  name: icon
+  description: Markup for the icon block
+  arguments:
+    - {string} name - icon name
+    - {string} title - optional title (for accessibility purposes)
 
 mixin icon(name, title)
-    svg(class=`icon icon_${name}`)&attributes(attributes)
-        if title
-            title= title
-        use(xlink:href=`assets/img/icons.svg#${name}`)
+  svg(class=`icon icon_${name}`)&attributes(attributes)
+    if title
+      title= title
+    use(xlink:href=`assets/img/icons.svg#${name}`)

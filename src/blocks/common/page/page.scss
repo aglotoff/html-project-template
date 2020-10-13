@@ -2,26 +2,26 @@
  * Styles for the page block
  */
 .page {
-    // Selector styles
-    font-family: $font-family-default;
-    font-size: 1rem;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-default;
+  // Selector styles
+  font-family: $font-family-default;
+  font-size: 1rem;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-default;
 
-    // @media queries
-    // TODO: add code
+  // @media queries
+  // TODO: add code
 
-    // Pseudo-classes and pseudo-elements
-    // TODO: add code
+  // Pseudo-classes and pseudo-elements
+  // TODO: add code
 
-    // Nested selectors
-    // TODO: add code
+  // Nested selectors
+  // TODO: add code
 
-    // BEM elements
-    &__container {
-        @include container();
-    }
+  // BEM elements
+  &__container {
+    @include container();
+  }
 
-    // BEM modifiers
-    // TODO: add code
+  // BEM modifiers
+  // TODO: add code
 }

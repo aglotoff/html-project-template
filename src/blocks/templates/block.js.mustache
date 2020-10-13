@@ -9,12 +9,12 @@ const BLOCK_NAME = '{{blockName}}';
 
 // Element class names
 const CLASSNAME = {
-    BLOCK: BLOCK_NAME,
+  BLOCK: BLOCK_NAME,
 };
 
 // Element selectors
 const SELECTOR = {
-    BLOCK: `.${BLOCK_NAME}`,
+  BLOCK: `.${BLOCK_NAME}`,
 };
 
 // Map of DOM elements
@@ -50,14 +50,14 @@ const elements = {};
  * @return {boolean} true if the block is present on the page; false otherwise.
  */
 export function initBlock() {
-    const block = document.querySelector(SELECTOR.BLOCK);
-    if (block == null) {
-        return false;
-    }
+  const block = document.querySelector(SELECTOR.BLOCK);
+  if (block == null) {
+    return false;
+  }
 
-    // TODO: add code here
+  // TODO: add code here
 
-    return true;
+  return true;
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------

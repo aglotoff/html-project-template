@@ -34,8 +34,8 @@ let handleWindowScroll = null;
  *      <tt>false</tt> otherwise
  */
 function isInViewport(element) {
-    const elementTop = element.getBoundingClientRect().top;
-    return (elementTop <= window.innerHeight + BUFFER_HEIGHT);
+  const elementTop = element.getBoundingClientRect().top;
+  return elementTop <= window.innerHeight + BUFFER_HEIGHT;
 }
 
 // --------------------------- END UTILITY FUNCTIONS --------------------------
@@ -48,21 +48,21 @@ function isInViewport(element) {
  * @param {HTMLImageElement} img The image element to be loaded.
  */
 function loadImage(img) {
-    const { parentElement } = img;
-    if (parentElement.tagName === 'PICTURE') {
-        const sources = parentElement.querySelectorAll('source');
-        for (let i = 0; i < sources.length; i++) {
-            const source = sources[i];
+  const { parentElement } = img;
+  if (parentElement.tagName === 'PICTURE') {
+    const sources = parentElement.querySelectorAll('source');
+    for (let i = 0; i < sources.length; i++) {
+      const source = sources[i];
 
-            source.setAttribute('srcset', source.getAttribute('data-srcset'));
-            source.removeAttribute('data-srcset');
-        }
+      source.setAttribute('srcset', source.getAttribute('data-srcset'));
+      source.removeAttribute('data-srcset');
     }
+  }
 
-    img.setAttribute('src', img.getAttribute('data-src'));
-    img.setAttribute('srcset', img.getAttribute('data-srcset'));
-    img.removeAttribute('data-srcset');
-    img.classList.remove(LAZY_CLASS);
+  img.setAttribute('src', img.getAttribute('data-src'));
+  img.setAttribute('srcset', img.getAttribute('data-srcset'));
+  img.removeAttribute('data-srcset');
+  img.classList.remove(LAZY_CLASS);
 }
 
 // ------------------------------ END DOM METHODS -----------------------------
@@ -75,21 +75,21 @@ function loadImage(img) {
  * @return {number} The number of images not yet scheduled for loading.
  */
 export function scanImages() {
-    if (images.length > 0) {
-        images = images.filter((img) => {
-            if (isInViewport(img)) {
-                loadImage(img);
-                return false;
-            }
-            return true;
-        });
+  if (images.length > 0) {
+    images = images.filter((img) => {
+      if (isInViewport(img)) {
+        loadImage(img);
+        return false;
+      }
+      return true;
+    });
 
-        if (images.length === 0) {
-            window.removeEventListener('scroll', handleWindowScroll);
-        }
+    if (images.length === 0) {
+      window.removeEventListener('scroll', handleWindowScroll);
     }
+  }
 
-    return images.length;
+  return images.length;
 }
 
 /**
@@ -98,24 +98,24 @@ export function scanImages() {
  * @param {HTMLImageElement} img The image element to be added.
  */
 export function addImage(img) {
-    images.push(img);
+  images.push(img);
 
-    if (images.length === 1) {
-        window.addEventListener('scroll', handleWindowScroll);
-    }
+  if (images.length === 1) {
+    window.addEventListener('scroll', handleWindowScroll);
+  }
 }
 
 /**
  * Initialize the lazy loader.
  */
 export function init() {
-    handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
+  handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
 
-    images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
+  images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
 
-    if (images.length > 0) {
-        window.addEventListener('scroll', handleWindowScroll);
-    }
+  if (images.length > 0) {
+    window.addEventListener('scroll', handleWindowScroll);
+  }
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------

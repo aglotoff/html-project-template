@@ -3,55 +3,55 @@
 /// @group helpers
 /// @require breakpoints-up
 @mixin breakpoint-up($name) {
-    @if map-has-key($breakpoints-up, $name) {
-        @media (min-width: #{map-get($breakpoints-up, $name)}) {
-            @content;
-        }
-    } @else {
-        @error "Invalid breakpoint name: `#{$name}`.";
+  @if map-has-key($breakpoints-up, $name) {
+    @media (min-width: #{map-get($breakpoints-up, $name)}) {
+      @content;
     }
+  } @else {
+    @error "Invalid breakpoint name: `#{$name}`.";
+  }
 }
 
 /// Clear floated content within a container
 /// @group helpers
 @mixin clearfix() {
-    &:after {
-        content: " ";
-        display: block;
-        clear: both;
-    }
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
 }
 
 /// Responsive fixed-width container
 /// @group helpers
 /// @require $container-md $container-lg $container-xl $gutter
 @mixin container() {
-    padding: 0 $gutter;
+  padding: 0 $gutter;
 
-    @include breakpoint-up(md) {
-        width: $container-md;
-        margin: 0 auto;
-    }
+  @include breakpoint-up(md) {
+    width: $container-md;
+    margin: 0 auto;
+  }
 
-    @include breakpoint-up(lg) {
-        width: $container-lg;
-    }
+  @include breakpoint-up(lg) {
+    width: $container-lg;
+  }
 
-    @include breakpoint-up(xl) {
-        width: $container-xl;
-    }
+  @include breakpoint-up(xl) {
+    width: $container-xl;
+  }
 }
 
 /// Accessible element hiding
 /// @group helpers
 @mixin visually-hidden() {
-    position: absolute;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    width: 1px;
-    border: 0;
-    clip: rect(0 0 0 0); 
-    
-    overflow: hidden;
+  position: absolute;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+
+  overflow: hidden;
 }

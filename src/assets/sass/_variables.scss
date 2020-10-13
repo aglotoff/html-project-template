@@ -6,10 +6,10 @@ $screen-sm-min: 30em;
 
 // Breakpoints based on minimum screen width
 $breakpoints-up: (
-    sm: $screen-sm-min,
-    md: $screen-md-min,
-    lg: $screen-lg-min,
-    xl: $screen-xl-min
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min,
+  xl: $screen-xl-min,
 );
 
 // Container width

@@ -17,36 +17,42 @@ const config = require('../config');
 // ----------------------------------------
 
 gulp.task('build:img', () => {
-    const images = gulp.src(config.paths.img.src)
-        .pipe(changed(config.paths.img.dest))
-        .pipe(plumber())
-        .pipe(imagemin([
-            imagemin.gifsicle({ interlaced: true }),
-            imagemin.jpegtran({ progressive: true }),
-            imagemin.optipng({ optimizationLevel: 7 }),
-            imagemin.svgo(config.plugins.imagemin.svgo),
-            mozjpeg({ progressive: true }),
-        ]));
+  const images = gulp
+    .src(config.paths.img.src)
+    .pipe(changed(config.paths.img.dest))
+    .pipe(plumber())
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 7 }),
+        imagemin.svgo(config.plugins.imagemin.svgo),
+        mozjpeg({ progressive: true }),
+      ])
+    );
 
-    const webpImages = images.pipe(clone())
-        .pipe(filter(config.paths.img.webp))
-        .pipe(webp());
+  const webpImages = images
+    .pipe(clone())
+    .pipe(filter(config.paths.img.webp))
+    .pipe(webp());
 
-    return es.merge(images, webpImages)
-        .pipe(gulp.dest(config.paths.img.dest))
-        .pipe(browserSync.reload({
-            stream: true,
-        }));
+  return es
+    .merge(images, webpImages)
+    .pipe(gulp.dest(config.paths.img.dest))
+    .pipe(
+      browserSync.reload({
+        stream: true,
+      })
+    );
 });
 
 // ----------------------------------------
 //   Task: Watch: Images
 // ----------------------------------------
 
-gulp.task('watch:img', () => gulp.watch(
-    config.paths.img.watch,
-    gulp.series('build:img'),
-));
+gulp.task('watch:img', () =>
+  gulp.watch(config.paths.img.watch, gulp.series('build:img'))
+);
 
 // ----------------------------------------
 //   Task: Clean: Images

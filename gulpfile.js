@@ -92,46 +92,50 @@ require('./gulp/tasks/static');
 //   Task: Clean
 // ----------------------------------------
 
-gulp.task('clean', gulp.parallel(
+gulp.task(
+  'clean',
+  gulp.parallel(
     'clean:css',
     'clean:static',
     'clean:html',
     'clean:icons',
     'clean:img',
-    'clean:js',
-));
+    'clean:js'
+  )
+);
 
 // ----------------------------------------
 //   Task: Build
 // ----------------------------------------
 
-gulp.task('build', gulp.series(
+gulp.task(
+  'build',
+  gulp.series(
     'clean',
     gulp.parallel(
-        gulp.series(
-            'build:icons',
-            'lint:css',
-            'build:css',
-            'build:img',
-        ),
-        'build:static',
-        'build:html',
-        'build:js',
-    ),
-));
+      gulp.series('build:icons', 'lint:css', 'build:css', 'build:img'),
+      'build:static',
+      'build:html',
+      'build:js'
+    )
+  )
+);
 
 // ----------------------------------------
 //   Task: Watch
 // ----------------------------------------
 
-gulp.task('watch', gulp.parallel(
+gulp.task(
+  'watch',
+  gulp.parallel(
     'watch:css',
     'watch:static',
     'watch:html',
     'watch:icons',
     'watch:img',
-    'watch:js',
-));
+    'watch:js'
+  )
+);
 
 // ----------------------------------------
 //   Task: Serve
@@ -143,7 +147,4 @@ gulp.task('serve', () => browserSync.init(config.plugins.browserSync));
 //   Task: Default
 // ----------------------------------------
 
-gulp.task('default', gulp.series(
-    'build',
-    gulp.parallel('serve', 'watch'),
-));
+gulp.task('default', gulp.series('build', gulp.parallel('serve', 'watch')));
