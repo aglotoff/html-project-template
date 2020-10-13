@@ -1,7 +1,0 @@
-{
-    "eslint.options": { "configFile": "./config/.eslintrc.dev.json" },
-    "stylelint.config": {
-        "extends": "./config/.stylelintrc.json"
-    },
-    "editor.formatOnSave": true
-}

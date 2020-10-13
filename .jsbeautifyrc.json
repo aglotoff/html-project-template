@@ -1,0 +1,12 @@
+{
+  "html": {
+    "inline": [
+      "abbr", "b",    "bdi",   "bdo",    "br",  "cite", "code", "data", 
+      "del",  "dfn",  "em",    "i",      "ins", "kbd",  "mark", "q", 
+      "s",    "samp", "small", "strong", "sub", "sup",  "u",    "var",
+      "wbr"
+    ]
+  },
+  "indent-size": 2,
+  "indentSize": 2
+}

@@ -20,7 +20,6 @@ const { env } = minimist(process.argv.slice(2), {
 const TOP = '.';
 const SRC = `${TOP}/src`;
 const DIST = `${TOP}/dist`;
-const CONFIG = `${TOP}/config`;
 
 module.exports = {
   env,
@@ -107,7 +106,7 @@ module.exports = {
       server: DIST,
     },
 
-    beautify: JSON.parse(fs.readFileSync(`${CONFIG}/.jsbeautifyrc.json`)),
+    beautify: JSON.parse(fs.readFileSync(`${TOP}/.jsbeautifyrc.json`)),
 
     imagemin: {
       svgo: {
@@ -155,10 +154,10 @@ module.exports = {
           console: true,
         },
       ],
-      configFile: `${CONFIG}/.stylelintrc.json`,
+      configFile: `${TOP}/.stylelintrc.json`,
     },
 
     // eslint-disable-next-line global-require
-    webpack: require('../config/webpack.config')({ mode: env }),
+    webpack: require('../webpack.config')({ mode: env }),
   },
 };
