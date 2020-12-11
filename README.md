@@ -11,7 +11,6 @@ This project is based on [Gulp](https://gulpjs.com/) and uses
 Features
 --------
 
-* Code organization using the [BEM](https://bem.info) methodology
 * CSS transforming with Sass & PostCSS
 * JavaScript bundling with Webpack & Babel
 * Code linting with Stylelint & ESLint

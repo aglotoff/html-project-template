@@ -4,5 +4,5 @@ node_modules/
 package-lock.json
 
 # ignore auto-generated files
-src/blocks/common/icon/icon.scss
+src/components/common/icon/icon.scss
 src/assets/img/icons.svg

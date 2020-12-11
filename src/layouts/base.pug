@@ -1,7 +1,7 @@
 //- Base layout for all pages
 
-//- Common Block Imports
-include ../blocks/common/icon/icon.pug
+//- Common Component Imports
+include ../components/common/icon/icon.pug
 
 <!DOCTYPE html>
 html(lang="en")
@@ -14,6 +14,8 @@ html(lang="en")
       title #{data.pageTitle} | #{data.siteTitle}
     else
       title #{data.siteTitle} &#8211; #{data.siteTagline}
+
+    link(rel="manifest", href="/manifest.json")
 
     link(rel="stylesheet", href=`css/style.css?v=${data.version}`)
   body.page

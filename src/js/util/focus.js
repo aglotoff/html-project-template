@@ -62,7 +62,7 @@ function handleMouseDown(e) {
 /**
  * Initialize the focus utility.
  */
-export function init() {
+export default function initFocusUtility() {
   document.addEventListener('keydown', handleKeyDown, false);
 }
 

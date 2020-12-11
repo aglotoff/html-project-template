@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 // Node Imports
 const fs = require('fs');
@@ -10,9 +11,9 @@ const minimist = require('minimist');
 const Mustache = require('mustache');
 
 // Constants
-const BLOCK_DIR = './src/blocks';
-const BLOCK_NAME_REGEXP = /^([a-z][0-9a-z]*)(-[0-9a-z]+)*$/;
-const TEMPLATE_DIR = './src/blocks/templates';
+const COMPONENTS_DIR = './src/components';
+const COMPONENT_NAME_REGEXP = /^([a-z][0-9a-z]*)(-[0-9a-z]+)*$/;
+const TEMPLATE_DIR = './src/components/templates';
 
 // Promisified Functions
 const exists = util.promisify(fs.exists);
@@ -24,20 +25,20 @@ function capitalize(word) {
   return word.substr(0, 1).toUpperCase() + word.substr(1);
 }
 
-function getConstructorName(blockName) {
-  return blockName
+function getConstructorName(componentName) {
+  return componentName
     .split('-')
     .reduce((result, word) => result + capitalize(word), '');
 }
 
-function getBlockTitle(blockName) {
-  return blockName.replace(/-/g, ' ');
+function getComponentTitle(componentName) {
+  return componentName.replace(/-/g, ' ');
 }
 
 async function createDirectory(dirName) {
-  const blockExists = await exists(dirName);
-  if (blockExists) {
-    throw new Error(`Block already exists: ${dirName}`);
+  const componentExists = await exists(dirName);
+  if (componentExists) {
+    throw new Error(`Component already exists: ${dirName}`);
   }
 
   return mkdir(dirName, { recursive: true });
@@ -51,22 +52,22 @@ async function renderTemplate(templateName, tags, outputPath) {
 }
 
 function renderAllTemplates(dirName, options) {
-  const blockName = path.basename(dirName);
+  const componentName = path.basename(dirName);
 
   const tags = {
-    blockName,
-    blockTitle: getBlockTitle(blockName),
-    constructorName: getConstructorName(blockName),
+    componentName,
+    componentTitle: getComponentTitle(componentName),
+    constructorName: getConstructorName(componentName),
   };
 
   const results = [];
   Object.keys(options.types).forEach((type) => {
-    let templateName = `block.${type}.mustache`;
+    let templateName = `component.${type}.mustache`;
     if (type === 'js' && options.generateClass) {
-      templateName = 'block.class.js.mustache';
+      templateName = 'component.class.js.mustache';
     }
 
-    const outputPath = path.join(dirName, `${blockName}.${type}`);
+    const outputPath = path.join(dirName, `${componentName}.${type}`);
     results.push(renderTemplate(templateName, tags, outputPath));
 
     if (type === 'js') {
@@ -83,21 +84,24 @@ function renderAllTemplates(dirName, options) {
   return Promise.all(results);
 }
 
-async function createBlock(blockPath, options) {
-  const dirName = path.join(BLOCK_DIR, blockPath);
+async function createComponent(componentPath, options) {
+  const dirName = path.join(COMPONENTS_DIR, componentPath);
 
-  const blockName = path.basename(dirName);
-  if (!BLOCK_NAME_REGEXP.test(blockName)) {
-    throw new Error(`Invalid block name: ${blockName}`);
+  const componentName = path.basename(dirName);
+  if (!COMPONENT_NAME_REGEXP.test(componentName)) {
+    throw new Error(`Invalid component name: ${componentName}`);
   }
 
   await createDirectory(dirName);
   await renderAllTemplates(dirName, options);
 }
 
-async function createAllBlocks(blocks, options) {
+async function createAllComponents(components, options) {
   try {
-    await Promise.all(blocks.map((block) => createBlock(block, options)));
+    await Promise.all(components.map((component) => createComponent(
+      component,
+      options,
+    )));
   } catch (err) {
     console.error(err.message);
     process.exit(1);
@@ -106,23 +110,23 @@ async function createAllBlocks(blocks, options) {
 
 (async () => {
   const usageStr = `
-    Usage: make-block BLOCK... [OPTION]...
-    Create one or multiple BLOCK(s)
+    Usage: make-component COMPONENT... [OPTION]...
+    Create one or multiple COMPONENT(s)
 
     Select implementation technologies:
     -a, --all     Generate .scss, .pug, and .js files (default)
-    -s, --scss    Generate a .scss file for block styles
-    -p, --pug     Generate a .pug file for block markup
-    -j, --js      Generate a .js file for block behavior
+    -s, --scss    Generate a .scss file for component styles
+    -p, --pug     Generate a .pug file for component markup
+    -j, --js      Generate a .js file for component behavior
 
     Additional options:
-    -c, --class   Generate a JS class definition for the block
+    -c, --class   Generate a JS class definition for the component
     `;
 
   const parsedArgs = minimist(process.argv.slice(2));
 
-  const blocks = parsedArgs._;
-  if (blocks.length === 0) {
+  const components = parsedArgs._;
+  if (components.length === 0) {
     console.error(usageStr);
     process.exit(1);
   }
@@ -182,5 +186,5 @@ async function createAllBlocks(blocks, options) {
     };
   }
 
-  await createAllBlocks(blocks, options);
+  await createAllComponents(components, options);
 })();

@@ -33,9 +33,9 @@ module.exports = {
     dest: DIST,
 
     static: {
-      src: `${SRC}/assets/static/**/*`,
+      src: `${SRC}/static/**/*`,
       dest: `${DIST}`,
-      watch: `${SRC}/assets/static/**/*`,
+      watch: `${SRC}/static/**/*`,
       clean: [
         `${DIST}/**/*`,
         `!${DIST}/**/*.html`,
@@ -44,7 +44,7 @@ module.exports = {
     },
 
     css: {
-      src: [`${SRC}/assets/sass/*.scss`, `!${SRC}/assets/sass/_*.scss`],
+      src: [`${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss`],
       dest: `${DIST}/css`,
       lint: `${SRC}/**/*.scss`,
       watch: `${SRC}/**/*.scss`,
@@ -63,25 +63,25 @@ module.exports = {
     },
 
     icons: {
-      src: `${SRC}/assets/icons/*.svg`,
-      dest: `${SRC}/assets/`,
-      watch: `${SRC}/assets/icons/*.svg`,
+      src: `${SRC}/icons/*.svg`,
+      dest: `${SRC}/`,
+      watch: `${SRC}/icons/*.svg`,
       clean: [
-        `${SRC}/assets/img/icons.svg`,
-        `${SRC}/blocks/common/icon/icon.scss`,
+        `${SRC}/img/icons.svg`,
+        `${SRC}/components/common/icon/icon.scss`,
       ],
     },
 
     img: {
-      src: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+      src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
       dest: `${DIST}/img`,
-      watch: `${SRC}/assets/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+      watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
       clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
       webp: '**/*.{jpg,jpeg,png}',
     },
 
     js: {
-      src: `${SRC}/assets/js/*.js`,
+      src: `${SRC}/js/*.js`,
       dest: `${DIST}/js`,
       lint: `${SRC}/**/*.js`,
       watch: `${SRC}/**/*.js`,
@@ -137,8 +137,8 @@ module.exports = {
           sprite: '../img/icons.svg',
           render: {
             scss: {
-              dest: '../../blocks/common/icon/icon.scss',
-              template: `${SRC}/blocks/common/icon/icon.mustache`,
+              dest: '../components/common/icon/icon.scss',
+              template: `${SRC}/components/common/icon/icon.mustache`,
             },
           },
         },

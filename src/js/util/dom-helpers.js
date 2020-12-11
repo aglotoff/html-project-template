@@ -140,7 +140,7 @@ export function scrollTo(target, duration) {
   }
 
   return new Promise((resolve) => {
-    animate(function onStep(progress) {
+    animate((progress) => {
       if (progress === 1) {
         window.scroll(leftOffset, targetOffset);
         resolve();

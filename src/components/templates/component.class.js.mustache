@@ -1,20 +1,20 @@
 /**
- * @file Implementation of the {{blockTitle}} block.
+ * @file Implementation of the {{componentTitle}} component.
  */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-// Block name
-const BLOCK_NAME = '{{blockName}}';
+// Component name
+const COMPONENT_NAME = '{{componentName}}';
 
 // Element class names
 const CLASSNAME = {
-  BLOCK: BLOCK_NAME,
+  ROOT: COMPONENT_NAME,
 };
 
 // Element selectors
 const SELECTOR = {
-  BLOCK: `.${BLOCK_NAME}`,
+  ROOT: `.${COMPONENT_NAME}`,
 };
 
 // Associate class instances with DOM elements using a weak map
@@ -25,13 +25,13 @@ const instanceMap = new WeakMap();
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 /**
- * {{blockTitle}}.
+ * {{componentTitle}}.
  */
-export class {{constructorName}} {
+export default class {{constructorName}} {
   /**
-   * Initialize the {{blockTitle}} block.
+   * Initialize the {{componentTitle}} component.
    * 
-   * @param {HTMLElement} root The root element of the block.
+   * @param {HTMLElement} root The root element of the component.
    */
   constructor(root) {
     // TODO: add code here
@@ -54,7 +54,7 @@ export class {{constructorName}} {
   // -------------------------- BEGIN PUBLIC METHODS ------------------------
 
   /**
-   * Get a block instance associated with the given DOM element.
+   * Get a component instance associated with the given DOM element.
    *
    * @param {HTMLElement} element The element.
    * @returns {Object | null} The associated instance or null if no such
@@ -65,10 +65,10 @@ export class {{constructorName}} {
   }
 
   /**
-   * Initialize all {{blockTitle}} blocks on the page.
+   * Initialize all {{componentTitle}} components on the page.
    */
   static initAll() {
-    [].forEach.call(document.querySelectorAll(SELECTOR.BLOCK), (root) => {
+    [].forEach.call(document.querySelectorAll(SELECTOR.ROOT), (root) => {
       new {{constructorName}}(root);
     });
   }

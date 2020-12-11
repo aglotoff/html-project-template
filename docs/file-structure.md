@@ -17,9 +17,9 @@ The project's structure looks as follows:
         |-- /js                 # JavaScript sources
         |-- /sass               # Sass sources
         |-- /static             # assets to copy without touching, e.g. fonts
-    |-- /blocks                 # block implementations
+    |-- /components             # component implementations
         |-- /common
-        |-- /templates          # templates for generating blocks
+        |-- /templates          # templates for generating components
         |-- ...
     |-- /data                   # data for page generation
     |-- /layouts                # layout templates

@@ -1,20 +1,20 @@
 /**
- * @file Implementation of the {{blockTitle}} block.
+ * @file Implementation of the {{componentTitle}} component.
  */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-// Block name
-const BLOCK_NAME = '{{blockName}}';
+// Component name
+const COMPONENT_NAME = '{{componentName}}';
 
 // Element class names
 const CLASSNAME = {
-  BLOCK: BLOCK_NAME,
+  ROOT: COMPONENT_NAME,
 };
 
 // Element selectors
 const SELECTOR = {
-  BLOCK: `.${BLOCK_NAME}`,
+  ROOT: `.${COMPONENT_NAME}`,
 };
 
 // Map of DOM elements
@@ -45,13 +45,14 @@ const elements = {};
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
- * Initialize the {{blockTitle}} block.
+ * Initialize the {{componentTitle}} component.
  *
- * @return {boolean} true if the block is present on the page; false otherwise.
+ * @return {boolean} true if the component is present on the page; false
+ * otherwise.
  */
-export function initBlock() {
-  const block = document.querySelector(SELECTOR.BLOCK);
-  if (block == null) {
+function init() {
+  const root = document.querySelector(SELECTOR.ROOT);
+  if (root == null) {
     return false;
   }
 
@@ -61,3 +62,7 @@ export function initBlock() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+export default {
+  init,
+};

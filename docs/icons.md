@@ -11,11 +11,11 @@ src/assets/icons/
 
 During the build process, the following files will be automatically generated:
 
-* `src/blocks/common/icon/icon.scss` - styles for icon classes
+* `src/components/common/icon/icon.scss` - styles for icon classes
 * `src/assets/img/icons.svg` - the resulting sprite
 
 To use the sprite in your markup, include the `icon` mixin from the
-`src/blocks/common/icon/icon.pug` file and pass the icon's name to it as a
+`src/components/common/icon/icon.pug` file and pass the icon's name to it as a
 parameter:
 ```
 +icon('card')
@@ -30,4 +30,4 @@ purposes:
 ```
 
 If you want to customize the generated CSS icon classes, edit the template file
-`src/blocks/common/icon/icon.mustache`.
+`src/components/common/icon/icon.mustache`.

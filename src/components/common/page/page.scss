@@ -1,9 +1,12 @@
 /**
- * Styles for the {{blockTitle}} block.
+ * Styles for the page component
  */
-.{{blockName}} {
+.page {
   // Selector styles
-  // TODO: add code
+  font-family: $font-family-default;
+  font-size: 1rem;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-default;
 
   // @media queries
   // TODO: add code
@@ -15,7 +18,9 @@
   // TODO: add code
 
   // BEM elements
-  // TODO: add code
+  &__container {
+    @include container();
+  }
 
   // BEM modifiers
   // TODO: add code

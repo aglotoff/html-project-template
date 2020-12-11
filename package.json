@@ -7,7 +7,7 @@
     "start": "gulp",
     "build": "gulp build --env=production",
     "gulp": "gulp",
-    "make-block": "node scripts/make-block",
+    "make-component": "node scripts/make-component",
     "bump-version": "node scripts/bump-version"
   },
   "repository": {
@@ -65,5 +65,8 @@
     "webpack": "^4.39.1",
     "webpack-stream": "^5.2.1",
     "yaml": "^1.9.2"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^7.0.0"
   }
 }

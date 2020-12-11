@@ -74,7 +74,7 @@ function loadImage(img) {
  *
  * @return {number} The number of images not yet scheduled for loading.
  */
-export function scanImages() {
+function scanImages() {
   if (images.length > 0) {
     images = images.filter((img) => {
       if (isInViewport(img)) {
@@ -97,7 +97,7 @@ export function scanImages() {
  *
  * @param {HTMLImageElement} img The image element to be added.
  */
-export function addImage(img) {
+function addImage(img) {
   images.push(img);
 
   if (images.length === 1) {
@@ -108,7 +108,7 @@ export function addImage(img) {
 /**
  * Initialize the lazy loader.
  */
-export function init() {
+function init() {
   handleWindowScroll = throttle(scanImages, SCROLL_INTERVAL);
 
   images = [].slice.call(document.querySelectorAll(`img.${LAZY_CLASS}`));
@@ -119,3 +119,9 @@ export function init() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+export default {
+  addImage,
+  scanImages,
+  init,
+};
