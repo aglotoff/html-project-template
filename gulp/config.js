@@ -52,7 +52,7 @@ module.exports = {
     },
 
     html: {
-      src: `${SRC}/pages/*.pug`,
+      src: `${SRC}/pages/**/*.pug`,
       globalData: `${SRC}/data/globals.yml`,
       pageData: `${SRC}/data/pages/**/*.yml`,
       pageDataDir: `${SRC}/data/pages`,

@@ -5,4 +5,4 @@ package-lock.json
 
 # ignore auto-generated files
 src/components/common/icon/icon.scss
-src/assets/img/icons.svg
+src/img/icons.svg
