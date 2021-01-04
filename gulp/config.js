@@ -119,6 +119,7 @@ module.exports = {
     },
 
     pug: {
+      basedir: `${SRC}`,
       pretty: true,
     },
 
@@ -128,6 +129,7 @@ module.exports = {
     },
 
     sass: {
+      includePaths: [`${SRC}`, `${TOP}/node_modules`],
       outputStyle: 'expanded',
     },
 
