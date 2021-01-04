@@ -1,4 +1,4 @@
-const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = ({ mode = 'development' }) => ({
   output: {
@@ -7,32 +7,20 @@ module.exports = ({ mode = 'development' }) => ({
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader',
-          options: {
-            configFile:
-              mode === 'production'
-                ? path.join(__dirname, '.eslintrc.json')
-                : path.join(__dirname, '.eslintrc.dev.json'),
-            emitWarning: true,
-          },
-        },
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: path.join(__dirname, 'babel.config.js'),
+            presets: ['@babel/preset-env'],
           },
         },
       },
     ],
   },
+  plugins: [new ESLintPlugin({
+    emitWarning: true,
+  })],
   mode,
   devtool: 'source-map',
 });
