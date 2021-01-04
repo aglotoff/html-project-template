@@ -6,11 +6,12 @@ import 'core-js/features/promise';
 import svg4everybody from 'svg4everybody';
 
 // Utility imports
-import initFocusUtility from './util/focus';
-import LazyLoader from './util/lazy-loader';
+import initFocusUtility from '@utils/focus';
+import LazyLoader from '@utils/lazy-loader';
 
 // Component imports
 // TODO: add code here
+// import Example from '@components/example';
 
 // Initialize libraries
 svg4everybody();

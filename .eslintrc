@@ -18,5 +18,13 @@
     "no-plusplus": "off",
     "no-use-before-define": "off",
     "no-new": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {},
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
   }
 }

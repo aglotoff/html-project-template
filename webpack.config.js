@@ -1,6 +1,7 @@
+const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
-module.exports = ({ mode = 'development' }) => ({
+module.exports = ({ mode = 'development' } = {}) => ({
   output: {
     filename: '[name].js',
   },
@@ -18,9 +19,17 @@ module.exports = ({ mode = 'development' }) => ({
       },
     ],
   },
-  plugins: [new ESLintPlugin({
-    emitWarning: true,
-  })],
+  plugins: [
+    new ESLintPlugin({
+      emitWarning: true,
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@utils': path.resolve(__dirname, 'src/js/utils/'),
+    },
+  },
   mode,
   devtool: 'source-map',
 });
