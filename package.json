@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aglotoff/static-site-template.git"
+    "url": "git+https://github.com/andrey-glotov/static-site-template.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aglotoff/static-site-template/issues"
+    "url": "https://github.com/andrey-glotov/static-site-template/issues"
   },
-  "homepage": "https://github.com/aglotoff/static-site-template#readme",
+  "homepage": "https://github.com/andrey-glotov/static-site-template#readme",
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
