@@ -35,7 +35,7 @@ async function replaceInFile(fileName, regexp, replaceValue) {
 
   replaceInFile(
     'src/data/globals.yml',
-    /version: "\d+\.\d+\.\d+"/,
-    `version: "${version}"`
+    /version: '\d+\.\d+\.\d+'/,
+    `version: '${version}'`
   );
 })();
