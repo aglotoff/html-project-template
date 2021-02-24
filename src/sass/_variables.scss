@@ -1,25 +1,3 @@
-// Minimum screen sizes
-$screen-xl-min: 75em;
-$screen-lg-min: 62em;
-$screen-md-min: 48em;
-$screen-sm-min: 30em;
-
-// Breakpoints based on minimum screen width
-$breakpoints-up: (
-  sm: $screen-sm-min,
-  md: $screen-md-min,
-  lg: $screen-lg-min,
-  xl: $screen-xl-min,
-);
-
-// Container width
-$container-xl: 73em;
-$container-lg: 60em;
-$container-md: 46em;
-
-// Column gutter
-$gutter: 1em;
-
 // Fonts
 $font-family-default: Helvetica, Arial, sans-serif;
 

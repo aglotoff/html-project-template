@@ -1,17 +1,3 @@
-/// Breakpoint & up (toggle on the given screen size and above)
-/// @param {String} $name - Breakpoint name
-/// @group helpers
-/// @require breakpoints-up
-@mixin breakpoint-up($name) {
-  @if map-has-key($breakpoints-up, $name) {
-    @media (min-width: #{map-get($breakpoints-up, $name)}) {
-      @content;
-    }
-  } @else {
-    @error "Invalid breakpoint name: `#{$name}`.";
-  }
-}
-
 /// Clear floated content within a container
 /// @group helpers
 @mixin clearfix() {
@@ -19,26 +5,6 @@
     content: ' ';
     display: block;
     clear: both;
-  }
-}
-
-/// Responsive fixed-width container
-/// @group helpers
-/// @require $container-md $container-lg $container-xl $gutter
-@mixin container() {
-  padding: 0 $gutter;
-
-  @include breakpoint-up(md) {
-    width: $container-md;
-    margin: 0 auto;
-  }
-
-  @include breakpoint-up(lg) {
-    width: $container-lg;
-  }
-
-  @include breakpoint-up(xl) {
-    width: $container-xl;
   }
 }
 
@@ -54,4 +20,19 @@
   clip: rect(0 0 0 0);
 
   overflow: hidden;
+}
+
+/// Use a webp background image, but only if the browser supports it
+/// @group helpers
+@mixin webp-background-image($url) {
+  /* Chrome 66+, Edge 79+, Opera 53+, Android Brower 80+ */
+  @supports (background-image: -webkit-image-set(url($url) 1x)) {
+    /* stylelint-disable-next-line */
+    background-image: -webkit-image-set(url($url) 1x);
+  }
+
+  /* FF 66+ */
+  @supports ((flex-basis: max-content)) and ((-moz-appearance: meterbar)) {
+    background-image: url($url);
+  }
 }
