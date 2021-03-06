@@ -26,9 +26,11 @@
 /// @group helpers
 @mixin webp-background-image($url) {
   /* Chrome 66+, Edge 79+, Opera 53+, Android Brower 80+ */
-  @supports (background-image: -webkit-image-set(url($url) 1x)) {
-    /* stylelint-disable-next-line */
-    background-image: -webkit-image-set(url($url) 1x);
+  @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+    @supports (background-image: -webkit-image-set(url($url) 1x)) {
+      /* stylelint-disable-next-line */
+      background-image: -webkit-image-set(url($url) 1x);
+    }
   }
 
   /* FF 66+ */
