@@ -3,39 +3,93 @@
 
 // Node Imports
 const fs = require('fs');
+const path = require('path');
 const util = require('util');
+
+// Constants
+const PACKAGE_JSON = path.resolve(__dirname, '../package.json');
+const GLOBALS_YML = path.resolve(__dirname, '../src/data/globals.yml');
 
 // Promisified Functions
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
+/**
+ * Read the contents of the file, replace text, and write the results back.
+ *
+ * @param fileName The name of the file.
+ * @param regexp The pattern to search for.
+ * @param replaceValue The text to replace with.
+ */
 async function replaceInFile(fileName, regexp, replaceValue) {
+  const content = await readFile(fileName, 'utf8');
+
+  const result = content.replace(regexp, replaceValue);
+
+  await writeFile(fileName, result, 'utf8');
+}
+
+/**
+ * Read the current project version from package.json file.
+ *
+ * @returns The object containing the major, minor, and patch parts.
+ */
+async function readCurrentVersion() {
+  const content = await readFile(PACKAGE_JSON);
+
+  const match = /"version": "(\d+)\.(\d+)\.(\d+)"/.exec(content);
+
+  return {
+    major: +match[1],
+    minor: +match[2],
+    patch: +match[3],
+  };
+}
+
+(async () => {
   try {
-    const content = await readFile(fileName, 'utf8');
-    const result = content.replace(regexp, replaceValue);
-    await writeFile(fileName, result, 'utf8');
+    const part = process.argv[2] || 'patch';
+
+    let { major, minor, patch } = await readCurrentVersion();
+
+    switch (part) {
+      case 'major':
+        major++;
+        minor = 0;
+        patch = 0;
+        break;
+
+      case 'minor':
+        minor++;
+        patch = 0;
+        break;
+
+      case 'patch':
+        patch++;
+        break;
+
+      default:
+        console.error(`Invalid part: ${part}`);
+        process.exit(1);
+    }
+
+    const versionString = `${major}.${minor}.${patch}`;
+
+    // Bump version in the package.json file
+    replaceInFile(
+      PACKAGE_JSON,
+      /"version": "\d+\.\d+\.\d+"/,
+      `"version": "${versionString}"`
+    );
+
+    // Bump version in the global data file
+    replaceInFile(
+      GLOBALS_YML,
+      /version: '\d+\.\d+\.\d+'/,
+      `version: '${versionString}'`
+    );
   } catch (err) {
     console.error(err.message);
     process.exit(1);
   }
-}
-
-(async () => {
-  const version = process.argv[2];
-  if (!/^\d+\.\d+\.\d+$/.test(version)) {
-    console.error(`Invalid version string: ${version}`);
-    process.exit(1);
-  }
-
-  replaceInFile(
-    'package.json',
-    /"version": "\d+\.\d+\.\d+"/,
-    `"version": "${version}"`
-  );
-
-  replaceInFile(
-    'src/data/globals.yml',
-    /version: '\d+\.\d+\.\d+'/,
-    `version: '${version}'`
-  );
 })();
