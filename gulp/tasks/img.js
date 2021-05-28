@@ -24,7 +24,6 @@ gulp.task('build:img', () => {
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
-        imagemin.jpegtran({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 7 }),
         imagemin.svgo(config.plugins.imagemin.svgo),
         mozjpeg({ progressive: true }),
