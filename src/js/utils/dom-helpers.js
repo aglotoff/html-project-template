@@ -132,11 +132,11 @@ export function scrollTo(target, duration) {
   const documentHeight = document.body.clientHeight;
   const windowHeight = window.innerHeight;
 
-  let targetOffset;
-  if (documentHeight - target.offsetTop < windowHeight) {
-    targetOffset = documentHeight - windowHeight;
-  } else {
-    targetOffset = target.offsetTop;
+  const targetTop = target.getBoundingClientRect().top;
+
+  let targetOffset = targetTop + document.documentElement.scrollTop;
+  if ((documentHeight - targetOffset) < windowHeight) {
+      targetOffset = documentHeight - windowHeight;
   }
 
   return new Promise((resolve) => {
