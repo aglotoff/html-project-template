@@ -1,20 +1,20 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const data = require('gulp-data');
-const filter = require('gulp-filter');
-const beautify = require('gulp-beautify');
-const plumber = require('gulp-plumber');
-const pug = require('gulp-pug');
-const pugInheritance = require('gulp-pug-inheritance');
-const tap = require('gulp-tap');
-const lazypipe = require('lazypipe');
-const YAML = require('yaml');
+import browserSync from 'browser-sync';
+import del from 'del';
+import gulp from 'gulp';
+import data from 'gulp-data';
+import filter from 'gulp-filter';
+import beautify from 'gulp-beautify';
+import plumber from 'gulp-plumber';
+import pug from 'gulp-pug';
+import pugInheritance from 'gulp-pug-inheritance';
+import tap from 'gulp-tap';
+import lazypipe from 'lazypipe';
+import YAML from 'yaml';
 
-const config = require('../config');
+import config from '../config';
 
 const htmlTasks = lazypipe()
   .pipe(data, (file) => {
@@ -40,23 +40,14 @@ const htmlTasks = lazypipe()
   .pipe(gulp.dest, config.paths.html.dest)
   .pipe(browserSync.reload, { stream: true });
 
-// ----------------------------------------
-//   Task: Build: HTML
-// ----------------------------------------
-
-gulp.task('build:html', (cb) => {
+export const html = (cb) =>
   gulp
     .src(config.paths.html.src)
     .pipe(plumber())
     .pipe(htmlTasks())
     .on('end', cb);
-});
 
-// ----------------------------------------
-//   Task: Watch: HTML: Templates
-// ----------------------------------------
-
-gulp.task('watch:html:templates', () =>
+export const watchPages = () =>
   gulp.watch(config.paths.html.watch).on('all', (e, filePath) => {
     if (e !== 'add' && e !== 'change') {
       return;
@@ -78,22 +69,12 @@ gulp.task('watch:html:templates', () =>
       // e.g. layout files
       .pipe(filter((file) => !file.relative.startsWith('..')))
       .pipe(htmlTasks());
-  })
-);
+  });
 
-// ----------------------------------------
-//   Task: Watch: HTML: Global Data
-// ----------------------------------------
+export const watchGlobalData = () =>
+  gulp.watch(config.paths.html.globalData, html);
 
-gulp.task('watch:html:global-data', () =>
-  gulp.watch(config.paths.html.globalData, gulp.series('build:html'))
-);
-
-// ----------------------------------------
-//   Task: Watch: HTML: Page Data
-// ----------------------------------------
-
-gulp.task('watch:html:page-data', () =>
+export const watchPageData = () =>
   gulp.watch(config.paths.html.pageData).on('all', (e, filePath) => {
     if (e !== 'add' && e !== 'change') {
       return;
@@ -114,24 +95,12 @@ gulp.task('watch:html:page-data', () =>
       })
       .pipe(plumber())
       .pipe(htmlTasks());
-  })
-);
+  });
 
-// ----------------------------------------
-//   Task: Watch: HTML
-// ----------------------------------------
+export const watchHtml = () => {
+  watchGlobalData();
+  watchPageData();
+  watchPages();
+};
 
-gulp.task(
-  'watch:html',
-  gulp.parallel(
-    'watch:html:templates',
-    'watch:html:global-data',
-    'watch:html:page-data'
-  )
-);
-
-// ----------------------------------------
-//   Task: Clean: HTML
-// ----------------------------------------
-
-gulp.task('clean:html', () => del(config.paths.html.clean));
+export const cleanHtml = () => del(config.paths.html.clean);

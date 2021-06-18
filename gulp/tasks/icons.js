@@ -1,16 +1,12 @@
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const svgSprite = require('gulp-svg-sprite');
+import browserSync from 'browser-sync';
+import del from 'del';
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
+import svgSprite from 'gulp-svg-sprite';
 
-const config = require('../config');
+import config from '../config';
 
-// ----------------------------------------
-//   Task: Build: Icons
-// ----------------------------------------
-
-gulp.task('build:icons', () =>
+export const icons = () =>
   gulp
     .src(config.paths.icons.src)
     .pipe(plumber())
@@ -20,19 +16,8 @@ gulp.task('build:icons', () =>
       browserSync.reload({
         stream: true,
       })
-    )
-);
+    );
 
-// ----------------------------------------
-//   Task: Watch: Icons
-// ----------------------------------------
+export const watchIcons = () => gulp.watch(config.paths.icons.watch, icons);
 
-gulp.task('watch:icons', () =>
-  gulp.watch(config.paths.icons.watch, gulp.series('build:icons'))
-);
-
-// ----------------------------------------
-//   Task: Clean: Icons
-// ----------------------------------------
-
-gulp.task('clean:icons', () => del(config.paths.icons.clean));
+export const cleanIcons = () => del(config.paths.icons.clean);

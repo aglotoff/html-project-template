@@ -43,7 +43,7 @@ module.exports = {
       ],
     },
 
-    css: {
+    styles: {
       src: [`${SRC}/sass/*.scss`, `!${SRC}/sass/_*.scss`],
       dest: `${DIST}/css`,
       lint: `${SRC}/**/*.scss`,
@@ -72,7 +72,7 @@ module.exports = {
       ],
     },
 
-    img: {
+    images: {
       src: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
       dest: `${DIST}/img`,
       watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
@@ -80,7 +80,7 @@ module.exports = {
       webp: '**/*.{jpg,jpeg,png}',
     },
 
-    js: {
+    scripts: {
       src: `${SRC}/js/*.js`,
       dest: `${DIST}/js`,
       lint: `${SRC}/**/*.js`,
@@ -93,9 +93,7 @@ module.exports = {
    * Toggle plugins on or off
    */
   run: {
-    css: {
-      cssnano: env === 'production',
-    },
+    cssnano: env === 'production',
   },
 
   /*

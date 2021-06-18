@@ -1,36 +1,20 @@
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const changed = require('gulp-changed');
+import browserSync from 'browser-sync';
+import del from 'del';
+import gulp from 'gulp';
 
-const config = require('../config');
+import config from '../config';
 
-// ----------------------------------------
-//   Task: Build: Static Assets
-// ----------------------------------------
-
-gulp.task('build:static', () =>
+export const staticAssets = () =>
   gulp
     .src(config.paths.static.src)
-    .pipe(changed(config.paths.static.dest))
     .pipe(gulp.dest(config.paths.static.dest))
     .pipe(
       browserSync.reload({
         stream: true,
       })
-    )
-);
+    );
 
-// ----------------------------------------
-//   Task: Watch: Static Assets
-// ----------------------------------------
+export const watchStatic = () =>
+  gulp.watch(config.paths.static.watch, staticAssets);
 
-gulp.task('watch:static', () =>
-  gulp.watch(config.paths.static.watch, gulp.series('build:static'))
-);
-
-// ----------------------------------------
-//   Task: Clean: Static Assets
-// ----------------------------------------
-
-gulp.task('clean:static', () => del(config.paths.static.clean));
+export const cleanStatic = () => del(config.paths.static.clean);
