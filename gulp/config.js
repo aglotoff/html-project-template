@@ -1,8 +1,7 @@
 /* eslint-env node */
 
-const fs = require('fs');
-
-const minimist = require('minimist');
+import fs from 'fs';
+import minimist from 'minimist';
 
 /**
  * Read in the environment flag

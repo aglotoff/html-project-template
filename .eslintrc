@@ -20,6 +20,17 @@
     "no-new": "off"
   },
   "settings": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "./gulp/**/*.js",
+          "./scripts/**/*",
+          "./gulpfile.babel.js",
+          "./webpack.config.js"
+        ]
+      }
+    ],
     "import/resolver": {
       "node": {},
       "webpack": {
