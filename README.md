@@ -181,38 +181,34 @@ The following template files are used to generate components:
 You can edit them if you want.
 
 
-SVG Sprite Icon System
-----------------------
+## SVG Sprite Icon System
 
-Every individual SVG icon is placed into the `src/assets/icons/` directory. The
-name of the file becomes the name of the icon, e.g.:
+Place each SVG icon into the `src/assets/icons/` directory. The name of the
+file becomes the name of the icon, e.g.:
+
 ```
-src/assets/icons/
-|-- card.svg        # class="icon icon_card"
-`-- search.svg      # class="icon icon_search"
+/icons
+|-- card.svg        # produces class="icon icon_card"
+|-- search.svg      # produces class="icon icon_search"
 ```
 
-During the build process, the following files will be automatically generated:
+During the build process, the following files will be generated:
 
-* `src/components/common/icon/icon.scss` - styles for icon classes
-* `src/assets/img/icons.svg` - the resulting sprite
+* `src/components/common/icon/icon.scss` - styles for the icons
+* `src/assets/img/icons.svg` - SVG sprite containing all icons
 
-To use the sprite in your markup, include the `icon` mixin from the
-`src/components/common/icon/icon.pug` file and pass the icon's name to it as a
-parameter:
-```
+To use the sprite in your markup, include the `icon` component and pass the
+name of the icon as a parameter. The second parameter is an optional title
+used for accessibility purposes.
+
+```pug
+include /components/common/icon/icon.pug
+
 +icon('card')
-+icon('search')
-```
-
-The second optional parameter is an SVG title used for web accessibility
-purposes:
-```
-+icon('card', 'View the shopping card')
 +icon('search', 'Open the search dialog')
 ```
 
-If you want to customize the generated CSS icon classes, edit the template file
+If you want to customize generated CSS classes, edit the template file
 `src/components/common/icon/icon.mustache`.
 
 
