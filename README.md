@@ -161,6 +161,7 @@ directory.
     |-- index.yml   # data only for the index page
     |-- about.yml   # data only for the about page
     |-- ...
+```
 
 The `globals.yml` file contains data for all pages (e.g. website name or menu
 items). You can also provide data for specific pages by creating the 
@@ -217,7 +218,7 @@ You can also pass the following option(s):
 For example, the following invocation:
 
 ```
-npm run make-component layout/header -- -hc
+npm run make-component layout/header -- -ps
 ```
 
 will produce the `.pug` and `.scss` files for the `header` component.
