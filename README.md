@@ -1,9 +1,9 @@
-Static Site Template
-====================
+HTML Boilerplate
+================
 
-This is a template project for static website development. Its primary usage is
-to create HTML pages that could be hosted statically or, for example, later
-converted into a CMS theme.
+This is a boilerplate for HTML projects. Its primary usage is to create HTML
+pages that could be hosted statically or, for example, later converted into a
+CMS theme.
 
 This project is based on [Gulp](https://gulpjs.com/) and uses
 [Pug](https://pugjs.org/) as the template engine.
