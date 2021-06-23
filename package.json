@@ -1,7 +1,7 @@
 {
-  "name": "static-site-template",
+  "name": "html-boilerplate",
   "version": "3.0.0",
-  "description": "Starter template for static website creation",
+  "description": "Starter template for HTML projects",
   "private": true,
   "scripts": {
     "start": "gulp",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrey-glotov/static-site-template.git"
+    "url": "git+https://github.com/andrey-glotov/html-boilerplate.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrey-glotov/static-site-template/issues"
+    "url": "https://github.com/andrey-glotov/html-boilerplate/issues"
   },
-  "homepage": "https://github.com/andrey-glotov/static-site-template#readme",
+  "homepage": "https://github.com/andrey-glotov/html-boilerplate#readme",
   "dependencies": {
     "svg4everybody": "^2.1.9"
   },
