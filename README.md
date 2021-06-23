@@ -1,27 +1,15 @@
-HTML Boilerplate
-================
+# HTML Boilerplate
 
 This is a boilerplate for HTML projects. Its primary usage is to create HTML
-pages that could be hosted statically or, for example, later converted into a
-CMS theme.
+pages that could be hosted statically or, for example, converted into a CMS
+theme.
 
 This project is based on [Gulp](https://gulpjs.com/) and uses
 [Pug](https://pugjs.org/) as the template engine.
 
-Contents:
+Features:
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [File Structure](#file-structure)
-- [Adding Pages](#adding-pages)
-- [Adding Components](#adding-components)
-- [SVG Sprite Icon System](#svg-sprite-icon-system)
-- [Running Specific Gulp Tasks](#running-specific-gulp-tasks)
-- [Using Version Control](#using-version-control)
-
-Features
---------
-
+* Component-based development
 * CSS transforming with Sass & PostCSS
 * JavaScript bundling with Webpack & Babel
 * Code linting with Stylelint & ESLint
@@ -30,96 +18,165 @@ Features
 * Icon system with SVG sprites
 * Live-reloading development server
 
-Getting Started
----------------
+Contents:
+
+* [Getting Started](#getting-started)
+* [Building for Production](#building-for-production)
+* [Running Specific Gulp Tasks](#running-specific-gulp-tasks)
+* [Using Version Control](#using-version-control)
+* [File Structure](#file-structure)
+* [Pages and Layouts](#pages-and-layouts)
+* [Passing Data to Pages](#passing-data-to-pages)
+* [Creating Components](#creating-components)
+* [Customizing Component Templates](#customizing-component-templates)
+* [SVG Sprite Icon System](#svg-sprite-icon-system)
+* [License](#license)
+
+
+## Getting Started
 
 Clone the repository:
+
 ```
-git clone https://github.com/polarfawx/frontend-template.git
+git clone https://github.com/andrey-glotov/html-boilerplate.git
 ```
 
 Install the dependencies:
+
 ```
 npm install
 ```
 
 To start the development server, run:
+
 ```
 npm start
 ```
 
 The server reloads automatically when any source files are modified.
 
-To build for production, run:
+
+## Building for Production
+
+Before building the project, it's recommended to bump the version using the
+special command-line utility. In particular, this helps to eliminate problems
+with cached assets such as CSS or JS files.
+
+```
+npm run bump-version patch    # Increments the patch number
+npm run bump-version minor    # Increments the minor version number
+npm run bump-version major    # Increments the major version number
+```
+
+The following command will build the project. The ready for deployment code
+will be placed into the `dist` folder.
+
 ```
 npm run build
 ```
 
-The ready for deployment code will be placed into the `dist` folder.
 
-File Structure
---------------
+## Running Specific Gulp Tasks
 
-The project's structure looks as follows:
+To manually execute a specific gulp task, run:
+
+```
+npm run gulp [task]
+```
+
+You can pass the following option to specify that you want to run the task in 
+production mode:
+
+```
+npm run gulp [task] -- --env=production
+```
+
+Running in production mode means that all CSS and JS files will be minimized and
+optimized, and linters will complain about the use of some features such as
+`console.log` or `alert` statements.
+
+
+## Using Version Control
+
+If you're planning to use a version control system for your project, you may
+want first to delete the `.git` directory after cloning this template and then
+initialize your own repo:
+
+```
+rm -rf .git
+git init
+```
+
+
+## File Structure
+
+The project's structure looks like this:
 
 ```
 /
-|-- /config                     # configuration files
-|-- /docs                       # project documentation
 |-- /gulp
-    |-- tasks/                  # task implementations
-    |-- config.js               # Gulp configuration variables
+    |-- tasks/                  # Gulp tasks
+    |-- config.js               # Gulp configs
+|-- /scripts                    # utility scripts    
 |-- /src
-    |-- /assets
-        |-- /icons              # SVGs used to generate the icon sprite
-        |-- /img                # images
-        |-- /js                 # JavaScript sources
-        |-- /sass               # Sass sources
-        |-- /static             # assets to copy without touching, e.g. fonts
-    |-- /components             # components implementation
+    |-- /components             # project components
         |-- /common
         |-- /templates          # templates for generating components
         |-- ...
     |-- /data                   # data for page generation
+    |-- /icons                  # SVG icons for the sprite
+    |-- /img                    # images
+    |-- /js                     # JavaScript sources
     |-- /layouts                # layout templates
     |-- /pages                  # page templates
-|-- /scripts                    # utility scripts
-|-- gulpfile.js                 # the Gulpfile
+    |-- /sass                   # Sass sources
+    |-- /static                 # assets to copy without touching, e.g. fonts
+|-- gulpfile.babel.js           # the Gulpfile
+|-- package.json
+|-- ... misc config files           
 ```
 
-Adding Pages
-------------
 
-All Pug files that will directly create HTML pages should be placed into the
-`src/pages` directory.
+## Pages and Layouts
 
-The data is passed to Pug from external JSON files. The global data for all
-pages (e.g. website name) is defined in the `src/data/globals.yml` file. You
-can also provide data for a particular page by creating a YAML file with a
-name matching the corresponding page, e.g.:
+All `.pug` files placed into the `src/pages` directory will generate HTML
+pages.
 
-```
-data/
-|-- pages/
-|   |-- index.yml   # data for the home page
-|   |-- about.yml   # data for the about page
-|   `-- ...
-`-- globals.yml     # global data
-pages/
-|-- index.pug       # template for the home page
-|-- about.pug       # template for the about page
-`-- ...
-```
-
-The data from both YAML files will be merged into a single object accessible
-inside the templates through the global `data` variable.
+You can create shared page layouts and place them inside the `src/layouts`
+directory.
 
 **NOTE:** for the watch task to work properly, do not omit the `.pug` file
 extensions in your `include` or `extends` statements.
 
 
-Adding Components
------------------
+## Passing Data to Pages
+
+The data is passed to Pug from external YAML files inside the `src/data`
+directory.
+
+```
+/data
+|-- globals.yml     # global data for all pages
+|-- /pages
+    |-- index.yml   # data only for the index page
+    |-- about.yml   # data only for the about page
+    |-- ...
+
+The `globals.yml` file contains data for all pages (e.g. website name or menu
+items). You can also provide data for specific pages by creating the 
+corresponding YAML files in the `data/pages` subdirectory. In this case, the
+data from both files will be merged into a single object, and page-specific
+fields will override the ones from the `globals.yml` file.
+
+You can access the data inside your `.pug` templates through the global `data`
+variable:
+
+```pug
+h1= data.pageTitle
+p= data.pageDescription
+```
+
+## Creating Components
 
 The user interface is divided into independent, reusable components which makes
 development and maintenance faster and easier.
@@ -127,56 +184,65 @@ development and maintenance faster and easier.
 Each component corresponds to a single directory inside the `src/components/`
 folder containing separate files for each implementation technology:
 
-* `component-name.pug` - contains the component's markup
-* `component-name.scss` - contains the component's styles
-* `component-name.js` - contains the component's behavior
-* `index.js` - entry point to simplify import of `component-name.js` 
+```
+/components
+|-- /common
+    |-- /my-component
+        |-- my-component.pug    # markup template
+        |-- my-component.scss   # styles
+        |-- my-component.js     # scripts
+        |-- index.js            # entry point to simplify JS imports
+```
 
-If one of your components doesn't use a particular technology, simply don't provide
+If components don't use a particular implementation technology, simply omit
 the corresponding file(s).
 
 To create a component, use the following command-line utility:
+
 ```
-npm run make-component COMPONENT... -- [OPTION]...
+npm run make-component common/my-component
 ```
 
-This command will create a directory for `COMPONENT` as well as stub files for
-its implementation. You can pass the following `OPTIONS`(s):
-* `-p, --pug` - generate a `.pug` file for the component's markup
-* `-s, --scss` - generate a `.scss` file for the component's styles
-* `-j, --js` - generate a `.js` file for the component's behavior
+This command will create a directory for `my-component` inside the `common`
+subfolder and generate stub files for the component's implementation.
+
+You can also pass the following option(s):
+* `-p, --pug` - generate a `.pug` file
+* `-s, --scss` - generate a `.scss` file
+* `-j, --js` - generate `.js` files
 * `-a, --all` - all above (default)
-* `-c, --class` - if the `--js` option is provided, generate a class definition
-  for the component
+* `-c, --class` - when used together with the `--js` option, generates a class
+  definition for the component 
 
 For example, the following invocation:
+
 ```
-npm run make-component header -- -hc
+npm run make-component layout/header -- -hc
 ```
+
 will produce the `.pug` and `.scss` files for the `header` component.
 
-**NOTE:** A double-dash (`--`) before the option list is required.
+**NOTE:** A double-dash (`--`) is required before the option list.
 
-You can also create multiple components at once and optionally place them into
-subdirectories as follows:
+You can also create multiple components at once:
+
 ```
-npm run make-component common/header common/footer blog/archive blog/post
+npm run make-component layout/header layout/footer blog/archive blog/post
 ```
 
-### Component templates
+## Customizing Component Templates
 
 The following template files are used to generate components:
 
-* `src/components/templates/component.pug.mustache` - Template for component
-  markup
-* `src/components/templates/component.scss.mustache` - Template for component
-  styles
-* `src/components/templates/component.js.mustcahe` - Template for component
-  JavaScript code (if the `--class` option is not specified)
-* `src/components/templates/component.class.js.mustcahe` - Template for
-  component JavaScript code (if the `--class` option is specified)
-* `src/components/templates/index.js.mustcahe` - JavaScript entry point for the
-  component
+```
+/components
+|-- /templates
+    |-- component.pug.mustache
+    |-- component.scss.mustache
+    |-- component.js.mustcahe
+    |-- component.class.js.mustcahe
+    |-- index.js.mustcahe
+```
 
 You can edit them if you want.
 
@@ -195,7 +261,7 @@ file becomes the name of the icon, e.g.:
 During the build process, the following files will be generated:
 
 * `src/components/common/icon/icon.scss` - styles for the icons
-* `src/assets/img/icons.svg` - SVG sprite containing all icons
+* `src/img/icons.svg` - SVG sprite containing all the icons
 
 To use the sprite in your markup, include the `icon` component and pass the
 name of the icon as a parameter. The second parameter is an optional title
@@ -212,32 +278,6 @@ If you want to customize generated CSS classes, edit the template file
 `src/components/common/icon/icon.mustache`.
 
 
-Running Specific Gulp Tasks
----------------------------
+## License
 
-To execute a specific gulp task, run:
-```
-npm run gulp [task]
-```
-You can pass the following option to specify that you want to run the task in 
-production mode:
-```
-npm run gulp [task] -- --env=production
-```
-Running in production mode means that all CSS and JS files will be minimized and
-optimized, and linters will complain about the use of some featues such as
-`console.log` or `alert` statements.
-
-Using Version Control
----------------------
-
-If you're planning to use a version control system for your project, you may
-want first to delete the `.git` directory after cloning the template:
-```
-rm -rf .git
-```
-and then initialize your own repo.
-
-License
--------
 [MIT License](LICENSE)
