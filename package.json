@@ -1,5 +1,5 @@
 {
-  "name": "html-boilerplate",
+  "name": "html-project-template",
   "version": "3.0.0",
   "description": "Starter template for HTML projects",
   "private": true,
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrey-glotov/html-boilerplate.git"
+    "url": "git+https://github.com/andrey-glotov/html-project-template.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrey-glotov/html-boilerplate/issues"
+    "url": "https://github.com/andrey-glotov/html-project-template/issues"
   },
-  "homepage": "https://github.com/andrey-glotov/html-boilerplate#readme",
+  "homepage": "https://github.com/andrey-glotov/html-project-template#readme",
   "dependencies": {
     "svg4everybody": "^2.1.9"
   },

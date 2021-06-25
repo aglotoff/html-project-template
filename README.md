@@ -1,8 +1,8 @@
-# HTML Boilerplate
+# HTML Project Template
 
-This is a boilerplate for HTML projects. Its primary usage is to create HTML
-pages that could be hosted statically or, for example, converted into a CMS
-theme.
+This is a starter template for HTML projects. Its primary usage is to create
+HTML pages that could be hosted statically or converted into CMS theme / web
+application.
 
 This project is based on [Gulp](https://gulpjs.com/) and uses
 [Pug](https://pugjs.org/) as the template engine.
@@ -38,7 +38,7 @@ Contents:
 Clone the repository:
 
 ```
-git clone https://github.com/andrey-glotov/html-boilerplate.git
+git clone https://github.com/andrey-glotov/html-project-template.git
 ```
 
 Install the dependencies:
