@@ -1,12 +1,12 @@
 // Partial imports
-@import 'variables';
-@import 'mixins';
-@import 'fonts';
-@import 'base';
+@use 'variables';
+@use 'mixins';
+@use 'fonts';
+@use 'base';
 
 // Third-party imports
 // TODO: add code here
 
 // Component imports
-@import 'components/common/page/page';
+@use 'components/common/page/page';
 // TODO: add code here
