@@ -38,7 +38,7 @@ Contents:
 Clone the repository:
 
 ```
-git clone https://github.com/andrey-glotov/html-project-template.git
+git clone https://github.com/aglotoff/html-project-template.git
 ```
 
 Install the dependencies:
