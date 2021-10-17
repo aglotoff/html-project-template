@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrey-glotov/html-project-template.git"
+    "url": "git+https://github.com/aglotoff/html-project-template.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrey-glotov/html-project-template/issues"
+    "url": "https://github.com/aglotoff/html-project-template/issues"
   },
-  "homepage": "https://github.com/andrey-glotov/html-project-template#readme",
+  "homepage": "https://github.com/aglotoff/html-project-template#readme",
   "dependencies": {
     "svg4everybody": "^2.1.9"
   },
