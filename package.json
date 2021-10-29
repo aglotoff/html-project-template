@@ -1,6 +1,6 @@
 {
   "name": "html-project-template",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Starter template for HTML projects",
   "private": true,
   "scripts": {
