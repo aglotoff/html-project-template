@@ -1,12 +1,16 @@
 /**
  * Styles for the page component
  */
+
+@use 'sass/mixins';
+@use 'sass/variables';
+
 .page {
   // Selector styles
-  font-family: $font-family-default;
+  font-family: variables.$font-family-default;
   font-size: 1rem;
-  font-weight: $font-weight-regular;
-  line-height: $line-height-default;
+  font-weight: variables.$font-weight-regular;
+  line-height: variables.$line-height-default;
 
   // @media queries
   // TODO: add code

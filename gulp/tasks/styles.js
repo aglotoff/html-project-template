@@ -5,12 +5,15 @@ import del from 'del';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import postCss from 'gulp-postcss';
-import sass from 'gulp-sass';
+import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import stylelint from 'gulp-stylelint';
 import wait from 'gulp-wait';
+import dartSass from 'sass';
 
 import config from '../config';
+
+const sass = gulpSass(dartSass);
 
 export const lintStyles = () =>
   gulp
@@ -23,7 +26,7 @@ export const buildStyles = () =>
     .pipe(plumber())
     .pipe(wait(500)) // Error Workaround
     .pipe(sourcemaps.init())
-    .pipe(sass.sync(config.plugins.sass))
+    .pipe(sass.sync(config.plugins.sass).on('error', sass.logError))
     .pipe(
       postCss(config.run.cssnano ? [autoprefixer, cssnano] : [autoprefixer])
     )

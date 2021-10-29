@@ -3,6 +3,9 @@
    License: none (public domain)
 */
 
+@use 'sass:math';
+@use 'variables';
+
 html,
 body,
 div,
@@ -148,7 +151,7 @@ body {
 
 /* root font size */
 :root {
-  font-size: ($font-size-default / 16px) + em;
+  font-size: math.div(variables.$font-size-default, 16px) + em;
 }
 
 /* universal max-width rule for images */
