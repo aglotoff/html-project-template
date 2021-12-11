@@ -20,7 +20,7 @@ const TOP = '.';
 const SRC = `${TOP}/src`;
 const DIST = `${TOP}/dist`;
 
-module.exports = {
+export default {
   env,
 
   /*

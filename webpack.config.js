@@ -4,6 +4,10 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = ({ mode = 'development' } = {}) => ({
   output: {
     filename: '[name].js',
+    library: {
+      name: 'myProject',
+      type: 'window',
+    }
   },
   module: {
     rules: [

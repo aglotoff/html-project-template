@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "commonjs": true,
@@ -17,9 +18,8 @@
   "rules": {
     "no-plusplus": "off",
     "no-use-before-define": "off",
-    "no-new": "off"
-  },
-  "settings": {
+    "no-new": "off",
+    "no-restricted-exports": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -30,7 +30,9 @@
           "./webpack.config.js"
         ]
       }
-    ],
+    ]
+  },
+  "settings": {
     "import/resolver": {
       "node": {},
       "webpack": {

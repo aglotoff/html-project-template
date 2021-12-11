@@ -1,15 +1,24 @@
-// Polyfill imports
-// import 'core-js/features/object/assign';
-// import 'core-js/features/promise';
+// Import polyfills
+import 'core-js/features/dom-collections';
+import 'core-js/features/object/assign';
+import 'core-js/features/promise';
+import 'custom-event-polyfill';
+import 'element-closest-polyfill';
 
-// Library imports
+// Import libraries
 import svg4everybody from 'svg4everybody';
 
-// Component imports
+// Import components
 // import Example from '@components/example';
 
-// Initialize libraries
+// Init libraries
 svg4everybody();
 
-// Initialize components
-// TODO: add code here
+// Init components
+// TODO: add code
+
+// Expose components and utils
+// eslint-disable import/prefer-default-export
+export {
+  // TODO: add code
+};

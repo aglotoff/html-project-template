@@ -6,7 +6,6 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import postCss from 'gulp-postcss';
 import gulpSass from 'gulp-sass';
-import sourcemaps from 'gulp-sourcemaps';
 import stylelint from 'gulp-stylelint';
 import wait from 'gulp-wait';
 import dartSass from 'sass';
@@ -22,15 +21,13 @@ export const lintStyles = () =>
 
 export const buildStyles = () =>
   gulp
-    .src(config.paths.styles.src)
+    .src(config.paths.styles.src, { sourcemaps: true })
     .pipe(plumber())
     .pipe(wait(500)) // Error Workaround
-    .pipe(sourcemaps.init())
     .pipe(sass.sync(config.plugins.sass).on('error', sass.logError))
     .pipe(
       postCss(config.run.cssnano ? [autoprefixer, cssnano] : [autoprefixer])
     )
-    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.paths.styles.dest))
     .pipe(
       browserSync.reload({

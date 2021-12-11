@@ -17,52 +17,61 @@ const SELECTOR = {
   ROOT: `.${COMPONENT_NAME}`,
 };
 
-// Map of DOM elements
-const elements = {};
+// Associate class instances with DOM elements using a weak map
+const instanceMap = new WeakMap();
 
 // TODO: add code here
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// -------------------------- BEGIN UTILITY FUNCTIONS -------------------------
-
-// TODO: add code here
-
-// --------------------------- END UTILITY FUNCTIONS --------------------------
-
-// ----------------------------- BEGIN DOM METHODS ----------------------------
-
-// TODO: add code here
-
-// ------------------------------ END DOM METHODS -----------------------------
-
-// --------------------------- BEGIN EVENT HANDLERS ---------------------------
-
-// TODO: add code here
-
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
 /**
- * Initialize the {{componentTitle}} component.
- *
- * @return {boolean} true if the component is present on the page; false
- * otherwise.
+ * {{componentTitle}}.
  */
-function init() {
-  const root = document.querySelector(SELECTOR.ROOT);
-  if (root == null) {
-    return false;
+export default class {{constructorName}} {
+  /**
+   * Initialize the {{componentTitle}} component.
+   * 
+   * @param {HTMLElement} root The root element of the component.
+   */
+  constructor(element) {
+    // TODO: add code here
+
+    instanceMap.set(element, this);
   }
+
+  // ------------------------- BEGIN PRIVATE METHODS ------------------------
 
   // TODO: add code here
 
-  return true;
+  // -------------------------- END PRIVATE METHODS -------------------------
+
+  // -------------------------- BEGIN EVENT HANDLERS ------------------------
+
+  // TODO: add code here
+
+  // --------------------------- END EVENT HANDLERS -------------------------
+
+  // -------------------------- BEGIN PUBLIC METHODS ------------------------
+
+  /**
+   * Get a component instance associated with the given DOM element.
+   *
+   * @param {HTMLElement} element The element.
+   * @returns {Object | null} The associated instance or null if no such
+   *  instance exists.
+   */
+  static getInstance(element) {
+    return instanceMap.get(element);
+  }
+
+  /**
+   * Initialize all {{componentTitle}} components on the page.
+   */
+  static initAll() {
+    [].forEach.call(document.querySelectorAll(SELECTOR.ROOT), (root) => {
+      new {{constructorName}}(root);
+    });
+  }
+
+  // --------------------------- END PUBLIC METHODS -------------------------
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-  init,
-};
